@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>FARMACIAS Y COMISARIATOS DE MEDICINAS S.A. FARCOMED</razonSocial>
+        <nombreComercial>FYBECA LA PLAZA IBARRA</nombreComercial>
+        <ruc>1790710319001</ruc>
+        <claveAcceso>1012201601179071031900120390120004566365658032319</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>039</estab>
+        <ptoEmi>012</ptoEmi>
+        <secuencial>000456636</secuencial>
+        <dirMatriz>KM CINCO Y MEDIO AV DE LOS SHYRIS N SN Y SECUNDARIA</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>10/12/2016</fechaEmision>
+        <dirEstablecimiento>AV.MARIANO ACOSTA 2147 GALO PLAZA LASSO ( C.C. PLAZA SHOPPING CENTER ) 2147 GALO PLAZA LASSO ( C.C. PLAZA SHOPPING CENTER )</dirEstablecimiento>
+        <contribuyenteEspecial>5368</contribuyenteEspecial>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>ORQUERA ANDRADE LUIS MIGUEL</razonSocialComprador>
+        <identificacionComprador>1000982882</identificacionComprador>
+        <totalSinImpuestos>14.06</totalSinImpuestos>
+        <totalDescuento>0</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>0</codigoPorcentaje>
+                <baseImponible>0.00</baseImponible>
+                <tarifa>0</tarifa>
+                <valor>0.00</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>3</codigoPorcentaje>
+                <baseImponible>14.06</baseImponible>
+                <tarifa>14</tarifa>
+                <valor>1.97</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>16.03</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>19</formaPago>
+                <total>16.03</total>
+                <plazo>0</plazo>
+                <unidadTiempo>MESES</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>9476</codigoPrincipal>
+            <descripcion>CREMA FACIAL NIVEACREMA FACIAL NIVEA CREME LATA X 150 ML</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>4.6</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>4.6</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14</tarifa>
+                    <baseImponible>4.60</baseImponible>
+                    <valor>0.64</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>249392</codigoPrincipal>
+            <descripcion>CREMA CORPORAL NIVEACREMA CORPORAL NIVEA REAFIRMANTE Q10 PLUS 400 ML</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>9.46</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>9.46</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14</tarifa>
+                    <baseImponible>9.46</baseImponible>
+                    <valor>1.32</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="DIRECCION">SP SN SI</campoAdicional>
+        <campoAdicional nombre="DESCUENTO">0.72</campoAdicional>
+        <campoAdicional nombre="DOCUMENTO INTERNO">3256193</campoAdicional>
+        <campoAdicional nombre="EMAIL">MIGUELO42@HOTMAIL.COM</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature293305"><ds:SignedInfo Id="Signature-SignedInfo505762"><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod><ds:Reference Id="SignedPropertiesID260366" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature293305-SignedProperties97683"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>LQRhvtYN2XyhmMefYstj1psJKcY=</ds:DigestValue></ds:Reference><ds:Reference URI="#Certificate13616"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>JS9zahaxrn/7njjgYLZBv4AhUKw=</ds:DigestValue></ds:Reference><ds:Reference Id="Reference-ID-232147" URI="#comprobante"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>pk0/6R9HiE0gS2CyV5QeIrWeVoQ=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="SignatureValue286740">bcq/i3xDDQ1vlgGeS5EZfMPfKoqE8K8HRqGjf/2w0t8MCVXIDuOFptWcnO/DHPqn+vDTpwIr3VxDbJgV2J7r5KIisbybm0Wk/NqVkol2AvkHgEEhne8SyU/tzoqMohtkWceeJ5Gr591g/WHp4SoKl6hxcr4g7M7gZ2S0OGvJlahDEL278xMU4uxo7LjPZG9iL3ojaa5E7P4rj1oYktPa2QMD2gwXhT7D4cAzZ2yA3ynBnm/ShKZNCmyqzH/qCc/trYI4MLNgwuKphQ001TXA77JiBMMI93cjfy69vuRbh5Vls8eP/PTlE5OCb3WwjMiZnfIv3MQCsmNapRRk5Yy04Q==</ds:SignatureValue><ds:KeyInfo Id="Certificate13616"><ds:X509Data><ds:X509Certificate>MIIJizCCB3OgAwIBAgIETkcxezANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNVBAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxBQyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTE2MDkyMDE5MDY1NFoXDTE4MDkyMDE5MzY1NFowgbQxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcwNQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4wDAYDVQQHEwVRVUlUTzE4MBEGA1UEBRMKMDAwMDEzMTY2MjAjBgNVBAMTHEpPU0UgRURVQVJETyBKQUNPTUUgVklMTEFNQVIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC8mCZNdAalXdc2jPxXIPZ3lpY5nPdSligXBSmcbUSByycSpnKBOKp8CQq6llyrzK/8qm0t629etN1z6d0OmOS8rfK9KWCWfQ+DswVsPKQKfZFwAU/oyv6l2yCPQ8nSulTOVVHzDHrq0QRTTAoo4t5UavIL+4BvIPoNmiY2sG/nt2K7KsXw7a2oAmW3yYsWQrBwXuMWQDlFxuD8vIATGs9pKNr8OxWWhJStYJH5uIOBHqezNRbPSq12fo4SgtgQf125QG+ykY59MAPe174aIKQlxOETAy4NiAZ8BHpfMTyXAnpH8ryQ/jmM7bJSOzXF050a2EMYVwczS4TClfhM2i/pAgMBAAGjggS0MIIEsDCBkQYIKwYBBQUHAQEEgYQwgYEwPgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmVjaS5iY2UuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMD8GCCsGAQUFBzABhjNodHRwOi8vb2NzcDEuZWNpLmJjZS5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVzL29jc3AwQQYKKwYBBAGCqDsDCgQzEzFGQVJNQUNJQVMgWSBDT01JU0FSSUFUT1MgREUgTUVESUNJTkFTIFNBIEZBUkNPTUVEMB0GCisGAQQBgqg7AwsEDxMNMTc5MDcxMDMxOTAwMTAaBgorBgEEAYKoOwMBBAwTCjE3MTA2ODYyMDMwHAYKKwYBBAGCqDsDAgQOEwxKT1NFIEVEVUFSRE8wFgYKKwYBBAGCqDsDAwQIEwZKQUNPTUUwGAYKKwYBBAGCqDsDBAQKEwhWSUxMQU1BUjAfBgorBgEEAYKoOwMFBBETD0dFUkVOVEUgR0VORVJBTDA6BgorBgEEAYKoOwMHBCwTKkFWIERFIExPUyBTSFlSSVMgU04gIEtNIDUgMTIgIFZJQSBBTUFHVUFOQTAZBgorBgEEAYKoOwMIBAsTCTAyMzgyOTgwMDAZBgorBgEEAYKoOwMJBAsTCVJ1bWluYWh1aTAXBgorBgEEAYKoOwMMBAkTB0VDVUFET1IwIAYKKwYBBAGCqDsDMwQSExBTT0ZUV0FSRS1BUkNISVZPMCgGA1UdEQQhMB+BHWFqYWx2YXJlenRAY29ycG9yYWNpb25ncGYuY29tMIIB3wYDVR0fBIIB1jCCAdIwggHOoIIByqCCAcaGgdVsZGFwOi8vYmNlcWxkYXBzdWJwMS5iY2UuZWMvY249Q1JMMzYzLGNuPUFDJTIwQkFOQ08lMjBDRU5UUkFMJTIwREVMJTIwRUNVQURPUixsPVFVSVRPLG91PUVOVElEQUQlMjBERSUyMENFUlRJRklDQUNJT04lMjBERSUyMElORk9STUFDSU9OLUVDSUJDRSxvPUJBTkNPJTIwQ0VOVFJBTCUyMERFTCUyMEVDVUFET1IsYz1FQz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2WGNGh0dHA6Ly93d3cuZWNpLmJjZS5lYy9DUkwvZWNpX2JjZV9lY19jcmxmaWxlY29tYi5jcmykgbUwgbIxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcwNQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4wDAYDVQQHEwVRVUlUTzElMCMGA1UEAxMcQUMgQkFOQ08gQ0VOVFJBTCBERUwgRUNVQURPUjEPMA0GA1UEAxMGQ1JMMzYzMAsGA1UdDwQEAwIFIDAfBgNVHSMEGDAWgBQY+fD75jIcmWY5KsqLsml9SSe/zjAdBgNVHQ4EFgQU+lHWg8hmcfIa6cRZGgVUPC2YgFUwCQYDVR0TBAIwADAZBgkqhkiG9n0HQQAEDDAKGwRWOC4xAwIEkDANBgkqhkiG9w0BAQsFAAOCAgEAhpD3uEknDYg7M4rB6x4hf/trWQkgBLmqTrnVw1HVThUOMKRgNb0QrHOtrkys8QAV75twRYHMn9mS+cdVxL9Yah5/cTIdE0/w40J8yz2586xYQH8y7mvsAmNewr1GBrKU7BknEpDxcmoH15hDhIyI4vK5NccrzjjFVWwPL11T7Yjud1Wavfh15n0GwA2MsjSG2YNLCGJ3H7n33a9RGszyZKEO3wA19/Th+CMKrSLH9eYzHJWYBfXBTBaF03kWgPhNOhSNAffP/zlL3uKJYmQyp1ECgtrQHMCFh3RdAtmDDtGqVRmg2KNTwyOfX7T8/xZzFtlmdqWjhME5KyIAaehrza0isVzVpYQp7WAlJWYM9wChqN07hS2kVizXp+/Cf2OOnPRqJ7D6F8JQUgwUiaypUa7rvu7R1/C3m1XcI8XGBuePI0j2KYTf4qu0950kEX4PdkSzNFRriBiU1Tmkmmjyp6fKn2LJs5XFpXsZua5g/YCKgzp6P6RhLpsuvkAIDyUvUIAF93f5AZ7Jd92X/wxCXN18hS7ZHKehoQ0Z1L5VPh9SrWPWgNNLST35kbgYdmu5WwoNqhaY1PvXk+w9OjknOkfcd3cJVrwkCkvgMaT66WBeLInQCuHWgCq69J/K9BLli0ZlAh47WCialtCjWdBB5sLqPn/K3EfL7DSB3mReb/E=</ds:X509Certificate></ds:X509Data><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>
+vJgmTXQGpV3XNoz8VyD2d5aWOZz3UpYoFwUpnG1EgcsnEqZygTiqfAkKupZcq8yv/KptLetvXrTdc+ndDpjkvK3yvSlgln0Pg7MFbDykCn2RcAFP6Mr+pdsgj0PJ0rpUzlVR8wx66tEEU0wKKOLeVGryC/uAbyD6DZomNrBv57diuyrF8O2tqAJlt8mLFkKwcF7jFkA5Rcbg/LyAExrPaSja/DsVloSUrWCR+biDgR6nszUWz0qtdn6OEoLYEH9duUBvspGOfTAD3te+GiCkJcThEwMuDYgGfAR6XzE8lwJ6R/K8kP45jO2yUjs1xdOdGthDGFcHM0uEwpX4TNov6Q==
+</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:Object Id="Signature293305-Object815495"><etsi:QualifyingProperties Target="#Signature293305"><etsi:SignedProperties Id="Signature293305-SignedProperties97683"><etsi:SignedSignatureProperties><etsi:SigningTime>2016-12-10T12:57:46-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>N3dKI06Us3Ik4dV+PrpWgU0dzrQ=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313288571</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-232147"><etsi:Description>Contenido Comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

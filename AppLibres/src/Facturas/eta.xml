@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><autorizacion>
+  <estado>AUTORIZADO</estado>
+  <numeroAutorizacion>1209201615210717909855040010478845064</numeroAutorizacion>
+  <fechaAutorizacion class="fechaAutorizacion">12/09/2016 15:21:07.000</fechaAutorizacion>
+  <comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.0.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>COMERCIAL ETATEX C A</razonSocial>
+        <nombreComercial>ETATEX</nombreComercial>
+        <ruc>1790985504001</ruc>
+        <claveAcceso>1209201601179098550400120020260000277861234567816</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>002</estab>
+        <ptoEmi>026</ptoEmi>
+        <secuencial>000027786</secuencial>
+        <dirMatriz>PANAMERICANA NORTE KM 2 1/2 AV. 10 DE AGOSTO N60-122 Y SANTA LUCIA</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>12/09/2016</fechaEmision>
+        <dirEstablecimiento>QUITO / AV.NACIONES UNIDAS S/N Y AV. SEIS DE DICIEMBRE</dirEstablecimiento>
+        <contribuyenteEspecial>143</contribuyenteEspecial>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>JUAN ENRIQUE ERAZO SANCHEZ</razonSocialComprador>
+        <identificacionComprador>1718269671</identificacionComprador>
+        <totalSinImpuestos>15.73</totalSinImpuestos>
+        <totalDescuento>2.56</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>3</codigoPorcentaje>
+                <baseImponible>15.73</baseImponible>
+                <tarifa>0.14</tarifa>
+                <valor>2.20</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0</propina>
+        <importeTotal>17.93</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>19</formaPago>
+                <total>17.93</total>
+                <plazo>0</plazo>
+                <unidadTiempo>dias</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>5000000304679002</codigoPrincipal>
+            <codigoAuxiliar>5000000304679002</codigoAuxiliar>
+            <descripcion>BOXERRAYAS CUADRADO RBTX034 M BLANCO</descripcion>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>7.85</precioUnitario>
+            <descuento>1.10</descuento>
+            <precioTotalSinImpuesto>6.75</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14.00</tarifa>
+                    <baseImponible>6.75</baseImponible>
+                    <valor>0.95</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>5000000298029001</codigoPrincipal>
+            <codigoAuxiliar>5000000298029001</codigoAuxiliar>
+            <descripcion>MEDIAS TOB DISN X3 RC0 10   12 VARIOS</descripcion>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>5.22</precioUnitario>
+            <descuento>0.73</descuento>
+            <precioTotalSinImpuesto>4.49</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14.00</tarifa>
+                    <baseImponible>4.49</baseImponible>
+                    <valor>0.63</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>5000000298025001</codigoPrincipal>
+            <codigoAuxiliar>5000000298025001</codigoAuxiliar>
+            <descripcion>MEDIAS TOB DISN X3 RC0 10   12 VARIOS</descripcion>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>5.22</precioUnitario>
+            <descuento>0.73</descuento>
+            <precioTotalSinImpuesto>4.49</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14.00</tarifa>
+                    <baseImponible>4.49</baseImponible>
+                    <valor>0.63</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="Pago">Forma de Pago: MASTER COR.PICHINCHA      17.93</campoAdicional>
+        <campoAdicional nombre="Direccion">PIFO</campoAdicional>
+        <campoAdicional nombre="Email:">juanque@outlook.com</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature45928">
+<ds:SignedInfo Id="Signature-SignedInfo441215">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID74152" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature45928-SignedProperties115555">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>WIR6RSbBqBsKzJhzCOmqfpKlGsU=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1742929">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>1cDr8hCdXzYIS5UpJlto1vHvuZc=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-842185" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>dsUmv2I8e0qnOz4Vzc4SWxGuApI=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue787342">
+wwl7RRn3Uc5IQkxmaLq6RE8LrWfNX+GvSAkvEYOauT7dzmcXG1k5Jpkz7HsmloCCkyc786bVF4ex
+9ATYiwbYaO+ao+kz3rVAOZvlAR82AU+R4PTYxq8vqO+Ls7s6ocAwGCxsQDVbuq9CElRWDzobsR3z
+CoR1qORx4XWT1JBroSBy1b+cLz2aFnvk5CIScrkAnZJD31HRGboPses5A82jlThe3f10OsHsHD7z
+WPnki/s5KBxulnWo1Id3YhBWDvkKFJzEbFQI99lf7id49aVC/pCtVynyuRx8YDKQw5cS5tkNX929
+8KZtXTltt4TEY1t5cpQA2EFMk02KapvaR/dhlQ==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1742929">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJ5TCCB82gAwIBAgIETkaDrDANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNV
+BAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElG
+SUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxB
+QyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTE2MDYwNjE5MjE0NloXDTE4MDYwNjE5NTE0
+NlowgbAxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcw
+NQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4w
+DAYDVQQHEwVRVUlUTzE0MBEGA1UEBRMKMDAwMDA3NDUxMDAfBgNVBAMTGENFU0FSIEFMT05TTyBU
+VUJPTiBUQVBJQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAONsGxpOCxCOW9B7+uOM
+1sEK9xs+LoZ93eOSNFYnm/1la1AUWE7MXGI0o6zylYufsA8ybqj3hPEww8bDx4WjFNmmB7Etxa2o
+Dq/snnH6Jt0x7po+s9OHDWkbj6Mgz2MIsiG4XJ/noX1H3Uuw69+vPKAjyApNF8Ua9rnvVnr94qAU
+hkbPpcI2Ukbfrmqu0rYl+TVHaAowXbIh1DY5tnD5qJ/fHTSYZGihy9LHr0qYrArJijphYl5yLkFv
+mISjRogej8EjgUAyBDNr+E9JpSV9s4fN1LcvI2qxAsPvWBPbPLpxoFgwSfy5OA8ubjzWlwU8WpR0
+pZG4/W8/egtv6a8RHAsCAwEAAaOCBRIwggUOMAsGA1UdDwQEAwIHgDBnBgNVHSAEYDBeMFwGCysG
+AQQBgqg7AgIBME0wSwYIKwYBBQUHAgEWP2h0dHA6Ly93d3cuZWNpLmJjZS5lYy9wb2xpdGljYS1j
+ZXJ0aWZpY2Fkby9wZXJzb25hLWp1cmlkaWNhLnBkZjCBkQYIKwYBBQUHAQEEgYQwgYEwPgYIKwYB
+BQUHMAGGMmh0dHA6Ly9vY3NwLmVjaS5iY2UuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3Nw
+MD8GCCsGAQUFBzABhjNodHRwOi8vb2NzcDEuZWNpLmJjZS5lYy9lamJjYS9wdWJsaWN3ZWIvc3Rh
+dHVzL29jc3AwIwYKKwYBBAGCqDsDCgQVExNDT01FUkNJQUwgRVRBVEVYIENBMB0GCisGAQQBgqg7
+AwsEDxMNMTc5MDk4NTUwNDAwMTAaBgorBgEEAYKoOwMBBAwTCjE3MTA1NDM3NTAwHAYKKwYBBAGC
+qDsDAgQOEwxDRVNBUiBBTE9OU08wFQYKKwYBBAGCqDsDAwQHEwVUVUJPTjAVBgorBgEEAYKoOwME
+BAcTBVRBUElBMBgGCisGAQQBgqg7AwUEChMIQ09OVEFET1IwMQYKKwYBBAGCqDsDBwQjEyFBViBH
+QUxPIFBMQVpBIExBU1NPIFkgU0FOVEEgTFVDSUEwGQYKKwYBBAGCqDsDCAQLEwkwMjM5NzYyMDAw
+FQYKKwYBBAGCqDsDCQQHEwVRdWl0bzAXBgorBgEEAYKoOwMMBAkTB0VDVUFET1IwIAYKKwYBBAGC
+qDsDMwQSExBTT0ZUV0FSRS1BUkNISVZPMCYGA1UdEQQfMB2BG2Fsb25zby50dWJvbkBldGFmYXNo
+aW9uLmNvbTCCAd8GA1UdHwSCAdYwggHSMIIBzqCCAcqgggHGhoHVbGRhcDovL2JjZXFsZGFwc3Vi
+cDEuYmNlLmVjL2NuPUNSTDMyNyxjbj1BQyUyMEJBTkNPJTIwQ0VOVFJBTCUyMERFTCUyMEVDVUFE
+T1IsbD1RVUlUTyxvdT1FTlRJREFEJTIwREUlMjBDRVJUSUZJQ0FDSU9OJTIwREUlMjBJTkZPUk1B
+Q0lPTi1FQ0lCQ0Usbz1CQU5DTyUyMENFTlRSQUwlMjBERUwlMjBFQ1VBRE9SLGM9RUM/Y2VydGlm
+aWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNlhjRodHRwOi8vd3d3LmVjaS5iY2UuZWMvQ1JML2VjaV9i
+Y2VfZWNfY3JsZmlsZWNvbWIuY3JspIG1MIGyMQswCQYDVQQGEwJFQzEiMCAGA1UEChMZQkFOQ08g
+Q0VOVFJBTCBERUwgRUNVQURPUjE3MDUGA1UECxMuRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERF
+IElORk9STUFDSU9OLUVDSUJDRTEOMAwGA1UEBxMFUVVJVE8xJTAjBgNVBAMTHEFDIEJBTkNPIENF
+TlRSQUwgREVMIEVDVUFET1IxDzANBgNVBAMTBkNSTDMyNzArBgNVHRAEJDAigA8yMDE2MDYwNjE5
+MjE0NlqBDzIwMTgwNjA2MTk1MTQ2WjAfBgNVHSMEGDAWgBQY+fD75jIcmWY5KsqLsml9SSe/zjAd
+BgNVHQ4EFgQU6WBuzc97M4ZXXaYJ6y81J6XhflMwCQYDVR0TBAIwADAZBgkqhkiG9n0HQQAEDDAK
+GwRWOC4xAwIEsDANBgkqhkiG9w0BAQsFAAOCAgEAMQtGbfVEOM0ZoUAx/Axbi1yLGgMkok4mxOKW
+FsQz/mudhjf5RU6Fh58fapDgnByIE6z48u7nP3d8uqZm7Rn8cOOMIoyMPikHhvSwlkhl2eb5V7vP
+Eg4JHfTN0LldexeWFf1LxDdcXxRLnDDqEbBJjtmXzZeZ0g+YeGVAoIjDQyy4U8OzmB9xk8RG2qmJ
+Thg0KyBkN9/MbJj5wq4BEPRwKr7Rl8Ttgd90sUIp+sqbQCPd72xjC7xg0ulP8uOWMXJJUGyNHIp1
+o91FMOm+97Vw7ywbq7B8bpAqF1QGN7QCv4+Zi00mG0j+1aZAGD+BPmJPKQWpSEp/5wAi4+LUBIa8
+d4WOnzOGfBNp9HTooAPmDe7MGI6rgHaDlKPQ3SxFYLvBfi3v2ixo/yhu8e+OxLieyCQicLtTWqnF
+5KRDnLo4wGgWoIhZgbbYmsNO5+4HOErqFmNrY9YDeUZovCKow0zmqzbYoNy/9kWu8zP/KX4gEQMM
+gz4PZgDU9ZK0OcD82pxsdItPvBGZJFWTCqm4stokz3MKo0JiPJb0jC0argVRZhhk7E2276yE/C1m
+y+HUeyzWUqyz8TvLmDsTfnuiedoxaK61H1JBW2lfOJI+Ua/F7NyOg4/ZD3udsuaftnVfmmaud+wa
++7VU8Of/23SkbVAeyIgCPnsZWB8ugOEFO1v8UKw=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+42wbGk4LEI5b0Hv644zWwQr3Gz4uhn3d45I0Vieb/WVrUBRYTsxcYjSjrPKVi5+wDzJuqPeE8TDD
+xsPHhaMU2aYHsS3FragOr+yecfom3THumj6z04cNaRuPoyDPYwiyIbhcn+ehfUfdS7Dr3688oCPI
+Ck0XxRr2ue9Wev3ioBSGRs+lwjZSRt+uaq7StiX5NUdoCjBdsiHUNjm2cPmon98dNJhkaKHL0sev
+SpisCsmKOmFiXnIuQW+YhKNGiB6PwSOBQDIEM2v4T0mlJX2zh83Uty8jarECw+9YE9s8unGgWDBJ
+/Lk4Dy5uPNaXBTxalHSlkbj9bz96C2/prxEcCw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature45928-Object185972"><etsi:QualifyingProperties Target="#Signature45928"><etsi:SignedProperties Id="Signature45928-SignedProperties115555"><etsi:SignedSignatureProperties><etsi:SigningTime>2016-09-12T15:21:58-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>Vg8ZoXK708nfQO4yY969WDp/P/o=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313244076</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-842185"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+  <mensajes/>
+</autorizacion>

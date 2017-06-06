@@ -3,5 +3,5 @@ AppLibres/test
 AppLibres/*.jar
 AppLibres/lib/
 AppLibres/nbproject/private/private.properties
-
+/AppLibres/bdd/facturas.db
 /AppLibres/dist/

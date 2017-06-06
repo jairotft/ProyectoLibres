@@ -2,4 +2,5 @@ AppLibres/build/
 AppLibres/test
 AppLibres/*.jar
 AppLibres/lib/
-AppLibres/src/conexionBDD/Conexion.java
+AppLibres/nbproject/private/private.properties
+

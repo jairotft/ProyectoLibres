@@ -29,7 +29,7 @@ public class Conexion {
     Connection conexion;
 
     public Conexion() {
-        String url="Path\\facturas.db";
+        String url="bdd/facturas.db";
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);

@@ -4,3 +4,4 @@ AppLibres/*.jar
 AppLibres/lib/
 AppLibres/nbproject/private/private.properties
 
+/AppLibres/dist/

@@ -15,4 +15,4 @@
 Este proyecto tiene como finalidad desarrollar un sistema que gestione facturas tanto en formato XML, como físicas, y de esta forma apoye a la administración de gastos y pago de impuestos de un usuario
 
 ## Instalación
-Para realizar la instalación de la aplicación, seguir el manual o [pdf](https://github.com/Jairo95/ProyectoLibres/tree/instalacion/instaladores)
+Para realizar la instalación de la aplicación, seguir el manual o [pdf](https://raw.githubusercontent.com/Jairo95/ProyectoLibres/f58dd47930f04567513babc23cf0ca6c0a6d688c/instaladores/Manual_Setup_EasyFacturas.pdf)

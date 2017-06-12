@@ -48,6 +48,7 @@ public class CargaXml {
             elementos.add("ptoEmi");
             elementos.add("secuencial");
             elementos.add("fechaEmision");
+            elementos.add("identificacionComprador");
             elementos.add("totalSinImpuestos");
             elementos.add("valor");
             elementos.add("descripcion");
@@ -151,6 +152,14 @@ public class CargaXml {
                 Element factura = (Element) lista_campos.get(1);
 
                 // Info Factura
+                
+                cont = elementos.indexOf("identificacionComprador");
+                String usuario = "";
+                if (cont != -1) {
+                    usuario = factura.getChildTextTrim(elementos.get(cont).toString());
+                }
+                
+                
                 cont = elementos.indexOf("fechaEmision");
                 String fecha = "";
                 if (cont != -1) {
@@ -174,51 +183,55 @@ public class CargaXml {
 
                 Double totalConImps = totalSinImp + Imps;
 
-                if (!cp.verificar_usuario("SELECT * FROM FACTURA WHERE id_factura='" + numFact + "'")) {
-                    String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
-                            + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
-                    cp.insertar(facturaQ);
+                if(usuario.equals(cedulaCli)){
+                    if (!cp.verificar_usuario("SELECT * FROM FACTURA WHERE id_factura='" + numFact + "'")) {
+                        String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
+                                + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
+                        cp.insertar(facturaQ);
 
-                    Element detalles = (Element) lista_campos.get(2);
-                    List detalle = detalles.getChildren();
+                        Element detalles = (Element) lista_campos.get(2);
+                        List detalle = detalles.getChildren();
 
-                    Object datosProducto[][] = new Object[detalle.size()][3];
+                        Object datosProducto[][] = new Object[detalle.size()][3];
 
-                    for (int j = 0; j < detalle.size(); j++) {
+                        for (int j = 0; j < detalle.size(); j++) {
 
-                        campo = (Element) detalle.get(j);
+                            campo = (Element) detalle.get(j);
 
-                        // Detalle
-                        cont = elementos.indexOf("descripcion");
-                        String descripcion = "";
-                        if (cont != -1) {
-                            descripcion = campo.getChildTextTrim(elementos.get(cont).toString());
+                            // Detalle
+                            cont = elementos.indexOf("descripcion");
+                            String descripcion = "";
+                            if (cont != -1) {
+                                descripcion = campo.getChildTextTrim(elementos.get(cont).toString());
+                            }
+
+                            cont = elementos.indexOf("precioTotalSinImpuesto");
+                            Double total = 0.0;
+                            if (cont != -1) {
+                                total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
+                            }
+
+                            if (!descripcion.equals("")) {
+                                datosProducto[j][0] = descripcion;
+                                datosProducto[j][1] = total;
+                                datosProducto[j][2] = "";
+                            }
                         }
 
-                        cont = elementos.indexOf("precioTotalSinImpuesto");
-                        Double total = 0.0;
-                        if (cont != -1) {
-                            total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
+                        if (datosProducto.length != 0) {
+                            if (tipo.equals("Personal")) {
+                                SeleccionarTipoGastoPersonal seleccionarP = new SeleccionarTipoGastoPersonal(cp, datosProducto, numFact, anio, cedulaCli, tipo);
+                                seleccionarP.setVisible(true);
+                            } else {
+                                SeleccionarTipoGastoNegocios seleccionarH = new SeleccionarTipoGastoNegocios(cp, datosProducto, numFact, anio, cedulaCli, tipo);
+                                seleccionarH.setVisible(true);
+                            }
                         }
-
-                        if (!descripcion.equals("")) {
-                            datosProducto[j][0] = descripcion;
-                            datosProducto[j][1] = total;
-                            datosProducto[j][2] = "";
-                        }
-                    }
-
-                    if (datosProducto.length != 0) {
-                        if (tipo.equals("Personal")) {
-                            SeleccionarTipoGastoPersonal seleccionarP = new SeleccionarTipoGastoPersonal(cp, datosProducto, numFact, anio, cedulaCli, tipo);
-                            seleccionarP.setVisible(true);
-                        } else {
-                            SeleccionarTipoGastoNegocios seleccionarH = new SeleccionarTipoGastoNegocios(cp, datosProducto, numFact, anio, cedulaCli, tipo);
-                            seleccionarH.setVisible(true);
-                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Esta factura ya fue ingresada");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Esta factura ya fue ingresada");
+                    JOptionPane.showMessageDialog(null, "Factura pertenece a otro usuario");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "El año de la factura no corresponde con el año seleccionado");

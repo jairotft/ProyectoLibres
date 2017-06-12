@@ -29,7 +29,7 @@ public class Conexion {
     Connection conexion;
 
     public Conexion() {
-        String url="Path\\facturas.db";
+        String url="bdd/facturas.db";
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);
@@ -111,8 +111,8 @@ public class Conexion {
         return n;
     }
 
-    public String consultar(String tabla) {
-        String n = "";
+    public  String consultar(String tabla) {
+            String n = "";
         try {
             Statement comando = conexion.createStatement();
             String sql = "SELECT count(*) FROM " + tabla + ";";
@@ -154,6 +154,7 @@ public class Conexion {
 
     public ArrayList ddl(String sql) {
         ArrayList salida = new ArrayList();
+        
         try {
             Statement comando = conexion.createStatement();
             ResultSet resultado = comando.executeQuery(sql);

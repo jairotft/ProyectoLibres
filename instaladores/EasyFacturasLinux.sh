@@ -1,3 +1,4 @@
+#!/bin/bash
 cd ~
 mkdir -p .easyfacturas
 export user=$USER

@@ -6,6 +6,8 @@ curl -LSso ~/.easyfacturas/jar.zip https://github.com/Jairo95/ProyectoLibres/raw
 cd .easyfacturas
 unzip jar.zip
 echo "java -jar ./jar/AplicacionesLibres.jar" > EasyFacturas.bin
+sudo rm -f /usr/share/applications/EasyFacturas.desktop
+sudo rm -f /usr/share/icons/EasyFacturas.ico
 sudo cp jar/settings/EasyFacturas.desktop /usr/share/applications/
 sudo cp jar/settings/EasyFacturas.ico /usr/share/icons/
 rm jar.zip

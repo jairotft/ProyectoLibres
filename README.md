@@ -21,3 +21,5 @@ Para realizar la instalación de la aplicación en windows, seguir el [manual](h
 ### Debian
 Para realizar la instalación de la aplicación en debian, seguir el [manual](https://github.com/Jairo95/ProyectoLibres/raw/instalacion/Manual_Linux_EasyFacturas.pdf)
 
+Nota: Puedes revisar el manual de usuario [aqui](https://github.com/Jairo95/ProyectoLibres/raw/instalacion/ManualdeUsuarioEasyFactura2.pdf).
+

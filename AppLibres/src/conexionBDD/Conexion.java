@@ -33,10 +33,7 @@ public class Conexion {
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);
-//      
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e); 
         } catch (ClassNotFoundException ex) {
@@ -45,17 +42,7 @@ public class Conexion {
         }
 
     }
-//    public Conexion() {
-//        try {
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
-//        } catch (SQLException e) {
-//            System.out.println("Connection Failed! Check output console");
-//            e.printStackTrace();
-//        }
-//
-//    }
+
     public ArrayList cargarEstablecimiento() {
         ArrayList n = new ArrayList();
         try {

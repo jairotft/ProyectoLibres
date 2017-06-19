@@ -419,19 +419,19 @@ public class SeleccionarTipoGastoNegocios extends javax.swing.JFrame {
             }
 
             if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_NEGOCIOS WHERE anio_historial_n=" + anio + " AND id_cliente='" + cedula + "'")) {
-                query = "UPDATE HISTORIAL_PAGOS_NEGOCIOS SET total_mercaderia=total_mercaderia+" + totales[0] + "::money,"
-                        + "total_arriendo=total_arriendo+" + totales[1] + "::money,"
-                        + "total_servicios=total_servicios+" + totales[2] + "::money,"
-                        + "total_sueldos=total_sueldos+" + totales[3] + "::money,"
-                        + "total_movilizacion=total_movilizacion+" + totales[4] + "::money,"
-                        + "total_viaticos=total_viaticos+" + totales[5] + "::money,"
-                        + "total_capacitacion=total_capacitacion+" + totales[6] + "::money,"
-                        + "total_suministros=total_suministros+" + totales[7] + "::money,"
-                        + "total_herramientas=total_herramientas+" + totales[8] + "::money WHERE anio_historial_n=" + anio + " AND id_cliente='" + cedula + "'";
+                query = "UPDATE HISTORIAL_PAGOS_NEGOCIOS SET total_mercaderia=total_mercaderia+" + totales[0] + ","
+                        + "total_arriendo=total_arriendo+" + totales[1] + ","
+                        + "total_servicios=total_servicios+" + totales[2] + ","
+                        + "total_sueldos=total_sueldos+" + totales[3] + ","
+                        + "total_movilizacion=total_movilizacion+" + totales[4] + ","
+                        + "total_viaticos=total_viaticos+" + totales[5] + ","
+                        + "total_capacitacion=total_capacitacion+" + totales[6] + ","
+                        + "total_suministros=total_suministros+" + totales[7] + ","
+                        + "total_herramientas=total_herramientas+" + totales[8] + " WHERE anio_historial_n=" + anio + " AND id_cliente='" + cedula + "'";
             } else {
                 query = "INSERT INTO HISTORIAL_PAGOS_NEGOCIOS VALUES (" + anio + ",'" + cedula + "'," + totales[0] + "," + totales[1] + "," + totales[2] + "," + totales[3] + "," + totales[4] + "," + totales[5] + "," + totales[6] + "," + totales[7] + ", " + totales[8] + ")";
             }
-
+            
             conTipo.insertar(query);
             recargar(conTipo);
             JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");

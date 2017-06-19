@@ -5,9 +5,10 @@
 package Interfaces;
 //veamos si sirve
 
-import com.toedter.calendar.JCalendar;
+
 import conexionBDD.Conexion;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseMotionListener;
 import java.math.BigDecimal;
@@ -15,6 +16,8 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -25,7 +28,6 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
     Conexion conn;
     ArrayList establecimientos;
     String cedula_usuario;
-    JCalendar  date_fecha = new JCalendar();//modificado por mi 15/05/2017
     int anio;
 
     public FacturaManualPersonal(Conexion conn, String cedula, int anio) {
@@ -125,10 +127,11 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         btn_RegistrarFactura = new javax.swing.JButton();
+        date_fecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1302, 226, -1, -1));
 
@@ -239,31 +242,31 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel8.setText("Número de Factura:");
         panel_establecimiento1.add(jLabel8);
-        jLabel8.setBounds(30, 40, 138, 19);
+        jLabel8.setBounds(30, 40, 138, 20);
 
         jLabel9.setBackground(java.awt.Color.black);
         jLabel9.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel9.setText("Fecha de Emision:");
         panel_establecimiento1.add(jLabel9);
-        jLabel9.setBounds(410, 40, 128, 19);
+        jLabel9.setBounds(410, 40, 124, 20);
 
         jLabel15.setBackground(java.awt.Color.black);
         jLabel15.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel15.setText("Total sin iva:");
         panel_establecimiento1.add(jLabel15);
-        jLabel15.setBounds(500, 270, 88, 19);
+        jLabel15.setBounds(520, 240, 87, 20);
 
         jLabel16.setBackground(java.awt.Color.black);
         jLabel16.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel16.setText("I.V.A:");
         panel_establecimiento1.add(jLabel16);
-        jLabel16.setBounds(500, 310, 34, 19);
+        jLabel16.setBounds(520, 280, 36, 20);
 
         jLabel17.setBackground(java.awt.Color.black);
         jLabel17.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel17.setText("Valor total:");
         panel_establecimiento1.add(jLabel17);
-        jLabel17.setBounds(500, 350, 75, 19);
+        jLabel17.setBounds(520, 320, 77, 20);
 
         txt_iva.setText("0.0");
         txt_iva.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -272,15 +275,15 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_iva);
-        txt_iva.setBounds(610, 300, 128, 20);
+        txt_iva.setBounds(630, 280, 128, 20);
 
         txt_total.setEnabled(false);
         panel_establecimiento1.add(txt_total);
-        txt_total.setBounds(610, 340, 128, 20);
+        txt_total.setBounds(630, 320, 128, 20);
 
         txt_sin_iva.setEnabled(false);
         panel_establecimiento1.add(txt_sin_iva);
-        txt_sin_iva.setBounds(610, 260, 128, 20);
+        txt_sin_iva.setBounds(630, 240, 128, 20);
 
         txt_num_fac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -288,13 +291,13 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_num_fac);
-        txt_num_fac.setBounds(190, 30, 150, 20);
+        txt_num_fac.setBounds(180, 40, 150, 20);
 
         jLabel11.setBackground(java.awt.Color.black);
         jLabel11.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel11.setText("Tipos de gasto:");
         panel_establecimiento1.add(jLabel11);
-        jLabel11.setBounds(5, 78, 150, 19);
+        jLabel11.setBounds(5, 78, 150, 20);
 
         txt_vivienda.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_vivienda.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -303,7 +306,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_vivienda);
-        txt_vivienda.setBounds(110, 120, 91, 20);
+        txt_vivienda.setBounds(80, 120, 91, 20);
 
         txt_alimentacion.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_alimentacion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -312,7 +315,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_alimentacion);
-        txt_alimentacion.setBounds(110, 160, 91, 20);
+        txt_alimentacion.setBounds(80, 160, 91, 20);
 
         txt_otros.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_otros.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -345,7 +348,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_educacion);
-        txt_educacion.setBounds(110, 200, 91, 20);
+        txt_educacion.setBounds(80, 200, 91, 20);
 
         jButton1.setText("+");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +357,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton1);
-        jButton1.setBounds(210, 120, 50, 23);
+        jButton1.setBounds(180, 120, 50, 23);
 
         jButton3.setText("+");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -363,7 +366,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton3);
-        jButton3.setBounds(210, 160, 50, 23);
+        jButton3.setBounds(180, 160, 50, 23);
 
         jButton4.setText("+");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -390,7 +393,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton6);
-        jButton6.setBounds(210, 200, 50, 23);
+        jButton6.setBounds(180, 200, 50, 23);
 
         jButton7.setText("+");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -406,21 +409,21 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
         lbl_vivienda.setText("0.0");
         lbl_vivienda.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panel_establecimiento1.add(lbl_vivienda);
-        lbl_vivienda.setBounds(320, 120, 70, 30);
+        lbl_vivienda.setBounds(290, 120, 70, 30);
 
         lbl_alimentacion.setForeground(java.awt.Color.darkGray);
         lbl_alimentacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_alimentacion.setText("0.0");
         lbl_alimentacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panel_establecimiento1.add(lbl_alimentacion);
-        lbl_alimentacion.setBounds(320, 160, 70, 30);
+        lbl_alimentacion.setBounds(290, 160, 70, 30);
 
         lbl_educacion.setForeground(java.awt.Color.darkGray);
         lbl_educacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_educacion.setText("0.0");
         lbl_educacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panel_establecimiento1.add(lbl_educacion);
-        lbl_educacion.setBounds(320, 200, 70, 30);
+        lbl_educacion.setBounds(290, 200, 70, 30);
 
         lbl_otros.setForeground(java.awt.Color.darkGray);
         lbl_otros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -450,7 +453,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton9);
-        jButton9.setBounds(140, 280, 180, 60);
+        jButton9.setBounds(10, 290, 160, 30);
 
         jLabel19.setText("Vivienda");
         panel_establecimiento1.add(jLabel19);
@@ -475,7 +478,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton10);
-        jButton10.setBounds(260, 120, 50, 23);
+        jButton10.setBounds(230, 120, 50, 23);
 
         jButton11.setText("-");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -484,7 +487,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton11);
-        jButton11.setBounds(260, 160, 50, 23);
+        jButton11.setBounds(230, 160, 50, 23);
 
         jButton12.setText("-");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -493,7 +496,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton12);
-        jButton12.setBounds(260, 200, 50, 23);
+        jButton12.setBounds(230, 200, 50, 23);
 
         jButton13.setText("-");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -530,8 +533,6 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
         panel_establecimiento1.add(jButton15);
         jButton15.setBounds(630, 160, 50, 23);
 
-        getContentPane().add(panel_establecimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 770, 380));
-
         btn_RegistrarFactura.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         btn_RegistrarFactura.setText("Registrar Factura");
         btn_RegistrarFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -539,7 +540,15 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
                 btn_RegistrarFacturaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_RegistrarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 610, 220, 40));
+        panel_establecimiento1.add(btn_RegistrarFactura);
+        btn_RegistrarFactura.setBounds(230, 280, 220, 40);
+
+        date_fecha.setDateFormatString("yyyy-MM-dd");
+        date_fecha.setPreferredSize(new java.awt.Dimension(12, 29));
+        panel_establecimiento1.add(date_fecha);
+        date_fecha.setBounds(560, 30, 180, 29);
+
+        getContentPane().add(panel_establecimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 770, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -589,12 +598,12 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
         }
 
         if (conn.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula_usuario + "'")) {
-            conn.insertar("UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totalAlimento + "::money,"
-                    + "total_salud=total_salud+" + totalSalud + "::money,"
-                    + "total_vivienda=total_vivienda+" + totalVivienda + "::money,"
-                    + "total_educacion=total_educacion+" + totalEducacion + "::money,"
-                    + "total_vestimenta=total_vestimenta+" + totalVestimenta + "::money,"
-                    + "total_otros=total_otros+" + totalOtros + "::money WHERE anio_historial_p=" + this.anio + " AND id_cliente='" + this.cedula_usuario + "'");
+            conn.insertar("UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totalAlimento + ","
+                    + "total_salud=total_salud+" + totalSalud + ","
+                    + "total_vivienda=total_vivienda+" + totalVivienda + ","
+                    + "total_educacion=total_educacion+" + totalEducacion + ","
+                    + "total_vestimenta=total_vestimenta+" + totalVestimenta + ","
+                    + "total_otros=total_otros+" + totalOtros + " WHERE anio_historial_p=" + this.anio + " AND id_cliente='" + this.cedula_usuario + "'");
 
         } else {
             conn.insertar("INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + cedula_usuario + "'," + totalAlimento + "," + totalSalud + "," + totalVivienda + "," + totalEducacion + "," + totalVestimenta + "," + totalOtros + ")");
@@ -647,8 +656,8 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "El numero de factura ya existe en la base de datos");
                     }
-                } catch (Exception e) {
-                    System.err.println(e);
+                } catch (HeadlessException e) {
+                    JOptionPane.showMessageDialog(this, e);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La factura tiene un total de 0", "Error", JOptionPane.ERROR_MESSAGE);
@@ -843,14 +852,15 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FacturaManualPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(FacturaManualPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(FacturaManualPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FacturaManualPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FacturaManualPersonal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -864,6 +874,7 @@ public class FacturaManualPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditarEst;
     private javax.swing.JButton btn_RegistrarFactura;
     public static javax.swing.JComboBox<String> combo_Establecimientos;
+    private com.toedter.calendar.JDateChooser date_fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

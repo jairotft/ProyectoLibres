@@ -54,7 +54,7 @@ public class Conexion {
             resultado.close();
             comando.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -69,8 +69,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -92,8 +92,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -109,8 +109,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -120,7 +120,7 @@ public class Conexion {
             Statement comando = conexion.createStatement();
             comando.executeUpdate(sql);
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -133,7 +133,7 @@ public class Conexion {
             val = resultado.next();
             resultado.close();
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return val;
@@ -154,7 +154,7 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return salida;

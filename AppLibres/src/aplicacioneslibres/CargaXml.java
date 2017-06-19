@@ -94,7 +94,9 @@ public class CargaXml {
             while (tk.hasMoreTokens()) {
                 verificarFecha = tk.nextToken();
             }
-
+            
+            System.out.println( verificarFecha+" fechaCompleta: "+fechaCompleta);
+            
             if (verificarFecha.equals(String.valueOf(anio))) {
                 List lista_campos = tabla.getChildren();
                 Element campo;
@@ -140,10 +142,11 @@ public class CargaXml {
 
                 String numFact = estab + "-" + emision + "-" + secuencial;
 
-                if (!cp.verificar_usuario("SELECT * FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
+                if (!cp.verificar_usuario("SELECT *FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
                     String establecimiento = "INSERT INTO ESTABLECIMIENTO (id_establecimiento,nombre_establecimiento,direccion_establecimiento)"
                             + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
                     cp.insertar(establecimiento);
+                    
                 }
 
                 //Se obtiene la raiz de la factura
@@ -187,6 +190,7 @@ public class CargaXml {
                                 + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
                         cp.insertar(facturaQ);
 
+                        System.out.println(facturaQ);
                         Element detalles = (Element) lista_campos.get(2);
                         List detalle = detalles.getChildren();
 

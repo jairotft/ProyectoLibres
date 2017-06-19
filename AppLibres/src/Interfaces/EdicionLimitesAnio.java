@@ -216,7 +216,6 @@ public class EdicionLimitesAnio extends javax.swing.JFrame {
                 txt_educacion.setText(datos.get(3).toString());
                 txt_vestimenta.setText(datos.get(4).toString());
             } else {
-
                 txt_alimentacion.setText(null);
                 txt_salud.setText(null);
                 txt_vivienda.setText(null);
@@ -236,15 +235,6 @@ public class EdicionLimitesAnio extends javax.swing.JFrame {
         }
     }
 
-    /*
-    @Override
-    public void setDefaultCloseOperation(int operation) {        
-        this.login.setVisible(true);
-JOptionPane.showMessageDialog(null, "se cerrara");
-        super.setDefaultCloseOperation(operation); //To change body of generated methods, choose Tools | Templates.
-        
-    }
-     */
     /**
      * @param args the command line arguments
      */
@@ -275,6 +265,7 @@ JOptionPane.showMessageDialog(null, "se cerrara");
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new RegistroLimitesAnio(login).setVisible(true);
             }

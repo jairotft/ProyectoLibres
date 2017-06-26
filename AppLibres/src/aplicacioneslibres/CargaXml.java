@@ -189,13 +189,13 @@ public class CargaXml {
                         String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
                                 + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
                         cp.insertar(facturaQ);
-
-                        System.out.println(facturaQ);
+                        
                         Element detalles = (Element) lista_campos.get(2);
                         List detalle = detalles.getChildren();
 
                         Object datosProducto[][] = new Object[detalle.size()][3];
-
+                        
+                        
                         for (int j = 0; j < detalle.size(); j++) {
 
                             campo = (Element) detalle.get(j);
@@ -213,13 +213,14 @@ public class CargaXml {
                                 total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
                             }
 
+                            
                             if (!descripcion.equals("")) {
                                 datosProducto[j][0] = descripcion;
                                 datosProducto[j][1] = total;
                                 datosProducto[j][2] = "";
                             }
                         }
-
+                        
                         if (datosProducto.length != 0) {
                             if (tipo.equals("Personal")) {
                                 SeleccionarTipoGastoPersonal seleccionarP = new SeleccionarTipoGastoPersonal(cp, datosProducto, numFact, anio, cedulaCli, tipo);

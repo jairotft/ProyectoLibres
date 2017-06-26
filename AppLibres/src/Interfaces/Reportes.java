@@ -1,5 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -103,7 +103,6 @@ public class Reportes extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         date_inicio = new com.toedter.calendar.JDateChooser();
         date_fin = new com.toedter.calendar.JDateChooser();
-        btnExport = new javax.swing.JButton();
         combo_Establecimientos = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         panel_mes = new javax.swing.JPanel();
@@ -111,6 +110,7 @@ public class Reportes extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         combo_tipo = new javax.swing.JComboBox<>();
+        btnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setEnabled(false);
@@ -169,15 +169,6 @@ public class Reportes extends javax.swing.JInternalFrame {
         panel_rango.add(date_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 300, 40));
         panel_rango.add(date_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 300, 40));
 
-        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        btnExport.setText("Exportar");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        panel_rango.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 300, 40));
-
         getContentPane().add(panel_rango, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 560, 160));
 
         combo_Establecimientos.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -217,6 +208,15 @@ public class Reportes extends javax.swing.JInternalFrame {
         combo_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personal", "Negocio" }));
         getContentPane().add(combo_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 300, 50));
 
+        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        btnExport.setText("Exportar");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 160, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -247,17 +247,12 @@ public class Reportes extends javax.swing.JInternalFrame {
             JasperReport jr = null;
 
             jr = (JasperReport) JRLoader.loadObjectFromFile(path);
-            /*Agregar parametros
-            Map parametros = new HashMap();
-            parametros.put("textoEntrada", "Reporte Anual");
-            parametros.put("idCliente", this.cedula_usuario);
-            parametros.put("Anio", this.anio);
-            Fin parametros*/
+            
             System.out.println("-------");
             for (Object object : parametros.entrySet()) {
                 System.out.println(object);
-
             }
+            
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros, conn.getConn());
             JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);

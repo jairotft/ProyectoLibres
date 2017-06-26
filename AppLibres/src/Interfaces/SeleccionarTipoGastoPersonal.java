@@ -61,7 +61,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         tipoEstado = new String[tipos.length];
         for (int i = 0; i < tipos.length; i++) {
             tipoEstado[i] = "";
-        }
+        }   
 
         tablaProductos = new JTable(tipos, nombreCabeceras) {
             @Override
@@ -72,7 +72,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaProductos);
 
         comboBox = new JComboBox();
-        comboBox.addItem("");
+        //comboBox.addItem("");
 
         comboBox.addItem("Vivienda");
         comboBox.addItem("Salud");
@@ -81,15 +81,21 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         comboBox.addItem("Vestimenta");
         comboBox.addItem("Otro");
 
+        
+        
         tablaProductos.getModel().addTableModelListener(new TableModelListener() {
             @Override
+            //Cuando se cambia un campo de la tabla
             public void tableChanged(TableModelEvent tme) {
-                int row = tme.getFirstRow();
-                int column = tme.getColumn();
+                int row = tme.getFirstRow();//fila a la que pertenece el campo
+                int column = tme.getColumn();//columna del campo
 
+                //extraigo la tabla del objeto donde  ocurrio el evento
                 TableModel model = (TableModel) tme.getSource();
+                //creo un objeto para extraerla fila y columna del campo
                 Object data = model.getValueAt(row, column);
 
+                
                 if (!data.equals("") && column == 2) {
                     //int opc = comboBox.getSelectedIndex();
                     //System.out.println(row);
@@ -148,6 +154,8 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         tablaProductos.getColumnModel().getColumn(1).setMaxWidth(100);
         tablaProductos.getColumnModel().getColumn(2).setMinWidth(150);
         tablaProductos.getColumnModel().getColumn(2).setMaxWidth(150);
+        
+        
 
         setLocationRelativeTo(getParent());
         setResizable(false);

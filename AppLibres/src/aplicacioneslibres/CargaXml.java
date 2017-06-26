@@ -213,11 +213,18 @@ public class CargaXml {
                                 total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
                             }
 
+                            //almacenar codigo principal
+                            cont = elementos.indexOf("codigoPricipal");
+                            String codigo="";
+                            if (cont != -1) {
+                                    codigo= campo.getChildTextTrim(elementos.get(cont).toString());
+                            }
+                                    
                             
                             if (!descripcion.equals("")) {
                                 datosProducto[j][0] = descripcion;
                                 datosProducto[j][1] = total;
-                                datosProducto[j][2] = "";
+                                datosProducto[j][2] = codigo;
                             }
                         }
                         

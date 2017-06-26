@@ -216,7 +216,7 @@ public class CargaXml {
                             if (!descripcion.equals("")) {
                                 datosProducto[j][0] = descripcion;
                                 datosProducto[j][1] = total;
-                                datosProducto[j][2] = "";
+                                datosProducto[j][2] = "Holaaaa";
                             }
                         }
 

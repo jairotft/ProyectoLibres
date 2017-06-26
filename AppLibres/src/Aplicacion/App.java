@@ -16,7 +16,7 @@ public class App {
     public static void main(String args[]) {
         
         new Bienvenida().setVisible(true);
-        
+        System.out.println("Hola mundo ejemplo");
        
     }
 }

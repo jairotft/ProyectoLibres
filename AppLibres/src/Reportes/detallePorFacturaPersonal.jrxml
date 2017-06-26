@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26a4f37b-5c15-4b54-b827-3d1b659de8b0">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="183"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="21"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\personal\\Documents\\NetBeansProjects\\AplicacionesLibres\\src\\Reportes\\"]]></defaultValueExpression>
@@ -18,48 +18,48 @@
 		<defaultValueExpression><![CDATA["2016-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT  f.id_factura as ID
-,e.nombre_establecimiento AS ESTABLECIMIENTO
-,f.fecha_emision,cast(
+		<![CDATA[SELECT  f.id_factura as id
+,e.nombre_establecimiento AS establecimiento
+,f.fecha_emision as fecha_emision,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Alimentacion'
-)as numeric) as Alimentacion,cast(
+)as numeric) as alimentacion,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Educacion'
-)as numeric) as Educacion,cast(
+)as numeric) as educacion,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Salud'
-)as numeric) as Salud,cast(
+)as numeric) as salud,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Vestimenta'
-)as numeric) as Vestimenta,cast(
+)as numeric) as vestimenta,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Vivienda'
-)as numeric) as Vivienda,cast(
+)as numeric) as vivienda,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Otro'
-)as numeric) as Otro
-,cast(iva as numeric) AS IVA
-,cast(total_sin_iva as numeric) AS total_sin_IVA
-,cast(total_con_iva as numeric) AS total_con_IVA
-from factura f 
-join establecimiento e 
+)as numeric) as otro
+,cast(iva as numeric) AS iva
+,cast(total_sin_iva as numeric) AS total_sin_iva
+,cast(total_con_iva as numeric) AS total_con_iva
+from factura f
+join establecimiento e
 on f.id_establecimiento=e.id_establecimiento
 where f.tipo_factura='Personal'
-and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<TO_DATE($P{fechaFin},'YYYY-MM-DD')]]>
+and f.fecha_emision>= strftime('%Y-%m-%d',$P{fechaInicio}) and f.fecha_emision<strftime('%Y-%m-%d',$P{fechaFin})]]>
 	</queryString>
-	<field name="id" class="java.lang.String"/>
-	<field name="establecimiento" class="java.lang.String"/>
-	<field name="fecha_emision" class="java.sql.Date"/>
-	<field name="alimentacion" class="java.math.BigDecimal"/>
-	<field name="educacion" class="java.math.BigDecimal"/>
-	<field name="salud" class="java.math.BigDecimal"/>
-	<field name="vestimenta" class="java.math.BigDecimal"/>
-	<field name="vivienda" class="java.math.BigDecimal"/>
-	<field name="otro" class="java.math.BigDecimal"/>
-	<field name="iva" class="java.math.BigDecimal"/>
-	<field name="total_sin_iva" class="java.math.BigDecimal"/>
-	<field name="total_con_iva" class="java.math.BigDecimal"/>
+	<field name="id" class="java.lang.Object"/>
+	<field name="establecimiento" class="java.lang.Object"/>
+	<field name="fecha_emision" class="java.lang.Object"/>
+	<field name="alimentacion" class="java.lang.Object"/>
+	<field name="educacion" class="java.lang.Object"/>
+	<field name="salud" class="java.lang.Object"/>
+	<field name="vestimenta" class="java.lang.Object"/>
+	<field name="vivienda" class="java.lang.Object"/>
+	<field name="otro" class="java.lang.Object"/>
+	<field name="iva" class="java.lang.Object"/>
+	<field name="total_sin_iva" class="java.lang.Object"/>
+	<field name="total_con_iva" class="java.lang.Object"/>
 	<variable name="SumAlimentacion" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{alimentacion}]]></variableExpression>
 	</variable>
@@ -94,32 +94,28 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="802" height="72" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="72" backcolor="#006699" uuid="24a8ca4f-ef00-4b1a-a36b-5e6bfaa8f680"/>
 				<staticText>
-					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF"/>
+					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF" uuid="2779636f-ee61-4c13-bb7e-20c27c355cfe"/>
 					<textElement>
 						<font size="20" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DETALLE DE GASTOS POR ESTABLECIMIENTO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="549" y="25" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="549" y="25" width="100" height="20" uuid="89d1a01d-bd9a-44d9-b7d5-7729bf3b5994"/>
 					<text><![CDATA[Fecha Inicio:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="549" y="45" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="549" y="45" width="100" height="20" uuid="63422654-6dde-4a54-a156-cc3ca3d64ad6"/>
 					<text><![CDATA[Fecha Fin:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="649" y="25" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="649" y="25" width="100" height="20" uuid="fb4ab2ad-eddd-42b5-b0a2-3fd42dd677cd"/>
 					<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="649" y="45" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="649" y="45" width="100" height="20" uuid="f3594a34-bd67-4efd-a3da-d05d812bcff4"/>
 					<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -128,28 +124,28 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="117" y="0" width="106" height="20"/>
+				<reportElement x="117" y="0" width="106" height="20" uuid="018ae31c-12a7-4538-ac16-cd9d26fb0581"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipo_factura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000"/>
+				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000" uuid="a81a29ee-11b5-42ee-811c-7055ee83e34f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gastos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000"/>
+				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000" uuid="829cb22d-0f8c-450f-9c7b-4b69e07a2f7f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="575" y="0" width="106" height="20"/>
+				<reportElement x="575" y="0" width="106" height="20" uuid="04c144e1-1805-4f45-a89c-7d957bbf6848"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -160,7 +156,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 	<columnHeader>
 		<band height="32">
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="48" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="48" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="3910b4e9-89b4-46e3-bd0b-3269639607dc"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -174,7 +170,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[ID Factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="48" y="0" width="82" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="48" y="0" width="82" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="068c8f6e-09c3-4010-8360-fc9ffd3216b6"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -188,7 +184,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Establecimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="130" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="130" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="aa4372d6-02bf-4629-ab2d-87012c4d23f7"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -202,7 +198,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="208" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="208" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9c08d628-f4a2-4e98-84b5-63b75ba84814"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -216,7 +212,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Alimentación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="274" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="274" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="889343f9-909a-4115-875d-136637fce880"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -230,7 +226,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Educación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="340" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="340" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="10ecf479-602a-4e95-b4a0-0fd8308dfd7c"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -244,7 +240,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Salud]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="406" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="406" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5f6e424d-b02e-4207-9daf-71064aa2e78a"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -258,7 +254,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Vestimenta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="472" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="472" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5ce86f5a-735c-4e69-a613-45c0b8603ee8"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -272,7 +268,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Vivienda]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="538" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="538" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="cb69c6a7-3655-456a-b454-986970e3efe0"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -286,7 +282,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Otro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="604" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="604" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="b355e46c-6817-4668-9c31-1474ce347afd"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -300,7 +296,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="670" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="670" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="7ff753e8-0a7a-44a8-8ea5-09e467cc03bf"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -314,7 +310,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<text><![CDATA[Total sin IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Crosstab Data Text" mode="Opaque" x="736" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement style="Crosstab Data Text" mode="Opaque" x="736" y="0" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9cc57071-6daa-4855-9758-35cc300ebff9"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -332,7 +328,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 	<detail>
 		<band height="21">
 			<textField>
-				<reportElement x="0" y="0" width="48" height="20"/>
+				<reportElement x="0" y="0" width="48" height="20" uuid="d86f6334-b1fa-4119-8028-7324190d312c"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -344,7 +340,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="48" y="0" width="82" height="20"/>
+				<reportElement x="48" y="0" width="82" height="20" uuid="2ba43dde-9242-4351-81ca-22a3a402c5e7"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -356,7 +352,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$F{establecimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="208" y="0" width="66" height="20"/>
+				<reportElement x="208" y="0" width="66" height="20" uuid="ed21c0c4-7b7a-4b8e-8687-3b932d3c449c"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -368,7 +364,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{alimentacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="0" width="66" height="20"/>
+				<reportElement x="274" y="0" width="66" height="20" uuid="883a4555-07cd-4b3e-acc3-eb3a43a51d2b"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -380,7 +376,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{educacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="340" y="0" width="66" height="20"/>
+				<reportElement x="340" y="0" width="66" height="20" uuid="ed2ff7b2-d142-44b5-86b2-84e9d664d0cf"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -392,7 +388,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{salud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="406" y="0" width="66" height="20"/>
+				<reportElement x="406" y="0" width="66" height="20" uuid="934ec456-2951-4a6c-a4d8-b64daec8ef64"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -404,7 +400,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{vestimenta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="472" y="0" width="66" height="20"/>
+				<reportElement x="472" y="0" width="66" height="20" uuid="d67ea076-c331-4289-ad0e-962100d5f326"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -416,7 +412,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{vivienda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="538" y="0" width="66" height="20"/>
+				<reportElement x="538" y="0" width="66" height="20" uuid="d860eceb-1893-4c57-96e2-300ffdc876a7"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -428,7 +424,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[""+$F{otro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="604" y="0" width="66" height="20"/>
+				<reportElement x="604" y="0" width="66" height="20" uuid="36ed9d85-a119-4bf3-97f6-7b2e0176e11d"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -440,7 +436,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$F{iva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="670" y="0" width="66" height="20"/>
+				<reportElement x="670" y="0" width="66" height="20" uuid="d11a65fd-b45e-4954-962f-8ec44af860a7"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -452,7 +448,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$F{total_sin_iva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="736" y="0" width="66" height="20"/>
+				<reportElement x="736" y="0" width="66" height="20" uuid="30237edc-f1f5-4384-98d2-700d692d0eba"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -464,7 +460,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$F{total_con_iva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="78" height="20"/>
+				<reportElement x="130" y="0" width="78" height="20" uuid="a31a052e-62c1-4b54-844c-3bc8705f5c18"/>
 				<box>
 					<pen lineWidth="1.25"/>
 					<topPen lineWidth="1.25"/>
@@ -481,7 +477,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 		<band height="22">
 			<elementGroup/>
 			<textField>
-				<reportElement x="208" y="2" width="66" height="20"/>
+				<reportElement x="208" y="2" width="66" height="20" uuid="89eb120d-ef40-46aa-b87e-8f30801da75c"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -493,7 +489,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{SumAlimentacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="2" width="66" height="20"/>
+				<reportElement x="274" y="2" width="66" height="20" uuid="ebddc1a3-5ccd-444d-8001-72d469883b26"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -505,7 +501,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{SumEducacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="340" y="2" width="66" height="20"/>
+				<reportElement x="340" y="2" width="66" height="20" uuid="f37c902c-eff7-46c9-acd7-90ccde1f24c7"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -517,7 +513,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{SumSalud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="604" y="2" width="66" height="20"/>
+				<reportElement x="604" y="2" width="66" height="20" uuid="6e8c5269-e601-4f19-ae38-44d9e2d80ca7"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -529,7 +525,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{sumIVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="736" y="2" width="66" height="20"/>
+				<reportElement x="736" y="2" width="66" height="20" uuid="10a6113a-856f-4cbe-a3cd-ac93e2d70ede"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -541,7 +537,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{sumConIVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="670" y="2" width="66" height="20"/>
+				<reportElement x="670" y="2" width="66" height="20" uuid="b61bff5d-87d2-4c0e-923e-280a2c396d32"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -553,7 +549,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{sumSinIVa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="406" y="2" width="66" height="20"/>
+				<reportElement x="406" y="2" width="66" height="20" uuid="8f214487-3202-42ff-a96c-c62461f66fb3"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -565,7 +561,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{sumVestimenta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="472" y="2" width="66" height="20"/>
+				<reportElement x="472" y="2" width="66" height="20" uuid="2b4eae42-35fd-49d4-a092-a12858c32904"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -577,7 +573,7 @@ and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<
 				<textFieldExpression><![CDATA[$V{sumVivienda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="538" y="2" width="66" height="20"/>
+				<reportElement x="538" y="2" width="66" height="20" uuid="4576a274-e2da-4f4a-8a3f-3ce0765a0f9c"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>

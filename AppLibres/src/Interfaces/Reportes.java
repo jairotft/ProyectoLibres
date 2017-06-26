@@ -9,7 +9,6 @@ import conexionBDD.Conexion;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseMotionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,7 +94,6 @@ public class Reportes extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         lbl_Reporte = new javax.swing.JLabel();
-        btnExport = new javax.swing.JButton();
         combo_tipo_detalle = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         combo_tiempo = new javax.swing.JComboBox<>();
@@ -105,6 +103,7 @@ public class Reportes extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         date_inicio = new com.toedter.calendar.JDateChooser();
         date_fin = new com.toedter.calendar.JDateChooser();
+        btnExport = new javax.swing.JButton();
         combo_Establecimientos = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         panel_mes = new javax.swing.JPanel();
@@ -126,15 +125,6 @@ public class Reportes extends javax.swing.JInternalFrame {
         lbl_Reporte.setFont(new java.awt.Font("Open Sans", 1, 48)); // NOI18N
         lbl_Reporte.setText("REPORTES ");
         getContentPane().add(lbl_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        btnExport.setText("Exportar");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, 310, 70));
 
         combo_tipo_detalle.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_tipo_detalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Mes", "Por Establecimiento", "Por Factura", "General" }));
@@ -161,7 +151,7 @@ public class Reportes extends javax.swing.JInternalFrame {
                 combo_tiempoActionPerformed(evt);
             }
         });
-        getContentPane().add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 300, 50));
+        getContentPane().add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 300, 50));
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel2.setText("Reporte por:");
@@ -171,13 +161,22 @@ public class Reportes extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel5.setText("Fecha de fin:");
-        panel_rango.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
+        panel_rango.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel6.setText("Fecha de inicio:");
-        panel_rango.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
-        panel_rango.add(date_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 300, 40));
-        panel_rango.add(date_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 300, 40));
+        panel_rango.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+        panel_rango.add(date_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 300, 40));
+        panel_rango.add(date_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 300, 40));
+
+        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        btnExport.setText("Exportar");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        panel_rango.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 300, 40));
 
         getContentPane().add(panel_rango, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 560, 160));
 

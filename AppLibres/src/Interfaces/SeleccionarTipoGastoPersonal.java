@@ -343,16 +343,17 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
             }
 
             if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'")) {
-                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + "::money,"
-                        + "total_salud=total_salud+" + totales[1] + "::money,"
-                        + "total_vivienda=total_vivienda+" + totales[0] + "::money,"
-                        + "total_educacion=total_educacion+" + totales[2] + "::money,"
-                        + "total_vestimenta=total_vestimenta+" + totales[4] + "::money,"
-                        + "total_otros=total_otros+" + totales[5] + "::money WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'";
+                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + ","
+                        + "total_salud=total_salud+" + totales[1] + ","
+                        + "total_vivienda=total_vivienda+" + totales[0] + ","
+                        + "total_educacion=total_educacion+" + totales[2] + ","
+                        + "total_vestimenta=total_vestimenta+" + totales[4] + ","
+                        + "total_otros=total_otros+" + totales[5] + " WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'";
             } else {
                 query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + cedula + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
 
+            JOptionPane.showMessageDialog(this, query);
             conTipo.insertar(query);
 
             JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");

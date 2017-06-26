@@ -33,10 +33,7 @@ public class Conexion {
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);
-//      
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e); 
         } catch (ClassNotFoundException ex) {
@@ -45,17 +42,7 @@ public class Conexion {
         }
 
     }
-//    public Conexion() {
-//        try {
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
-//        } catch (SQLException e) {
-//            System.out.println("Connection Failed! Check output console");
-//            e.printStackTrace();
-//        }
-//
-//    }
+
     public ArrayList cargarEstablecimiento() {
         ArrayList n = new ArrayList();
         try {
@@ -67,7 +54,7 @@ public class Conexion {
             resultado.close();
             comando.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -82,8 +69,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -105,8 +92,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -122,8 +109,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -133,7 +120,7 @@ public class Conexion {
             Statement comando = conexion.createStatement();
             comando.executeUpdate(sql);
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -146,7 +133,7 @@ public class Conexion {
             val = resultado.next();
             resultado.close();
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return val;
@@ -167,7 +154,7 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return salida;

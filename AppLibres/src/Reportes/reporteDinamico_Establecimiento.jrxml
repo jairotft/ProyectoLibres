@@ -23,7 +23,7 @@
 	<queryString>
 		<![CDATA[select g.tipo as tipo,cast(sum(g.total)as numeric) as total
 from factura f join tipo_gasto g on f.id_factura=g.id_factura
-where fecha_emision>= strftime('%Y-%m-%d',$P{fechaInicio}) and fecha_emision<strftime('%Y-%m-%d',$P{fechaFin})
+where fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio}) and fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.tipo_factura=$P{tipoFactura}
 and f.id_cliente=$P{idCliente}
 group by g.tipo;]]>

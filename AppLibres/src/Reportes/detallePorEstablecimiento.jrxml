@@ -21,7 +21,7 @@
 		<![CDATA[SELECT  e.nombre_establecimiento AS establecimiento,g.tipo AS tipo, cast(sum(g.total)as numeric) AS total
 from factura f join tipo_gasto g on f.id_factura=g.id_factura
 join establecimiento e on f.id_establecimiento=e.id_establecimiento
-where f.fecha_emision>= strftime('%Y-%m-%d',$P{fechaInicio}) and f.fecha_emision<strftime('%Y-%m-%d',$P{fechaFin})
+where f.fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio}) and f.fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.tipo_factura=$P{tipo_factura}
 and f.id_cliente=$P{cliente}
 group by establecimiento,TIPO order by 1]]>

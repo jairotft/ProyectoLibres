@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteDinamico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b093023-2581-430e-b695-c2c7e51878ac">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="97"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -26,7 +26,7 @@
 	<queryString>
 		<![CDATA[select g.tipo as tipo,cast(sum(g.total)as numeric) as total
 from factura f join tipo_gasto g on f.id_factura=g.id_factura
-where fecha_emision>= strftime('%Y-%m-%d',$P{fechaInicio}) and fecha_emision<strftime('%Y-%m-%d',$P{fechaFin})
+where fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio}) and fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.tipo_factura=$P{tipoFactura}
 and f.id_cliente=$P{idCliente}
 and f.id_establecimiento=(select id_establecimiento from establecimiento where nombre_establecimiento=$P{establecimiento})

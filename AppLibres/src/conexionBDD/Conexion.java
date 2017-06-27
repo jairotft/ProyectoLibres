@@ -146,16 +146,25 @@ public class Conexion {
             Statement comando = conexion.createStatement();
             ResultSet resultado = comando.executeQuery(sql);
             ResultSetMetaData mt = resultado.getMetaData();
-
-            if (resultado.next()) {
+ 
+            
+            while(resultado.next()) {
                 for (int i = 1; i <= mt.getColumnCount(); i++) {
-                    salida.add(resultado.getString(i));
+                    String elemento = resultado.getString(i);
+                    if(elemento == null){
+                        elemento = "";
+                    }
+                    //System.out.println(elemento);
+                    salida.add(elemento);
+                    
                 }
+                //System.out.println("Fila" + resultado.getRow());
+                //System.out.println(mt.getColumnCount());
             }
             resultado.close();
             comando.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("error; " +e.getMessage());
         }
         return salida;
     }

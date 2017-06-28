@@ -24,6 +24,7 @@ import org.jdom2.input.SAXBuilder;
  */
 public class CargaXml {
 
+    Conexion cp = new Conexion();
     public void cargarXml(String name, String cedulaCli, int anio, String tipo) {
         //Se crea un SAXBuilder para poder parsear el archivo
         SAXBuilder builder = new SAXBuilder();
@@ -32,7 +33,7 @@ public class CargaXml {
         try {
             //Se crea el documento a traves del archivo
             Document document = (Document) builder.build(xmlFile);
-            Conexion cp = new Conexion();
+            
 
             ArrayList elementos = new ArrayList();
 
@@ -49,6 +50,7 @@ public class CargaXml {
             elementos.add("identificacionComprador");
             elementos.add("totalSinImpuestos");
             elementos.add("valor");
+            elementos.add("codigoPrincipal");
             elementos.add("descripcion");
             elementos.add("precioTotalSinImpuesto");
 
@@ -193,38 +195,46 @@ public class CargaXml {
                         Element detalles = (Element) lista_campos.get(2);
                         List detalle = detalles.getChildren();
 
-                        Object datosProducto[][] = new Object[detalle.size()][3];
+                        Object datosProducto[][] = new Object[detalle.size()][5];
                         
                         
                         for (int j = 0; j < detalle.size(); j++) {
 
                             campo = (Element) detalle.get(j);
 
-                            // Detalle
+                             // Detalle
+                            cont = elementos.indexOf("codigoPrincipal");
+                            String codigo = "";
+                            String familia="";
+                            if (cont != -1) {
+                                codigo = campo.getChildTextTrim(elementos.get(cont).toString());
+                                if (cp.consultarProductoPor(codigo, ruc).equals("")){
+                                    //no hacer nada
+                                }else{
+                                familia = cp.consultarProductoPor(codigo, ruc);
+                                }
+                            }
+                            
                             cont = elementos.indexOf("descripcion");
                             String descripcion = "";
                             if (cont != -1) {
                                 descripcion = campo.getChildTextTrim(elementos.get(cont).toString());
                             }
-
+                            
                             cont = elementos.indexOf("precioTotalSinImpuesto");
                             Double total = 0.0;
                             if (cont != -1) {
                                 total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
                             }
-
-                            //almacenar codigo principal
-                            cont = elementos.indexOf("codigoPricipal");
-                            String codigo="";
-                            if (cont != -1) {
-                                    codigo= campo.getChildTextTrim(elementos.get(cont).toString());
-                            }
-                                    
+                           
                             
                             if (!descripcion.equals("")) {
+                                datosProducto[j][2] = familia;
                                 datosProducto[j][0] = descripcion;
                                 datosProducto[j][1] = total;
-                                datosProducto[j][2] = codigo;
+                                datosProducto[j][3] = codigo;
+                                datosProducto[j][4] = ruc;
+                               
                             }
                         }
                         
@@ -249,5 +259,7 @@ public class CargaXml {
         } catch (IOException | JDOMException io) {
             System.out.println(io.getMessage());
         }
+        
     }
+    
 }

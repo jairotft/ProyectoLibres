@@ -29,7 +29,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     final JComboBox comboBox;
     JTable tablaProductos;
     String tipoEstado[];
-
+    Object[][] datosProducto;
     String evtTipo = "";
     int filaTipo = -1;
 
@@ -55,7 +55,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         this.anio = anio;
         this.cedula = cedula;
         this.tipo = tipo;
-
+        this.datosProducto=tipos;
         String nombreCabeceras[] = {"Descripcion", "Precio Total", "Tipo de Gasto"};
 
         tipoEstado = new String[tipos.length];
@@ -81,7 +81,39 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         comboBox.addItem("Vestimenta");
         comboBox.addItem("Otro");
 
-        
+        //Cargar autocalificacion con los combobox
+        //extraigo la tabla del objeto donde  ocurrio el evento
+        for (int row=0;row<tablaProductos.getRowCount();row++){
+            for (int column=0;column<tablaProductos.getColumnCount();column++){
+                
+                TableModel model = tablaProductos.getModel();
+                Object data = model.getValueAt(row, column);
+                if (!data.equals("") && column == 2) {
+                    //int opc = comboBox.getSelectedIndex();
+                    //System.out.println(row);
+
+                    if (data.equals("Vivienda")) {
+                        sumarAgregado(txtVivienda, row, "Vivienda");
+                    }
+                    if (data.equals("Salud")) {
+                        sumarAgregado(txtSalud, row, "Salud");
+                    }
+                    if (data.equals("Educacion")) {
+                        sumarAgregado(txtEducacion, row, "Educacion");
+                    }
+                    if (data.equals("Alimentacion")) {
+                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
+                    }
+                    if (data.equals("Vestimenta")) {
+                        sumarAgregado(txtVestimenta, row, "Vestimenta");
+                    }
+                    if (data.equals("Otro")) {
+                        sumarAgregado(txtOtro, row, "Otro");
+                    }
+                }
+            
+            }
+        }
         
         tablaProductos.getModel().addTableModelListener(new TableModelListener() {
             @Override
@@ -103,6 +135,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                     if (!tipoEstado[row].equals("")) {
                         if (tipoEstado[row].equals("Vivienda")) {
                             restarAgregado(txtVivienda, row);
+                            
                         }
                         if (tipoEstado[row].equals("Salud")) {
                             restarAgregado(txtSalud, row);
@@ -123,21 +156,27 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
                     if (data.equals("Vivienda")) {
                         sumarAgregado(txtVivienda, row, "Vivienda");
+                        datosProducto[row][column]="Vivienda";
                     }
                     if (data.equals("Salud")) {
                         sumarAgregado(txtSalud, row, "Salud");
+                        datosProducto[row][column]="Salud";
                     }
                     if (data.equals("Educacion")) {
                         sumarAgregado(txtEducacion, row, "Educacion");
+                        datosProducto[row][column]="Educacion";
                     }
                     if (data.equals("Alimentacion")) {
                         sumarAgregado(txtAlimentacion, row, "Alimentacion");
+                        datosProducto[row][column]="Alimentacion";
                     }
                     if (data.equals("Vestimenta")) {
                         sumarAgregado(txtVestimenta, row, "Vestimenta");
+                        datosProducto[row][column]="Vestimenta";
                     }
                     if (data.equals("Otro")) {
                         sumarAgregado(txtOtro, row, "Otro");
+                        datosProducto[row][column]="Otro";
                     }
                 }
 
@@ -361,9 +400,12 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + cedula + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
 
-            JOptionPane.showMessageDialog(this, query);
+            
             conTipo.insertar(query);
-
+            
+            //registrar productos
+            registrarProducto(datosProducto);
+            
             JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
             recargar(conTipo);
             this.dispose();
@@ -372,6 +414,34 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //Registrar Nuevo Producto
+    public void registrarProducto(Object[][] datosProducto){
+    
+        String familia="",descripcion="",codigo="",ruc="",total="";
+        
+//            datosProducto[j][2] = familia;
+//            datosProducto[j][0] = descripcion;
+//            //datosProducto[j][1] = total;
+//            datosProducto[j][3] = codigo;
+//            datosProducto[j][4] = ruc;
+
+        for(int j=0;j<datosProducto.length;j++){
+            //si no existe familia para el producto registrar
+            if (conTipo.consultarProductoPor(datosProducto[j][3].toString(), datosProducto[j][4].toString()).equals("")){
+                codigo = datosProducto[j][3].toString();
+                familia = datosProducto[j][2].toString();
+                descripcion =datosProducto[j][0].toString();
+                ruc =datosProducto[j][4].toString();
+                  
+                String SQL="insert into Producto values('"+codigo+"','"+descripcion+"','"+ruc+"','"+familia+"')";
+                
+                conTipo.insertar(SQL);
+            }
+        }
+                              
+        
+    }
+    
     private void recargar(Conexion conn) {
          ArrayList auxRec = new ArrayList();
         Interfaces.FacturaManualPersonal.combo_Establecimientos.removeAllItems();

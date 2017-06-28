@@ -115,6 +115,29 @@ public class Conexion {
         return n;
     }
 
+    
+    //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
+    public  String consultarProductoPor(String codigo,String id_establecimiento) {
+            String familia = "";
+            
+        try {
+            
+            Statement comando = conexion.createStatement();
+            String sql = "select familia from producto where "
+                    + "id_producto='"+codigo+"' "
+                    + "and id_establecimiento='"+id_establecimiento+"'";
+            
+            ResultSet resultado = comando.executeQuery(sql);
+                familia = resultado.getString("familia");
+                
+            resultado.close();
+            comando.close();
+        } catch (SQLException e) {
+            System.out.println(""+e.getMessage());
+        }
+        return familia;
+    }
+    
     public void insertar(String sql) {
         try {
             Statement comando = conexion.createStatement();
@@ -125,6 +148,7 @@ public class Conexion {
         }
     }
 
+    
     public boolean verificar_usuario(String sql) {
         boolean val = false;
         try {

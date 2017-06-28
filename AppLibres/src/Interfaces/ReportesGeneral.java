@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,7 +29,6 @@ public class ReportesGeneral extends javax.swing.JInternalFrame {
 
     Conexion conn;
 
-    int anio;
     JTable auxP, auxN;
     
     public ReportesGeneral(Conexion conn) {
@@ -35,6 +36,16 @@ public class ReportesGeneral extends javax.swing.JInternalFrame {
         // lbl_Reporte.setText("REPORTE DEL AÑO " + anio);
         this.conn = conn;
         cargar_anios();
+        
+        
+        jtbUsuarios.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent tme) {
+                
+            }
+            
+        });
+        
         
         
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
@@ -214,35 +225,58 @@ public class ReportesGeneral extends javax.swing.JInternalFrame {
 
     private void jbtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtConsultarActionPerformed
         limpiarTabla();
-        String consulta = "select c.id_cliente as id,\n" +
+        String anio = String.valueOf(this.jcbAnio.getSelectedItem());
+        if(!anio.equals("Año")){
+            String consulta = "select c.id_cliente as id,\n" +
 "	c.nombre_cliente as nombre,\n" +
 "	count(f.id_cliente) as numero_facturas\n" +
 "	from cliente as c, factura as f\n" +
 "	where c.id_cliente=f.id_cliente\n" +
+"	and f.fecha_emision>= strftime('%d/%m/%Y','" + anio +"-01-01')\n" +
+"	and f.fecha_emision<strftime('%d/%m/%Y','" + anio + "-12-31')\n" +
 "	group by c.nombre_cliente";
-        System.out.println(consulta);
-        ArrayList elementos = conn.ddl(consulta);
-        // Llenado de tabla
-        int contador = 0;
-        Object[] datos = new Object[3];
+            System.out.println(consulta);
+            ArrayList elementos = conn.ddl(consulta);
+            // Llenado de tabla
+            int contador = 0;
+            Object[] datos = new Object[3];
 
-        for (Object elemento : elementos) { // todos los elementos de la consulta
-            datos[contador] = elemento.toString();
+            for (Object elemento : elementos) { // todos los elementos de la consulta
+                datos[contador] = elemento.toString();
 
-            contador++;
-            if(contador >= 3){
-                contador = 0;
-                agregarDatosTabla(datos);
+                contador++;
+                if(contador >= 3){
+                    contador = 0;
+                    agregarDatosTabla(datos);
+                }
+
             }
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un año");
         }
+        
         
     }//GEN-LAST:event_jbtConsultarActionPerformed
 
     private void jbtFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtFacturasActionPerformed
-        FacturasCliente facturas= new FacturasCliente(conn, "1000982882",
-                String.valueOf(anio));
-        facturas.setVisible(true);
+
+        int fila = jtbUsuarios.getSelectedRow();
+        if(fila >= 0){
+            String cedula = String.valueOf(jtbUsuarios.getValueAt(fila, 0));
+            String anio = String.valueOf(jcbAnio.getSelectedItem());
+        
+            if(!anio.equals("Año")){
+                FacturasCliente facturas= new FacturasCliente(conn,
+                    cedula, anio);
+                facturas.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un año");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario/fila");
+        }
+        
     }//GEN-LAST:event_jbtFacturasActionPerformed
 
     private void jbtPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPDFActionPerformed
@@ -254,9 +288,28 @@ public class ReportesGeneral extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtExcelActionPerformed
 
     private void jbtProveeddorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtProveeddorActionPerformed
-        FacturasProveedor proveedor = new FacturasProveedor(conn,
-                "1000982882", String.valueOf(this.anio));
-        proveedor.setVisible(true);
+        int fila = jtbUsuarios.getSelectedRow();
+        if(fila >= 0){
+            String cedula = String.valueOf(jtbUsuarios.getValueAt(fila, 0));
+        
+        
+            String anio = String.valueOf(jcbAnio.getSelectedItem());
+            System.out.println(cedula);
+            System.out.println(anio);
+            if(!anio.equals("Año")){
+                FacturasProveedor proveedor = new FacturasProveedor(conn,
+                    cedula, anio);
+                proveedor.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un año");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario/fila");
+        }
+            
+        
+        
     }//GEN-LAST:event_jbtProveeddorActionPerformed
 
     private void agregarDatosTabla(Object[] datos){

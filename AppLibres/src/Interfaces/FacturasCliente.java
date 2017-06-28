@@ -65,9 +65,9 @@ public class FacturasCliente extends javax.swing.JFrame {
 "where f.tipo_factura='Personal'\n" +
 "and f.id_establecimiento=e.id_establecimiento\n" +
 "and f.id_cliente=c.id_cliente\n" +
-"and f.fecha_emision>= strftime('%d/%m/%Y','2017-01-01')\n" +
-"and f.fecha_emision<strftime('%d/%m/%Y','2017-12-31')\n" +
-"and c.id_cliente='1000982882'";
+"and f.fecha_emision>= strftime('%d/%m/%Y','" + this.anio + "-01-01')\n" +
+"and f.fecha_emision<strftime('%d/%m/%Y','" + this.anio + "-12-31')\n" +
+"and c.id_cliente='" + this.cliente + "'";
         System.out.println(consulta);
         ArrayList elementos = conn.ddl(consulta);
         
@@ -342,7 +342,7 @@ public class FacturasCliente extends javax.swing.JFrame {
             public void run() {
                 Conexion nueva = new Conexion();
            
-                new FacturasCliente(nueva, "1000982882", "2017").setVisible(true);
+                new FacturasCliente(nueva, "1234567897", "2015").setVisible(true);
             }
         });
     }

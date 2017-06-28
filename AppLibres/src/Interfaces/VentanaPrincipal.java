@@ -79,6 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         m_Usuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ordenador de Facturas");
@@ -168,6 +169,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         m_Usuario.add(jMenuItem7);
+
+        jMenuItem9.setLabel("Salir");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        m_Usuario.add(jMenuItem9);
 
         jMenuBar1.add(m_Usuario);
 
@@ -302,6 +311,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane.add(rpg);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        salir();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +370,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu m_FactElect;
     private javax.swing.JMenu m_FactFisic;
     private javax.swing.JMenu m_Usuario;

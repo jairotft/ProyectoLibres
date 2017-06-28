@@ -16,6 +16,7 @@ public class Bienvenida extends javax.swing.JFrame {
      */
     public Bienvenida() {
         initComponents();
+        this.setLocation(500, 200);
     }
 
     /**

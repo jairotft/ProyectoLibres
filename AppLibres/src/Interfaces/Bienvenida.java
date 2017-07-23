@@ -16,6 +16,7 @@ public class Bienvenida extends javax.swing.JFrame {
      */
     public Bienvenida() {
         initComponents();
+        this.setLocation(500, 200);
     }
 
     /**
@@ -51,7 +52,7 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jLabel5.setText("PROYECTO DE ASIGNATURA: CAPTURADOR DE FACTURAS XML");
 
-        jLabel6.setText("FECHA:30/05/2017");
+        jLabel6.setText("FECHA:25/07/2017");
 
         btnContinuar.setText("CONTINUAR");
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {

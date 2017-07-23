@@ -7,6 +7,7 @@ package Interfaces;
 
 import conexionBDD.Conexion;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseMotionListener;
 import java.math.BigDecimal;
@@ -142,11 +143,11 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1302, 226, -1, -1));
 
-        panel_establecimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Establecimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans Extrabold", 1, 14), java.awt.Color.black)); // NOI18N
+        panel_establecimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Establecimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans Extrabold", 1, 14))); // NOI18N
 
         combo_Establecimientos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -246,26 +247,26 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
 
         getContentPane().add(panel_establecimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 770, -1));
 
-        panel_establecimiento1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans Extrabold", 1, 14), java.awt.Color.black)); // NOI18N
+        panel_establecimiento1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Open Sans Extrabold", 1, 14))); // NOI18N
         panel_establecimiento1.setLayout(null);
 
         jLabel8.setBackground(java.awt.Color.black);
         jLabel8.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel8.setText("Número de Factura:");
         panel_establecimiento1.add(jLabel8);
-        jLabel8.setBounds(30, 30, 157, 17);
+        jLabel8.setBounds(30, 30, 138, 20);
 
         jLabel9.setBackground(java.awt.Color.black);
         jLabel9.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel9.setText("Fecha de Emision:");
         panel_establecimiento1.add(jLabel9);
-        jLabel9.setBounds(410, 30, 143, 17);
+        jLabel9.setBounds(410, 30, 124, 20);
 
         jLabel15.setBackground(java.awt.Color.black);
         jLabel15.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel15.setText("Total sin iva:");
         panel_establecimiento1.add(jLabel15);
-        jLabel15.setBounds(500, 270, 100, 17);
+        jLabel15.setBounds(520, 260, 87, 20);
 
         date_fecha.setDateFormatString("yyyy-MM-dd");
         date_fecha.setPreferredSize(new java.awt.Dimension(12, 29));
@@ -276,13 +277,13 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel16.setText("I.V.A:");
         panel_establecimiento1.add(jLabel16);
-        jLabel16.setBounds(500, 310, 42, 17);
+        jLabel16.setBounds(520, 300, 36, 20);
 
         jLabel17.setBackground(java.awt.Color.black);
         jLabel17.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel17.setText("Valor total:");
         panel_establecimiento1.add(jLabel17);
-        jLabel17.setBounds(500, 350, 87, 17);
+        jLabel17.setBounds(520, 330, 77, 20);
 
         txt_iva.setText("0.0");
         txt_iva.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -291,15 +292,15 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_iva);
-        txt_iva.setBounds(610, 300, 128, 29);
+        txt_iva.setBounds(630, 290, 128, 20);
 
         txt_total.setEnabled(false);
         panel_establecimiento1.add(txt_total);
-        txt_total.setBounds(610, 340, 128, 29);
+        txt_total.setBounds(630, 330, 128, 20);
 
         txt_sin_iva.setEnabled(false);
         panel_establecimiento1.add(txt_sin_iva);
-        txt_sin_iva.setBounds(610, 260, 128, 29);
+        txt_sin_iva.setBounds(630, 250, 128, 20);
 
         txt_num_fac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -307,13 +308,13 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_num_fac);
-        txt_num_fac.setBounds(190, 20, 150, 29);
+        txt_num_fac.setBounds(190, 30, 150, 20);
 
         jLabel11.setBackground(java.awt.Color.black);
         jLabel11.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel11.setText("Tipos de gasto:");
         panel_establecimiento1.add(jLabel11);
-        jLabel11.setBounds(10, 60, 150, 17);
+        jLabel11.setBounds(10, 60, 150, 20);
 
         txt_mercaderia.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_mercaderia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -322,7 +323,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_mercaderia);
-        txt_mercaderia.setBounds(110, 80, 91, 29);
+        txt_mercaderia.setBounds(110, 80, 91, 20);
 
         txt_arriendo.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_arriendo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -331,7 +332,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_arriendo);
-        txt_arriendo.setBounds(110, 120, 91, 29);
+        txt_arriendo.setBounds(110, 120, 91, 20);
 
         txt_capacitacion.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_capacitacion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -340,7 +341,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_capacitacion);
-        txt_capacitacion.setBounds(110, 200, 91, 29);
+        txt_capacitacion.setBounds(110, 200, 91, 20);
 
         txt_sueldos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -348,7 +349,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_sueldos);
-        txt_sueldos.setBounds(490, 80, 82, 29);
+        txt_sueldos.setBounds(490, 80, 82, 20);
 
         txt_movilizacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -356,7 +357,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_movilizacion);
-        txt_movilizacion.setBounds(490, 120, 82, 29);
+        txt_movilizacion.setBounds(490, 120, 82, 20);
 
         txt_servbasicos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -364,7 +365,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_servbasicos);
-        txt_servbasicos.setBounds(110, 160, 91, 29);
+        txt_servbasicos.setBounds(110, 160, 91, 20);
 
         txt_viaticos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -372,7 +373,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_viaticos);
-        txt_viaticos.setBounds(490, 160, 82, 29);
+        txt_viaticos.setBounds(490, 160, 82, 20);
 
         jButton1.setText("+");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +382,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton1);
-        jButton1.setBounds(210, 80, 50, 29);
+        jButton1.setBounds(210, 80, 50, 23);
 
         jButton3.setText("+");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -390,7 +391,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton3);
-        jButton3.setBounds(210, 120, 50, 29);
+        jButton3.setBounds(210, 120, 50, 23);
 
         jButton4.setText("+");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -399,7 +400,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton4);
-        jButton4.setBounds(210, 200, 50, 29);
+        jButton4.setBounds(210, 200, 50, 23);
 
         jButton5.setText("+");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -408,7 +409,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton5);
-        jButton5.setBounds(580, 80, 50, 29);
+        jButton5.setBounds(580, 80, 50, 23);
 
         jButton6.setText("+");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -417,7 +418,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton6);
-        jButton6.setBounds(210, 160, 50, 29);
+        jButton6.setBounds(210, 160, 50, 23);
 
         jButton7.setText("+");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -426,7 +427,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton7);
-        jButton7.setBounds(580, 120, 50, 29);
+        jButton7.setBounds(580, 120, 50, 23);
 
         jButton8.setText("+");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -435,7 +436,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton8);
-        jButton8.setBounds(580, 160, 50, 29);
+        jButton8.setBounds(580, 160, 50, 23);
 
         lbl_mercaderia.setForeground(java.awt.Color.darkGray);
         lbl_mercaderia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -493,23 +494,23 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton9);
-        jButton9.setBounds(80, 300, 180, 60);
+        jButton9.setBounds(10, 300, 140, 30);
 
         jLabel19.setText("Mercadería");
         panel_establecimiento1.add(jLabel19);
-        jLabel19.setBounds(10, 90, 100, 17);
+        jLabel19.setBounds(10, 90, 100, 14);
 
         jLabel20.setText("Arriendo");
         panel_establecimiento1.add(jLabel20);
-        jLabel20.setBounds(10, 130, 140, 17);
+        jLabel20.setBounds(10, 130, 140, 14);
 
         jLabel21.setText("Serv. Básicos");
         panel_establecimiento1.add(jLabel21);
-        jLabel21.setBounds(10, 170, 130, 17);
+        jLabel21.setBounds(10, 170, 130, 14);
 
         jLabel22.setText("Capacitación");
         panel_establecimiento1.add(jLabel22);
-        jLabel22.setBounds(10, 210, 120, 17);
+        jLabel22.setBounds(10, 210, 120, 14);
 
         jButton10.setText("-");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -518,7 +519,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton10);
-        jButton10.setBounds(260, 80, 50, 29);
+        jButton10.setBounds(260, 80, 50, 23);
 
         jButton11.setText("-");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -527,7 +528,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton11);
-        jButton11.setBounds(260, 120, 50, 29);
+        jButton11.setBounds(260, 120, 50, 23);
 
         jButton12.setText("-");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -536,7 +537,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton12);
-        jButton12.setBounds(260, 160, 50, 29);
+        jButton12.setBounds(260, 160, 50, 23);
 
         jButton13.setText("-");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -545,19 +546,19 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton13);
-        jButton13.setBounds(260, 200, 50, 29);
+        jButton13.setBounds(260, 200, 50, 23);
 
         jLabel23.setText("Sueldos");
         panel_establecimiento1.add(jLabel23);
-        jLabel23.setBounds(400, 90, 100, 17);
+        jLabel23.setBounds(400, 90, 100, 14);
 
         jLabel24.setText("Movilización");
         panel_establecimiento1.add(jLabel24);
-        jLabel24.setBounds(400, 130, 100, 17);
+        jLabel24.setBounds(400, 130, 100, 14);
 
         jLabel25.setText("Viáticos");
         panel_establecimiento1.add(jLabel25);
-        jLabel25.setBounds(400, 170, 90, 17);
+        jLabel25.setBounds(400, 170, 90, 14);
 
         jButton14.setText("-");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -566,7 +567,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton14);
-        jButton14.setBounds(630, 80, 50, 29);
+        jButton14.setBounds(630, 80, 50, 23);
 
         jButton15.setText("-");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -575,7 +576,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton15);
-        jButton15.setBounds(630, 120, 50, 29);
+        jButton15.setBounds(630, 120, 50, 23);
 
         jButton16.setText("-");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -584,7 +585,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton16);
-        jButton16.setBounds(630, 160, 50, 29);
+        jButton16.setBounds(630, 160, 50, 23);
 
         txt_suministros.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -592,7 +593,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_suministros);
-        txt_suministros.setBounds(490, 200, 82, 29);
+        txt_suministros.setBounds(490, 200, 82, 20);
 
         jButton17.setText("+");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -601,7 +602,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton17);
-        jButton17.setBounds(580, 200, 50, 29);
+        jButton17.setBounds(580, 200, 50, 23);
 
         lbl_suministros.setForeground(java.awt.Color.darkGray);
         lbl_suministros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -612,7 +613,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
 
         jLabel26.setText("Suministros");
         panel_establecimiento1.add(jLabel26);
-        jLabel26.setBounds(400, 210, 90, 17);
+        jLabel26.setBounds(400, 210, 90, 14);
 
         jButton18.setText("-");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -621,7 +622,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton18);
-        jButton18.setBounds(630, 200, 50, 29);
+        jButton18.setBounds(630, 200, 50, 23);
 
         txt_herramientas.setDisabledTextColor(new java.awt.Color(183, 183, 183));
         txt_herramientas.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -630,7 +631,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(txt_herramientas);
-        txt_herramientas.setBounds(110, 240, 91, 29);
+        txt_herramientas.setBounds(110, 240, 91, 20);
 
         jButton19.setText("+");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -639,7 +640,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton19);
-        jButton19.setBounds(210, 240, 50, 29);
+        jButton19.setBounds(210, 240, 50, 23);
 
         lbl_herramientas.setForeground(java.awt.Color.darkGray);
         lbl_herramientas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -650,7 +651,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
 
         jLabel27.setText("Herramientas");
         panel_establecimiento1.add(jLabel27);
-        jLabel27.setBounds(10, 250, 120, 17);
+        jLabel27.setBounds(10, 250, 120, 14);
 
         jButton20.setText("-");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
@@ -659,9 +660,7 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
             }
         });
         panel_establecimiento1.add(jButton20);
-        jButton20.setBounds(260, 240, 50, 29);
-
-        getContentPane().add(panel_establecimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 770, 380));
+        jButton20.setBounds(260, 240, 50, 23);
 
         btn_RegistrarFactura.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         btn_RegistrarFactura.setText("Registrar Factura");
@@ -670,7 +669,10 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
                 btn_RegistrarFacturaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_RegistrarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 610, 220, 40));
+        panel_establecimiento1.add(btn_RegistrarFactura);
+        btn_RegistrarFactura.setBounds(230, 290, 220, 40);
+
+        getContentPane().add(panel_establecimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 770, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -735,15 +737,15 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
         }
 
         if (conn.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_NEGOCIOS WHERE anio_historial_n=" + anio + " AND id_cliente='" + cedula_usuario + "'")) {
-            conn.insertar("UPDATE HISTORIAL_PAGOS_NEGOCIOS SET total_mercaderia=total_mercaderia+" + totalMercaderia + "::money,"
-                    + "total_arriendo=total_arriendo+" + totalArriendo + "::money,"
-                    + "total_servicios=total_servicios+" + totalServicios + "::money,"
-                    + "total_sueldos=total_sueldos+" + totalSueldos + "::money,"
-                    + "total_movilizacion=total_movilizacion+" + totalMovilizacion + "::money,"
-                    + "total_viaticos=total_viaticos+" + totalViaticos + "::money,"
-                    + "total_capacitacion=total_capacitacion+" + totalCapacitacion + "::money,"
-                    + "total_suministros=total_suministros+" + totalSuministros + "::money,"
-                    + "total_herramientas=total_herramientas+" + totalHerramientas + "::money WHERE anio_historial_n=" + this.anio + " AND id_cliente='" + this.cedula_usuario + "'");
+            conn.insertar("UPDATE HISTORIAL_PAGOS_NEGOCIOS SET total_mercaderia=total_mercaderia+" + totalMercaderia + ","
+                    + "total_arriendo=total_arriendo+" + totalArriendo + ","
+                    + "total_servicios=total_servicios+" + totalServicios + ","
+                    + "total_sueldos=total_sueldos+" + totalSueldos + ","
+                    + "total_movilizacion=total_movilizacion+" + totalMovilizacion + ","
+                    + "total_viaticos=total_viaticos+" + totalViaticos + ","
+                    + "total_capacitacion=total_capacitacion+" + totalCapacitacion + ","
+                    + "total_suministros=total_suministros+" + totalSuministros + ","
+                    + "total_herramientas=total_herramientas+" + totalHerramientas + " WHERE anio_historial_n=" + this.anio + " AND id_cliente='" + this.cedula_usuario + "'");
 
         } else {
             conn.insertar("INSERT INTO HISTORIAL_PAGOS_NEGOCIOS VALUES (" + anio + ",'" + cedula_usuario + "'," + totalMercaderia + ","
@@ -788,8 +790,8 @@ public class FacturaManualNegocio extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "El numero de factura ya existe en la base de datos");
                     }
-                } catch (Exception e) {
-                    System.err.println(e);
+                } catch (HeadlessException e) {
+                    JOptionPane.showMessageDialog(null,e.getMessage());
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La factura tiene un total de 0", "Error", JOptionPane.ERROR_MESSAGE);

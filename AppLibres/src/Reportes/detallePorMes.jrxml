@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d758e885-21e2-46c6-a696-bb7506204d0e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="13"/>
+	<property name="ireport.y" value="40"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\personal\\Documents\\NetBeansProjects\\AplicacionesLibres\\src\\Reportes\\"]]></defaultValueExpression>
@@ -15,38 +15,40 @@
 	</parameter>
 	<parameter name="cliente" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT  cast(extract(month from fecha_emision)as numeric) as ME,to_char((fecha_emision), 'MONTH') AS MES,g.tipo AS TIPO, cast(sum(g.total)as numeric) AS TOTAL
-from factura f join tipo_gasto g on f.id_factura=g.id_factura where extract(year from fecha_emision)=$P{Anio}
+		<![CDATA[SELECT  cast(strftime('%m',fecha_emision) as numeric) as me,
+cast(strftime('%m',fecha_emision) as numeric) as mes,
+g.tipo AS tipo, cast(sum(g.total)as numeric) AS total
+from factura f join tipo_gasto g on f.id_factura=g.id_factura where strftime('%Y',fecha_emision)=$P{Anio}
 and f.tipo_factura=$P{tipo_factura}
 group by MES,TIPO,ME order by 1]]>
 	</queryString>
-	<field name="me" class="java.math.BigDecimal"/>
-	<field name="mes" class="java.lang.String"/>
-	<field name="tipo" class="java.lang.String"/>
-	<field name="total" class="java.math.BigDecimal"/>
+	<field name="me" class="java.lang.Object"/>
+	<field name="mes" class="java.lang.Object"/>
+	<field name="tipo" class="java.lang.Object"/>
+	<field name="total" class="java.lang.Object"/>
 	<background>
 		<band/>
 	</background>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="802" height="72" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="72" backcolor="#006699" uuid="8feef5d2-3e5f-44b8-ad19-df2d5262b52d"/>
 				<staticText>
-					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF"/>
+					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF" uuid="e5564ff7-62c2-493e-acfe-c6b58bc15be9"/>
 					<textElement>
 						<font size="26" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DETALLE DE GASTOS POR MES]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="514" y="43" width="61" height="20" forecolor="#FFFFFF"/>
+					<reportElement x="514" y="43" width="61" height="20" forecolor="#FFFFFF" uuid="c0a329db-f3e7-42b8-a32d-c7db67acb714"/>
 					<textElement verticalAlignment="Middle">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Año:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="575" y="43" width="100" height="20" forecolor="#FFFFFF"/>
+					<reportElement x="575" y="43" width="100" height="20" forecolor="#FFFFFF" uuid="b4fac0e6-f9f7-4fda-9f1a-fd45353f34f4"/>
 					<textElement verticalAlignment="Middle">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -58,28 +60,28 @@ group by MES,TIPO,ME order by 1]]>
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="117" y="0" width="106" height="20"/>
+				<reportElement x="117" y="0" width="106" height="20" uuid="b9ced760-883a-460a-8073-704ca17e8748"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipo_factura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000"/>
+				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000" uuid="e72260ca-6077-4d8f-8709-5d67f52b154a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gastos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000"/>
+				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000" uuid="20775f31-8d48-4df5-830c-8bb27b929785"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="575" y="0" width="106" height="20"/>
+				<reportElement x="575" y="0" width="106" height="20" uuid="5424530f-154e-40bc-aca6-5512e168f633"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -91,7 +93,7 @@ group by MES,TIPO,ME order by 1]]>
 		<band height="283">
 			<elementGroup>
 				<crosstab>
-					<reportElement x="0" y="0" width="802" height="283">
+					<reportElement x="0" y="0" width="802" height="283" uuid="f2b6b1cd-d4c7-43e2-9fc8-0008df143ec8">
 						<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 					</reportElement>
 					<box leftPadding="7"/>
@@ -106,7 +108,7 @@ group by MES,TIPO,ME order by 1]]>
 									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textField>
-									<reportElement style="Crosstab Data Text" x="0" y="0" width="63" height="25"/>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="63" height="25" uuid="06d6da02-3f1f-4020-a448-3ecc4f1189b9"/>
 									<box>
 										<pen lineStyle="Double"/>
 										<topPen lineStyle="Double"/>
@@ -128,7 +130,7 @@ group by MES,TIPO,ME order by 1]]>
 									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="63" height="25"/>
+									<reportElement x="0" y="0" width="63" height="25" uuid="df0f27e1-1e7f-409a-babe-d2ba274b9604"/>
 									<box>
 										<pen lineStyle="Double"/>
 										<topPen lineStyle="Double"/>
@@ -155,7 +157,7 @@ group by MES,TIPO,ME order by 1]]>
 									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textField>
-									<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="30"/>
+									<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="30" uuid="c4c02db9-74ef-43c4-91fc-95c7170de4bc"/>
 									<box>
 										<pen lineStyle="Double"/>
 										<topPen lineStyle="Double"/>
@@ -177,7 +179,7 @@ group by MES,TIPO,ME order by 1]]>
 									<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<staticText>
-									<reportElement x="0" y="0" width="62" height="30"/>
+									<reportElement x="0" y="0" width="62" height="30" uuid="362967cb-00ca-4619-8aac-0200eb30a208"/>
 									<box>
 										<pen lineStyle="Double"/>
 										<topPen lineStyle="Double"/>
@@ -203,7 +205,7 @@ group by MES,TIPO,ME order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="25"/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="25" uuid="13bea6e1-b44b-4456-ad39-b8e4c31204c4"/>
 								<box>
 									<pen lineStyle="Double"/>
 									<topPen lineStyle="Double"/>
@@ -225,7 +227,7 @@ group by MES,TIPO,ME order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="62" height="25"/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="62" height="25" uuid="e8d24a3d-d713-4259-a5ed-2b0cf4aff378"/>
 								<box>
 									<pen lineStyle="Double"/>
 									<topPen lineStyle="Double"/>
@@ -247,7 +249,7 @@ group by MES,TIPO,ME order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="25"/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="93" height="25" uuid="c0e4b273-c7e9-440a-b458-79ea8db4c4f2"/>
 								<box>
 									<pen lineStyle="Double"/>
 									<topPen lineStyle="Double"/>
@@ -269,7 +271,7 @@ group by MES,TIPO,ME order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="62" height="25"/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="62" height="25" uuid="e295469e-8255-40a3-826a-e0f2a1805ce2"/>
 								<box>
 									<pen lineStyle="Double"/>
 									<topPen lineStyle="Double"/>

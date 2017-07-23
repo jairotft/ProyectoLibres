@@ -7,10 +7,8 @@ package aplicacioneslibres;
 import Interfaces.SeleccionarTipoGastoNegocios;
 import Interfaces.SeleccionarTipoGastoPersonal;
 import conexionBDD.Conexion;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ import org.jdom2.input.SAXBuilder;
  */
 public class CargaXml {
 
+    Conexion cp = new Conexion();
     public void cargarXml(String name, String cedulaCli, int anio, String tipo) {
         //Se crea un SAXBuilder para poder parsear el archivo
         SAXBuilder builder = new SAXBuilder();
@@ -34,7 +33,7 @@ public class CargaXml {
         try {
             //Se crea el documento a traves del archivo
             Document document = (Document) builder.build(xmlFile);
-            Conexion cp = new Conexion();
+            
 
             ArrayList elementos = new ArrayList();
 
@@ -51,6 +50,7 @@ public class CargaXml {
             elementos.add("identificacionComprador");
             elementos.add("totalSinImpuestos");
             elementos.add("valor");
+            elementos.add("codigoPrincipal");
             elementos.add("descripcion");
             elementos.add("precioTotalSinImpuesto");
 
@@ -96,7 +96,9 @@ public class CargaXml {
             while (tk.hasMoreTokens()) {
                 verificarFecha = tk.nextToken();
             }
-
+            
+            System.out.println( verificarFecha+" fechaCompleta: "+fechaCompleta);
+            
             if (verificarFecha.equals(String.valueOf(anio))) {
                 List lista_campos = tabla.getChildren();
                 Element campo;
@@ -142,10 +144,11 @@ public class CargaXml {
 
                 String numFact = estab + "-" + emision + "-" + secuencial;
 
-                if (!cp.verificar_usuario("SELECT * FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
+                if (!cp.verificar_usuario("SELECT *FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
                     String establecimiento = "INSERT INTO ESTABLECIMIENTO (id_establecimiento,nombre_establecimiento,direccion_establecimiento)"
                             + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
                     cp.insertar(establecimiento);
+                    
                 }
 
                 //Se obtiene la raiz de la factura
@@ -188,36 +191,53 @@ public class CargaXml {
                         String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
                                 + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
                         cp.insertar(facturaQ);
-
+                        
                         Element detalles = (Element) lista_campos.get(2);
                         List detalle = detalles.getChildren();
 
-                        Object datosProducto[][] = new Object[detalle.size()][3];
-
+                        Object datosProducto[][] = new Object[detalle.size()][5];
+                        
+                        
                         for (int j = 0; j < detalle.size(); j++) {
 
                             campo = (Element) detalle.get(j);
 
-                            // Detalle
+                             // Detalle
+                            cont = elementos.indexOf("codigoPrincipal");
+                            String codigo = "";
+                            String familia="";
+                            if (cont != -1) {
+                                codigo = campo.getChildTextTrim(elementos.get(cont).toString());
+                                if (cp.consultarProductoPor(codigo, ruc).equals("")){
+                                    //no hacer nada
+                                }else{
+                                familia = cp.consultarProductoPor(codigo, ruc);
+                                }
+                            }
+                            
                             cont = elementos.indexOf("descripcion");
                             String descripcion = "";
                             if (cont != -1) {
                                 descripcion = campo.getChildTextTrim(elementos.get(cont).toString());
                             }
-
+                            
                             cont = elementos.indexOf("precioTotalSinImpuesto");
                             Double total = 0.0;
                             if (cont != -1) {
                                 total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
                             }
-
+                           
+                            
                             if (!descripcion.equals("")) {
+                                datosProducto[j][2] = familia;
                                 datosProducto[j][0] = descripcion;
                                 datosProducto[j][1] = total;
-                                datosProducto[j][2] = "";
+                                datosProducto[j][3] = codigo;
+                                datosProducto[j][4] = ruc;
+                               
                             }
                         }
-
+                        
                         if (datosProducto.length != 0) {
                             if (tipo.equals("Personal")) {
                                 SeleccionarTipoGastoPersonal seleccionarP = new SeleccionarTipoGastoPersonal(cp, datosProducto, numFact, anio, cedulaCli, tipo);
@@ -239,5 +259,7 @@ public class CargaXml {
         } catch (IOException | JDOMException io) {
             System.out.println(io.getMessage());
         }
+        
     }
+    
 }

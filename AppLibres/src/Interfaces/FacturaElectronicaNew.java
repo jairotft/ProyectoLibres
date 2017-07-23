@@ -6,11 +6,8 @@ package Interfaces;
 
 import aplicacioneslibres.CargaXml;
 import java.awt.Component;
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseMotionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
@@ -62,7 +59,7 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jScrollPane1.setViewportView(jList1);
 
@@ -78,6 +75,12 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel1.setText("Organizador de Facturas XML");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Directorio");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +100,7 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,13 +124,13 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(46, 46, 46)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
@@ -149,6 +152,7 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "No se selecciono un tipo de factura");
             }
+            
         } else {
             JOptionPane.showMessageDialog(this, "No se cargo un directorio para las facturas");
         }
@@ -188,6 +192,9 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(null, "No existen archivos en el directorio", "Archivos no encontrados", 2);
                     } else {
                         DefaultListModel modelo = new DefaultListModel();
+                        
+                        
+                        //for (int x = 0; x < ficheros.length; x++) 
                         for (int x = 0; x < ficheros.length; x++) {
                             modelo.addElement(ficheros[x].getName());
                             //System.out.println(ficheros[x].getName());
@@ -199,12 +206,17 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
 
             } catch (IOException ex) {
                 Logger.getLogger(FacturaElectronicaNew.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No se selecciono ninguna carpeta.", "Cancelado", 3);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,8 +240,8 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(FacturaElectronicaNew.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);

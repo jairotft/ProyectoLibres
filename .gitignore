@@ -5,3 +5,5 @@ AppLibres/lib/
 AppLibres/nbproject/private/private.properties
 /AppLibres/bdd/facturas.db
 /AppLibres/dist/
+AppLibres/nbproject/private/private.xml
+AppLibres/src/conexionBDD/Conexion.java

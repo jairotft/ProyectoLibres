@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAnio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAnio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07a4f4c7-85a0-459a-9250-a2bfc2c2dbf2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="77"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -15,52 +15,52 @@
 	</parameter>
 	<parameter name="textoEntrada" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select id_cliente,
-cast((g.total_alimentacion - h.total_alimentacion)as numeric) diferencia_alimentacion, 
-cast((g.total_salud - h.total_salud)as numeric) diferencia_salud, 
-cast((g.total_vivienda - h.total_vivienda)as numeric) diferencia_vivienda, 
-cast((g.total_educacion - h.total_educacion)as numeric) diferencia_educacion, 
+		<![CDATA[select id_cliente as id_cliente,
+cast((g.total_alimentacion - h.total_alimentacion)as numeric) diferencia_alimentacion,
+cast((g.total_salud - h.total_salud)as numeric) diferencia_salud,
+cast((g.total_vivienda - h.total_vivienda)as numeric) diferencia_vivienda,
+cast((g.total_educacion - h.total_educacion)as numeric) diferencia_educacion,
 cast((g.total_vestimenta - h.total_vestimenta)as numeric)diferencia_vestimenta,
 cast((g.total_alimentacion)as numeric) limite_alimentacion,
-cast((g.total_salud)as numeric) limite_salud, 
-cast((g.total_vivienda)as numeric) limite_vivienda, 
-cast((g.total_educacion)as numeric) limite_educacion, 
+cast((g.total_salud)as numeric) limite_salud,
+cast((g.total_vivienda)as numeric) limite_vivienda,
+cast((g.total_educacion)as numeric) limite_educacion,
 cast((g.total_vestimenta)as numeric)limite_vestimenta,
-cast((h.total_alimentacion)as numeric) total_alimentacion, 
-cast((h.total_salud)as numeric) total_salud, 
-cast((h.total_vivienda)as numeric) total_vivienda, 
-cast((h.total_educacion)as numeric) total_educacion, 
-cast((h.total_vestimenta)as numeric)total_vestimenta  
-from gastosanualespersonales g 
+cast((h.total_alimentacion)as numeric) total_alimentacion,
+cast((h.total_salud)as numeric) total_salud,
+cast((h.total_vivienda)as numeric) total_vivienda,
+cast((h.total_educacion)as numeric) total_educacion,
+cast((h.total_vestimenta)as numeric)total_vestimenta
+from gastosanualespersonales g
 join historial_pagos_personales h on g.anio_gastos = h.anio_historial_p
 where anio_gastos=$P{anio} and h.id_cliente=$P{idCliente}]]>
 	</queryString>
-	<field name="id_cliente" class="java.lang.String"/>
-	<field name="diferencia_alimentacion" class="java.math.BigDecimal"/>
-	<field name="diferencia_salud" class="java.math.BigDecimal"/>
-	<field name="diferencia_vivienda" class="java.math.BigDecimal"/>
-	<field name="diferencia_educacion" class="java.math.BigDecimal"/>
-	<field name="diferencia_vestimenta" class="java.math.BigDecimal"/>
-	<field name="limite_alimentacion" class="java.math.BigDecimal"/>
-	<field name="limite_salud" class="java.math.BigDecimal"/>
-	<field name="limite_vivienda" class="java.math.BigDecimal"/>
-	<field name="limite_educacion" class="java.math.BigDecimal"/>
-	<field name="limite_vestimenta" class="java.math.BigDecimal"/>
-	<field name="total_alimentacion" class="java.math.BigDecimal"/>
-	<field name="total_salud" class="java.math.BigDecimal"/>
-	<field name="total_vivienda" class="java.math.BigDecimal"/>
-	<field name="total_educacion" class="java.math.BigDecimal"/>
-	<field name="total_vestimenta" class="java.math.BigDecimal"/>
+	<field name="id_cliente" class="java.lang.Object"/>
+	<field name="diferencia_alimentacion" class="java.lang.Object"/>
+	<field name="diferencia_salud" class="java.lang.Object"/>
+	<field name="diferencia_vivienda" class="java.lang.Object"/>
+	<field name="diferencia_educacion" class="java.lang.Object"/>
+	<field name="diferencia_vestimenta" class="java.lang.Object"/>
+	<field name="limite_alimentacion" class="java.lang.Object"/>
+	<field name="limite_salud" class="java.lang.Object"/>
+	<field name="limite_vivienda" class="java.lang.Object"/>
+	<field name="limite_educacion" class="java.lang.Object"/>
+	<field name="limite_vestimenta" class="java.lang.Object"/>
+	<field name="total_alimentacion" class="java.lang.Object"/>
+	<field name="total_salud" class="java.lang.Object"/>
+	<field name="total_vivienda" class="java.lang.Object"/>
+	<field name="total_educacion" class="java.lang.Object"/>
+	<field name="total_vestimenta" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="80" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="553" height="80" backcolor="#3399FF"/>
+				<reportElement x="0" y="0" width="553" height="80" backcolor="#3399FF" uuid="14a5735f-ac6c-4972-916a-47e5ef0e4489"/>
 			</rectangle>
 			<textField>
-				<reportElement x="10" y="14" width="552" height="46" forecolor="#FFFFFF"/>
+				<reportElement x="10" y="14" width="552" height="46" forecolor="#FFFFFF" uuid="85c84703-782f-4979-959c-08e1e7081258"/>
 				<textElement textAlignment="Justified">
 					<font size="21" isBold="true"/>
 				</textElement>
@@ -71,14 +71,14 @@ where anio_gastos=$P{anio} and h.id_cliente=$P{idCliente}]]>
 	<pageHeader>
 		<band height="56">
 			<textField>
-				<reportElement x="45" y="15" width="100" height="20"/>
+				<reportElement x="45" y="15" width="100" height="20" uuid="2735f88d-04f8-4cee-b585-df33f1dbccf6"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="15" width="45" height="20"/>
+				<reportElement x="0" y="15" width="45" height="20" uuid="a9b68521-a589-43b8-92ce-2c9f28bde1b5"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -89,28 +89,28 @@ where anio_gastos=$P{anio} and h.id_cliente=$P{idCliente}]]>
 	<columnHeader>
 		<band height="50">
 			<staticText>
-				<reportElement x="13" y="30" width="111" height="20"/>
+				<reportElement x="13" y="30" width="111" height="20" uuid="a154635f-db79-4bb5-8a19-789a97f8f836"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="30" width="121" height="20"/>
+				<reportElement x="124" y="30" width="121" height="20" uuid="b4489b3d-6818-4309-8fbd-78a9265b14df"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total de Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="30" width="126" height="20"/>
+				<reportElement x="245" y="30" width="126" height="20" uuid="08f919ea-b241-491c-9c2c-13edba6ccd36"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Límite de Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="30" width="121" height="20"/>
+				<reportElement x="371" y="30" width="121" height="20" uuid="cdae72d7-4438-4ef2-b4ff-e275cb02de91"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -121,186 +121,152 @@ where anio_gastos=$P{anio} and h.id_cliente=$P{idCliente}]]>
 	<detail>
 		<band height="177" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="30322aff-a282-4128-8d8b-df37f4786994"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="13" y="43" width="111" height="20"/>
+				<reportElement x="13" y="43" width="111" height="20" uuid="7c1d7e3d-9819-487c-80b8-23a56168d7ca"/>
 				<textElement>
 					<font fontName="SansSerif"/>
 				</textElement>
 				<text><![CDATA[Alimentacion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="103" width="111" height="20"/>
-				<textElement/>
+				<reportElement x="13" y="103" width="111" height="20" uuid="d5d26efc-7fec-421a-a614-1957b4de9b9e"/>
 				<text><![CDATA[Salud]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="63" width="111" height="20"/>
-				<textElement/>
+				<reportElement x="13" y="63" width="111" height="20" uuid="ecc0adcf-e4f1-4723-96b3-b59d2cd21d2c"/>
 				<text><![CDATA[Vivienda]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="83" width="111" height="20"/>
-				<textElement/>
+				<reportElement x="13" y="83" width="111" height="20" uuid="1fceb4f5-25ab-46ff-a17c-84ca218d5b96"/>
 				<text><![CDATA[Educación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="123" width="111" height="20"/>
-				<textElement/>
+				<reportElement x="13" y="123" width="111" height="20" uuid="8a8b5ea5-cf24-42c7-b7b5-0b19417f60fc"/>
 				<text><![CDATA[Vestimenta]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="136" y="43" width="109" height="20"/>
-				<textElement/>
+				<reportElement x="136" y="43" width="109" height="20" uuid="67bb0ecb-f4e1-4aa9-b79b-e8dd8c163aec"/>
 				<textFieldExpression><![CDATA[$F{total_alimentacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="103" width="109" height="20"/>
-				<textElement/>
+				<reportElement x="136" y="103" width="109" height="20" uuid="b9b0f0c3-448f-4b39-84d5-0cf7278e0539"/>
 				<textFieldExpression><![CDATA[$F{total_salud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="63" width="109" height="20"/>
-				<textElement/>
+				<reportElement x="136" y="63" width="109" height="20" uuid="6769b8a9-c560-42c8-bed2-f2a381bfd46b"/>
 				<textFieldExpression><![CDATA[$F{total_vivienda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="83" width="109" height="20"/>
-				<textElement/>
+				<reportElement x="136" y="83" width="109" height="20" uuid="2b1fc3a3-ebf8-4477-9d17-e4466e75d8be"/>
 				<textFieldExpression><![CDATA[$F{total_educacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="123" width="109" height="20"/>
-				<textElement/>
+				<reportElement x="136" y="123" width="109" height="20" uuid="d0fe65eb-928a-477c-83f9-c87632845f10"/>
 				<textFieldExpression><![CDATA[$F{total_vestimenta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="257" y="43" width="114" height="20"/>
-				<textElement/>
+				<reportElement x="257" y="43" width="114" height="20" uuid="1a324060-0b1b-46e0-b29c-a56544c70217"/>
 				<textFieldExpression><![CDATA[$F{limite_alimentacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="257" y="103" width="114" height="20"/>
-				<textElement/>
+				<reportElement x="257" y="103" width="114" height="20" uuid="f798c919-8a6e-427f-b105-95bdee27c3fe"/>
 				<textFieldExpression><![CDATA[$F{limite_salud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="257" y="63" width="114" height="20"/>
-				<textElement/>
+				<reportElement x="257" y="63" width="114" height="20" uuid="ebab0eae-1966-4287-b698-d36743e0054a"/>
 				<textFieldExpression><![CDATA[$F{limite_vivienda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="257" y="83" width="114" height="20"/>
-				<textElement/>
+				<reportElement x="257" y="83" width="114" height="20" uuid="61243252-f846-4d93-a596-64823448fbee"/>
 				<textFieldExpression><![CDATA[$F{limite_educacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="257" y="123" width="114" height="20"/>
-				<textElement/>
+				<reportElement x="257" y="123" width="114" height="20" uuid="6c1bc3ee-9b4b-4326-83c4-984ec6a9d7f9"/>
 				<textFieldExpression><![CDATA[$F{limite_vestimenta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="43" width="143" height="20"/>
-				<textElement/>
+				<reportElement x="383" y="43" width="143" height="20" uuid="2886b1b3-926a-4204-871a-458823d36b2a"/>
 				<textFieldExpression><![CDATA[$F{diferencia_alimentacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="103" width="143" height="20"/>
-				<textElement/>
+				<reportElement x="383" y="103" width="143" height="20" uuid="2ec3ad23-63a2-427f-a72f-ac8cb40e5735"/>
 				<textFieldExpression><![CDATA[$F{diferencia_salud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="63" width="143" height="20"/>
-				<textElement/>
+				<reportElement x="383" y="63" width="143" height="20" uuid="3e5b3229-8085-41f9-8c73-41728db98668"/>
 				<textFieldExpression><![CDATA[$F{diferencia_vivienda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="83" width="143" height="20"/>
-				<textElement/>
+				<reportElement x="383" y="83" width="143" height="20" uuid="a29aba8d-4c95-49ac-8a4d-74f7c6c046b1"/>
 				<textFieldExpression><![CDATA[$F{diferencia_educacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="123" width="143" height="20"/>
-				<textElement/>
+				<reportElement x="383" y="123" width="143" height="20" uuid="47969c7b-bca0-41fc-971a-b348d2955db9"/>
 				<textFieldExpression><![CDATA[$F{diferencia_vestimenta}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="124" y="43" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="124" y="43" width="12" height="20" uuid="208cacc6-b341-4a0c-bb35-da3ab18d1383"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="63" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="124" y="63" width="12" height="20" uuid="5503d48b-8470-4dbf-b442-6d4952a0c11b"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="83" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="124" y="83" width="12" height="20" uuid="a8283068-8b47-4bfc-9415-d5e5f48d11ad"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="103" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="124" y="103" width="12" height="20" uuid="20366249-801b-41d4-a0c3-e023eb84569e"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="123" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="124" y="123" width="12" height="20" uuid="06a5d0fc-f547-4c97-875f-322a66186c34"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="43" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="245" y="43" width="12" height="20" uuid="d34bbf73-6f1f-4ac2-a9fe-675e4977cee9"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="43" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="371" y="43" width="12" height="20" uuid="b3bc0fc4-a941-4727-af7f-958c53a87270"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="83" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="245" y="83" width="12" height="20" uuid="e8d91d23-7112-4a0e-873d-a49b560e17cb"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="63" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="245" y="63" width="12" height="20" uuid="090e809f-39f5-4924-9270-ff6134cc3958"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="123" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="245" y="123" width="12" height="20" uuid="7df439fe-cd09-4117-b195-fbc15c73d8ba"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="103" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="245" y="103" width="12" height="20" uuid="eb9d7732-eec8-407a-b784-42f8b2a77a0c"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="83" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="371" y="83" width="12" height="20" uuid="09d67708-9ed4-4fb3-be31-d47819fb3669"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="63" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="371" y="63" width="12" height="20" uuid="4a552608-ae2a-4852-9926-416d056bc6be"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="123" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="371" y="123" width="12" height="20" uuid="214ce05e-d699-461f-9810-5b9aa74c5cc1"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="103" width="12" height="20"/>
-				<textElement/>
+				<reportElement x="371" y="103" width="12" height="20" uuid="2a089aab-3bc6-4918-84f6-17bdc95e1576"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 		</band>
@@ -308,21 +274,21 @@ where anio_gastos=$P{anio} and h.id_cliente=$P{idCliente}]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement style="Column header" x="433" y="0" width="80" height="20"/>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="3d501c97-0a60-4e85-8979-d65b7cb8fdf7"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement style="Column header" x="513" y="0" width="40" height="20"/>
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="fa1954c6-9444-4003-9df4-0a684c82b588"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="ce4cceb1-cfe1-4d01-ad6c-332fde154f6b"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>

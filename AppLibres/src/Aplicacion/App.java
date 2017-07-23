@@ -12,18 +12,11 @@ import Interfaces.*;
  * @author vengatus
  */
 public class App {
-    
-    static String m1(String  s){
-        
-        return new String()+s;
-        
-    }
       
     public static void main(String args[]) {
-
         
         new Bienvenida().setVisible(true);
-        
+        System.out.println("Hola mundo ejemplo");
        
     }
 }

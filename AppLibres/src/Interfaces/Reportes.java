@@ -1,5 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -9,7 +9,6 @@ import conexionBDD.Conexion;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseMotionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,23 +94,23 @@ public class Reportes extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         lbl_Reporte = new javax.swing.JLabel();
-        btnExport = new javax.swing.JButton();
         combo_tipo_detalle = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         combo_tiempo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        combo_Establecimientos = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        panel_mes = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        combo_mes = new javax.swing.JComboBox<>();
         panel_rango = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         date_inicio = new com.toedter.calendar.JDateChooser();
         date_fin = new com.toedter.calendar.JDateChooser();
-        combo_Establecimientos = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        panel_mes = new javax.swing.JPanel();
-        combo_mes = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         combo_tipo = new javax.swing.JComboBox<>();
+        btnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setEnabled(false);
@@ -127,15 +126,6 @@ public class Reportes extends javax.swing.JInternalFrame {
         lbl_Reporte.setText("REPORTES ");
         getContentPane().add(lbl_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        btnExport.setText("Exportar");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, 310, 70));
-
         combo_tipo_detalle.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_tipo_detalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Mes", "Por Establecimiento", "Por Factura", "General" }));
         combo_tipo_detalle.addItemListener(new java.awt.event.ItemListener() {
@@ -143,11 +133,11 @@ public class Reportes extends javax.swing.JInternalFrame {
                 combo_tipo_detalleItemStateChanged(evt);
             }
         });
-        getContentPane().add(combo_tipo_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 300, 50));
+        getContentPane().add(combo_tipo_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 300, 50));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel1.setText("Tipo de detalle:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         combo_tiempo.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "Mes", "Rango de Fechas" }));
@@ -161,25 +151,11 @@ public class Reportes extends javax.swing.JInternalFrame {
                 combo_tiempoActionPerformed(evt);
             }
         });
-        getContentPane().add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 300, 50));
+        getContentPane().add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 300, 50));
 
         jLabel2.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel2.setText("Reporte por:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
-
-        panel_rango.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jLabel5.setText("Fecha de fin:");
-        panel_rango.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jLabel6.setText("Fecha de inicio:");
-        panel_rango.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
-        panel_rango.add(date_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 300, 40));
-        panel_rango.add(date_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 300, 40));
-
-        getContentPane().add(panel_rango, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 560, 160));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         combo_Establecimientos.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_Establecimientos.addItemListener(new java.awt.event.ItemListener() {
@@ -187,13 +163,17 @@ public class Reportes extends javax.swing.JInternalFrame {
                 combo_EstablecimientosItemStateChanged(evt);
             }
         });
-        getContentPane().add(combo_Establecimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 300, 50));
+        getContentPane().add(combo_Establecimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 300, 50));
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel4.setText("Establecimiento:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         panel_mes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        jLabel3.setText("Mes:");
+        panel_mes.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         combo_mes.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octube", "Noviembre", "Diciembre" }));
@@ -202,21 +182,40 @@ public class Reportes extends javax.swing.JInternalFrame {
                 combo_mesItemStateChanged(evt);
             }
         });
-        panel_mes.add(combo_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 300, 50));
+        panel_mes.add(combo_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 300, 50));
 
-        jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        jLabel3.setText("Mes:");
-        panel_mes.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        panel_rango.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(panel_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 560, 160));
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        jLabel5.setText("Fecha de fin:");
+        panel_rango.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        jLabel6.setText("Fecha de inicio:");
+        panel_rango.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+        panel_rango.add(date_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 300, 40));
+        panel_rango.add(date_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 300, 40));
+
+        panel_mes.add(panel_rango, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, 120));
+
+        getContentPane().add(panel_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 580, 130));
 
         jLabel7.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel7.setText("Reporte de gastos:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         combo_tipo.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         combo_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personal", "Negocio" }));
-        getContentPane().add(combo_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 300, 50));
+        getContentPane().add(combo_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 300, 50));
+
+        btnExport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        btnExport.setText("Exportar");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -248,17 +247,12 @@ public class Reportes extends javax.swing.JInternalFrame {
             JasperReport jr = null;
 
             jr = (JasperReport) JRLoader.loadObjectFromFile(path);
-            /*Agregar parametros
-            Map parametros = new HashMap();
-            parametros.put("textoEntrada", "Reporte Anual");
-            parametros.put("idCliente", this.cedula_usuario);
-            parametros.put("Anio", this.anio);
-            Fin parametros*/
+            
             System.out.println("-------");
             for (Object object : parametros.entrySet()) {
                 System.out.println(object);
-
             }
+            
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros, conn.getConn());
             JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);

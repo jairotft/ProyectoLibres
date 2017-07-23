@@ -29,7 +29,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     final JComboBox comboBox;
     JTable tablaProductos;
     String tipoEstado[];
-
+    Object[][] datosProducto;
     String evtTipo = "";
     int filaTipo = -1;
 
@@ -55,13 +55,13 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         this.anio = anio;
         this.cedula = cedula;
         this.tipo = tipo;
-
+        this.datosProducto=tipos;
         String nombreCabeceras[] = {"Descripcion", "Precio Total", "Tipo de Gasto"};
 
         tipoEstado = new String[tipos.length];
         for (int i = 0; i < tipos.length; i++) {
             tipoEstado[i] = "";
-        }
+        }   
 
         tablaProductos = new JTable(tipos, nombreCabeceras) {
             @Override
@@ -72,7 +72,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaProductos);
 
         comboBox = new JComboBox();
-        comboBox.addItem("");
+        //comboBox.addItem("");
 
         comboBox.addItem("Vivienda");
         comboBox.addItem("Salud");
@@ -81,39 +81,16 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         comboBox.addItem("Vestimenta");
         comboBox.addItem("Otro");
 
-        tablaProductos.getModel().addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent tme) {
-                int row = tme.getFirstRow();
-                int column = tme.getColumn();
-
-                TableModel model = (TableModel) tme.getSource();
+        //Cargar autocalificacion con los combobox
+        //extraigo la tabla del objeto donde  ocurrio el evento
+        for (int row=0;row<tablaProductos.getRowCount();row++){
+            for (int column=0;column<tablaProductos.getColumnCount();column++){
+                
+                TableModel model = tablaProductos.getModel();
                 Object data = model.getValueAt(row, column);
-
                 if (!data.equals("") && column == 2) {
                     //int opc = comboBox.getSelectedIndex();
                     //System.out.println(row);
-
-                    if (!tipoEstado[row].equals("")) {
-                        if (tipoEstado[row].equals("Vivienda")) {
-                            restarAgregado(txtVivienda, row);
-                        }
-                        if (tipoEstado[row].equals("Salud")) {
-                            restarAgregado(txtSalud, row);
-                        }
-                        if (tipoEstado[row].equals("Educacion")) {
-                            restarAgregado(txtEducacion, row);
-                        }
-                        if (tipoEstado[row].equals("Alimentacion")) {
-                            restarAgregado(txtAlimentacion, row);
-                        }
-                        if (tipoEstado[row].equals("Vestimenta")) {
-                            restarAgregado(txtVestimenta, row);
-                        }
-                        if (tipoEstado[row].equals("Otro")) {
-                            restarAgregado(txtOtro, row);
-                        }
-                    }
 
                     if (data.equals("Vivienda")) {
                         sumarAgregado(txtVivienda, row, "Vivienda");
@@ -134,6 +111,74 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                         sumarAgregado(txtOtro, row, "Otro");
                     }
                 }
+            
+            }
+        }
+        
+        tablaProductos.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            //Cuando se cambia un campo de la tabla
+            public void tableChanged(TableModelEvent tme) {
+                int row = tme.getFirstRow();//fila a la que pertenece el campo
+                int column = tme.getColumn();//columna del campo
+
+                //extraigo la tabla del objeto donde  ocurrio el evento
+                TableModel model = (TableModel) tme.getSource();
+                //creo un objeto para extraerla fila y columna del campo
+                Object data = model.getValueAt(row, column);
+
+                
+                if (!data.equals("") && column == 2) {
+                    //int opc = comboBox.getSelectedIndex();
+                    //System.out.println(row);
+
+                    if (!tipoEstado[row].equals("")) {
+                        if (tipoEstado[row].equals("Vivienda")) {
+                            restarAgregado(txtVivienda, row);
+                            
+                        }
+                        if (tipoEstado[row].equals("Salud")) {
+                            restarAgregado(txtSalud, row);
+                        }
+                        if (tipoEstado[row].equals("Educacion")) {
+                            restarAgregado(txtEducacion, row);
+                        }
+                        if (tipoEstado[row].equals("Alimentacion")) {
+                            restarAgregado(txtAlimentacion, row);
+                        }
+                        if (tipoEstado[row].equals("Vestimenta")) {
+                            restarAgregado(txtVestimenta, row);
+                        }
+                        if (tipoEstado[row].equals("Otro")) {
+                            restarAgregado(txtOtro, row);
+                        }
+                    }
+
+                    if (data.equals("Vivienda")) {
+                        sumarAgregado(txtVivienda, row, "Vivienda");
+                        datosProducto[row][column]="Vivienda";
+                    }
+                    if (data.equals("Salud")) {
+                        sumarAgregado(txtSalud, row, "Salud");
+                        datosProducto[row][column]="Salud";
+                    }
+                    if (data.equals("Educacion")) {
+                        sumarAgregado(txtEducacion, row, "Educacion");
+                        datosProducto[row][column]="Educacion";
+                    }
+                    if (data.equals("Alimentacion")) {
+                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
+                        datosProducto[row][column]="Alimentacion";
+                    }
+                    if (data.equals("Vestimenta")) {
+                        sumarAgregado(txtVestimenta, row, "Vestimenta");
+                        datosProducto[row][column]="Vestimenta";
+                    }
+                    if (data.equals("Otro")) {
+                        sumarAgregado(txtOtro, row, "Otro");
+                        datosProducto[row][column]="Otro";
+                    }
+                }
 
             }
         });
@@ -148,6 +193,8 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         tablaProductos.getColumnModel().getColumn(1).setMaxWidth(100);
         tablaProductos.getColumnModel().getColumn(2).setMinWidth(150);
         tablaProductos.getColumnModel().getColumn(2).setMaxWidth(150);
+        
+        
 
         setLocationRelativeTo(getParent());
         setResizable(false);
@@ -343,18 +390,22 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
             }
 
             if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'")) {
-                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + "::money,"
-                        + "total_salud=total_salud+" + totales[1] + "::money,"
-                        + "total_vivienda=total_vivienda+" + totales[0] + "::money,"
-                        + "total_educacion=total_educacion+" + totales[2] + "::money,"
-                        + "total_vestimenta=total_vestimenta+" + totales[4] + "::money,"
-                        + "total_otros=total_otros+" + totales[5] + "::money WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'";
+                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + ","
+                        + "total_salud=total_salud+" + totales[1] + ","
+                        + "total_vivienda=total_vivienda+" + totales[0] + ","
+                        + "total_educacion=total_educacion+" + totales[2] + ","
+                        + "total_vestimenta=total_vestimenta+" + totales[4] + ","
+                        + "total_otros=total_otros+" + totales[5] + " WHERE anio_historial_p=" + anio + " AND id_cliente='" + cedula + "'";
             } else {
                 query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + cedula + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
 
+            
             conTipo.insertar(query);
-
+            
+            //registrar productos
+            registrarProducto(datosProducto);
+            
             JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
             recargar(conTipo);
             this.dispose();
@@ -363,6 +414,34 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //Registrar Nuevo Producto
+    public void registrarProducto(Object[][] datosProducto){
+    
+        String familia="",descripcion="",codigo="",ruc="",total="";
+        
+//            datosProducto[j][2] = familia;
+//            datosProducto[j][0] = descripcion;
+//            //datosProducto[j][1] = total;
+//            datosProducto[j][3] = codigo;
+//            datosProducto[j][4] = ruc;
+
+        for(int j=0;j<datosProducto.length;j++){
+            //si no existe familia para el producto registrar
+            if (conTipo.consultarProductoPor(datosProducto[j][3].toString(), datosProducto[j][4].toString()).equals("")){
+                codigo = datosProducto[j][3].toString();
+                familia = datosProducto[j][2].toString();
+                descripcion =datosProducto[j][0].toString();
+                ruc =datosProducto[j][4].toString();
+                  
+                String SQL="insert into Producto values('"+codigo+"','"+descripcion+"','"+ruc+"','"+familia+"')";
+                
+                conTipo.insertar(SQL);
+            }
+        }
+                              
+        
+    }
+    
     private void recargar(Conexion conn) {
          ArrayList auxRec = new ArrayList();
         Interfaces.FacturaManualPersonal.combo_Establecimientos.removeAllItems();

@@ -33,10 +33,7 @@ public class Conexion {
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);
-//      
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e); 
         } catch (ClassNotFoundException ex) {
@@ -45,17 +42,7 @@ public class Conexion {
         }
 
     }
-//    public Conexion() {
-//        try {
-//            conexion = DriverManager.getConnection(
-//                    "jdbc:postgresql://127.0.0.1:5432/facturas",
-//                    "appfacturacion", "facturacion01");
-//        } catch (SQLException e) {
-//            System.out.println("Connection Failed! Check output console");
-//            e.printStackTrace();
-//        }
-//
-//    }
+
     public ArrayList cargarEstablecimiento() {
         ArrayList n = new ArrayList();
         try {
@@ -67,7 +54,7 @@ public class Conexion {
             resultado.close();
             comando.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -82,8 +69,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -105,8 +92,8 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
@@ -122,22 +109,46 @@ public class Conexion {
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return n;
     }
 
+    
+    //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
+    public  String consultarProductoPor(String codigo,String id_establecimiento) {
+            String familia = "";
+            
+        try {
+            
+            Statement comando = conexion.createStatement();
+            String sql = "select familia from producto where "
+                    + "id_producto='"+codigo+"' "
+                    + "and id_establecimiento='"+id_establecimiento+"'";
+            
+            ResultSet resultado = comando.executeQuery(sql);
+                familia = resultado.getString("familia");
+                
+            resultado.close();
+            comando.close();
+        } catch (SQLException e) {
+            System.out.println(""+e.getMessage());
+        }
+        return familia;
+    }
+    
     public void insertar(String sql) {
         try {
             Statement comando = conexion.createStatement();
             comando.executeUpdate(sql);
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    
     public boolean verificar_usuario(String sql) {
         boolean val = false;
         try {
@@ -146,7 +157,7 @@ public class Conexion {
             val = resultado.next();
             resultado.close();
             comando.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return val;
@@ -159,16 +170,25 @@ public class Conexion {
             Statement comando = conexion.createStatement();
             ResultSet resultado = comando.executeQuery(sql);
             ResultSetMetaData mt = resultado.getMetaData();
-
-            if (resultado.next()) {
+ 
+            
+            while(resultado.next()) {
                 for (int i = 1; i <= mt.getColumnCount(); i++) {
-                    salida.add(resultado.getString(i));
+                    String elemento = resultado.getString(i);
+                    if(elemento == null){
+                        elemento = "";
+                    }
+                    //System.out.println(elemento);
+                    salida.add(elemento);
+                    
                 }
+                //System.out.println("Fila" + resultado.getRow());
+                //System.out.println(mt.getColumnCount());
             }
             resultado.close();
             comando.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("error; " +e.getMessage());
         }
         return salida;
     }

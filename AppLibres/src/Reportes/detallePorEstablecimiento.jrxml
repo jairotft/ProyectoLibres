@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="1152" pageHeight="595" orientation="Landscape" columnWidth="1112" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="1152" pageHeight="595" orientation="Landscape" columnWidth="1112" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3fad2959-8a40-4294-982b-78c38018a79b">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="59"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\personal\\Documents\\NetBeansProjects\\AplicacionesLibres\\src\\Reportes\\"]]></defaultValueExpression>
@@ -18,49 +18,45 @@
 		<defaultValueExpression><![CDATA["2016-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT  e.nombre_establecimiento AS establecimiento,g.tipo AS TIPO, cast(sum(g.total)as numeric) AS TOTAL
-from factura f join tipo_gasto g on f.id_factura=g.id_factura 
+		<![CDATA[SELECT  e.nombre_establecimiento AS establecimiento,g.tipo AS tipo, cast(sum(g.total)as numeric) AS total
+from factura f join tipo_gasto g on f.id_factura=g.id_factura
 join establecimiento e on f.id_establecimiento=e.id_establecimiento
-where f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and f.fecha_emision<TO_DATE($P{fechaFin},'YYYY-MM-DD')
+where f.fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio}) and f.fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.tipo_factura=$P{tipo_factura}
 and f.id_cliente=$P{cliente}
 group by establecimiento,TIPO order by 1]]>
 	</queryString>
-	<field name="establecimiento" class="java.lang.String"/>
-	<field name="tipo" class="java.lang.String"/>
-	<field name="total" class="java.math.BigDecimal"/>
+	<field name="establecimiento" class="java.lang.Object"/>
+	<field name="tipo" class="java.lang.Object"/>
+	<field name="total" class="java.lang.Object"/>
 	<background>
 		<band/>
 	</background>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="1112" height="72" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="0" y="0" width="1112" height="72" backcolor="#006699" uuid="81cf51e3-2d5c-4f11-a883-27603e4f3412"/>
 				<staticText>
-					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF"/>
+					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF" uuid="649cafa0-240f-4839-833e-cdd7c8774a8b"/>
 					<textElement>
 						<font size="20" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DETALLE DE GASTOS POR ESTABLECIMIENTO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="529" y="20" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="529" y="20" width="100" height="20" uuid="1dd04dc7-a821-41bb-9df8-11511b873da5"/>
 					<text><![CDATA[Fecha Inicio:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="529" y="43" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="529" y="43" width="100" height="20" uuid="6b32e04f-ec7e-4210-ad73-8e41cd478de8"/>
 					<text><![CDATA[Fecha Fin:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="629" y="20" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="629" y="20" width="100" height="20" uuid="c37a1ded-069a-46bc-a7c1-a9b9c3013212"/>
 					<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="629" y="43" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="629" y="43" width="100" height="20" uuid="fc9f7acc-5ec4-4529-980f-009234eeced9"/>
 					<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -69,28 +65,28 @@ group by establecimiento,TIPO order by 1]]>
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="117" y="0" width="106" height="20"/>
+				<reportElement x="117" y="0" width="106" height="20" uuid="e4ea2735-73b7-40ad-9682-8e64ad1e1e58"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipo_factura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000"/>
+				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000" uuid="59105f2b-b841-4321-a542-52d05cdb67ff"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gastos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000"/>
+				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000" uuid="ea506892-a6c4-466e-8e01-b41c1c1ab18a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="575" y="0" width="106" height="20"/>
+				<reportElement x="575" y="0" width="106" height="20" uuid="200421a6-f852-4fb6-81bb-8a1df9900277"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -102,7 +98,7 @@ group by establecimiento,TIPO order by 1]]>
 		<band height="283">
 			<elementGroup/>
 			<crosstab>
-				<reportElement x="0" y="0" width="1112" height="283"/>
+				<reportElement x="0" y="0" width="1112" height="283" uuid="9fb621d0-2b8e-4f2b-939c-e44e797d0c78"/>
 				<rowGroup name="establecimiento" width="115" totalPosition="End">
 					<bucket class="java.lang.String">
 						<bucketExpression><![CDATA[$F{establecimiento}]]></bucketExpression>
@@ -113,8 +109,7 @@ group by establecimiento,TIPO order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="115" height="25"/>
-								<textElement/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="115" height="25" uuid="591539b0-addb-408c-b73b-0c57502b27b9"/>
 								<textFieldExpression><![CDATA[$V{establecimiento}]]></textFieldExpression>
 							</textField>
 						</cellContents>
@@ -125,7 +120,7 @@ group by establecimiento,TIPO order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="115" height="25"/>
+								<reportElement x="0" y="0" width="115" height="25" uuid="0f0f864e-5771-4f37-8e46-a9e5951f3d48"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<text><![CDATA[Total establecimiento]]></text>
 							</staticText>
@@ -142,8 +137,7 @@ group by establecimiento,TIPO order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="30"/>
-								<textElement/>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="30" uuid="a25ba624-bf5f-468c-be14-ca54d4c96e37"/>
 								<textFieldExpression><![CDATA[$V{tipo}]]></textFieldExpression>
 							</textField>
 						</cellContents>
@@ -154,7 +148,7 @@ group by establecimiento,TIPO order by 1]]>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="108" height="30"/>
+								<reportElement x="0" y="0" width="108" height="30" uuid="e2d00f81-9564-496d-a58f-324517f5b6b8"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<text><![CDATA[Total tipo]]></text>
 							</staticText>
@@ -170,8 +164,7 @@ group by establecimiento,TIPO order by 1]]>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="25"/>
-							<textElement/>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="25" uuid="155b73b8-6af3-4be8-ab28-b876ee5a9b1b"/>
 							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
@@ -182,8 +175,7 @@ group by establecimiento,TIPO order by 1]]>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="108" height="25"/>
-							<textElement/>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="108" height="25" uuid="867a8714-7f94-480d-858f-cfb8f904cd92"/>
 							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
@@ -194,8 +186,7 @@ group by establecimiento,TIPO order by 1]]>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="25"/>
-							<textElement/>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="97" height="25" uuid="a9ac7231-8f72-42cc-bdf1-15e4006fdc58"/>
 							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
@@ -206,8 +197,7 @@ group by establecimiento,TIPO order by 1]]>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="108" height="25"/>
-							<textElement/>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="108" height="25" uuid="fa9daaa4-2239-406a-8dc9-a04b771e7284"/>
 							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="1224" pageHeight="595" orientation="Landscape" columnWidth="1184" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallePorMes" language="groovy" pageWidth="1224" pageHeight="595" orientation="Landscape" columnWidth="1184" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9e93ec53-f6b0-44b0-b35a-bcf679f3bd32">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="756"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="545"/>
+	<property name="ireport.y" value="5"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\personal\\Documents\\NetBeansProjects\\AplicacionesLibres\\src\\Reportes\\"]]></defaultValueExpression>
@@ -18,62 +18,62 @@
 		<defaultValueExpression><![CDATA["2016-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT  f.id_factura as ID
-,e.nombre_establecimiento AS ESTABLECIMIENTO
-,f.fecha_emision,cast(
+		<![CDATA[SELECT  f.id_factura as id
+,e.nombre_establecimiento AS establecimiento
+,f.fecha_emision as fecha_emision,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Arriendo'
-)as numeric) as Arriendo,cast(
+)as numeric) as arriendo,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Capacitacion'
-)as numeric) as Capacitacion,cast(
+)as numeric) as capacitacion,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Herramientas'
-)as numeric) as Herramientas,cast(
+)as numeric) as herramientas,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Mercadería'
-)as numeric) as Mercaderia,cast(
+)as numeric) as mercaderia,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Movilizacion'
-)as numeric) as Movilizacion,cast(
+)as numeric) as movilizacion,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Servicios Basicos'
-)as numeric) as ServBasicos,cast(
+)as numeric) as servbasicos,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Sueldos'
-)as numeric) as Sueldos,cast(
+)as numeric) as sueldos,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Suministros'
-)as numeric) as Suministros,cast(
+)as numeric) as suministros,cast(
 (select total from tipo_gasto t where id_factura=f.id_factura
 and tipo='Viaticos'
-)as numeric) as Viaticos
-,cast(iva as numeric) AS IVA
-,cast(total_sin_iva as numeric) AS total_sin_IVA
-,cast(total_con_iva as numeric) AS total_con_IVA
-from factura f 
-join establecimiento e 
+)as numeric) as viaticos
+,cast(iva as numeric) AS iva
+,cast(total_sin_iva as numeric) AS total_sin_iva
+,cast(total_con_iva as numeric) AS total_con_iva
+from factura f
+join establecimiento e
 on f.id_establecimiento=e.id_establecimiento
 where f.tipo_factura='Negocio'
-and f.fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD')
- and f.fecha_emision<TO_DATE($P{fechaFin},'YYYY-MM-DD')
+and f.fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio})
+ and f.fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.id_cliente=$P{cliente}]]>
 	</queryString>
-	<field name="id" class="java.lang.String"/>
-	<field name="establecimiento" class="java.lang.String"/>
-	<field name="fecha_emision" class="java.sql.Date"/>
-	<field name="arriendo" class="java.math.BigDecimal"/>
-	<field name="capacitacion" class="java.math.BigDecimal"/>
-	<field name="herramientas" class="java.math.BigDecimal"/>
-	<field name="mercaderia" class="java.math.BigDecimal"/>
-	<field name="movilizacion" class="java.math.BigDecimal"/>
-	<field name="servbasicos" class="java.math.BigDecimal"/>
-	<field name="sueldos" class="java.math.BigDecimal"/>
-	<field name="suministros" class="java.math.BigDecimal"/>
-	<field name="viaticos" class="java.math.BigDecimal"/>
-	<field name="iva" class="java.math.BigDecimal"/>
-	<field name="total_sin_iva" class="java.math.BigDecimal"/>
-	<field name="total_con_iva" class="java.math.BigDecimal"/>
+	<field name="id" class="java.lang.Object"/>
+	<field name="establecimiento" class="java.lang.Object"/>
+	<field name="fecha_emision" class="java.lang.Object"/>
+	<field name="arriendo" class="java.lang.Object"/>
+	<field name="capacitacion" class="java.lang.Object"/>
+	<field name="herramientas" class="java.lang.Object"/>
+	<field name="mercaderia" class="java.lang.Object"/>
+	<field name="movilizacion" class="java.lang.Object"/>
+	<field name="servbasicos" class="java.lang.Object"/>
+	<field name="sueldos" class="java.lang.Object"/>
+	<field name="suministros" class="java.lang.Object"/>
+	<field name="viaticos" class="java.lang.Object"/>
+	<field name="iva" class="java.lang.Object"/>
+	<field name="total_sin_iva" class="java.lang.Object"/>
+	<field name="total_con_iva" class="java.lang.Object"/>
 	<variable name="sumArriendo" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{arriendo}]]></variableExpression>
 	</variable>
@@ -116,32 +116,28 @@ and f.id_cliente=$P{cliente}]]>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="1184" height="72" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="0" y="0" width="1184" height="72" backcolor="#006699" uuid="f042c00c-f523-4b0c-bc94-32d8038088d2"/>
 				<staticText>
-					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF"/>
+					<reportElement x="20" y="20" width="479" height="43" forecolor="#FFFFFF" uuid="ec7a9dae-1d7e-4ce0-be8c-1d84103802ec"/>
 					<textElement>
 						<font size="20" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DETALLE DE GASTOS POR ESTABLECIMIENTO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="583" y="22" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="583" y="22" width="100" height="20" uuid="b3f87f5d-29c9-4e15-9709-57bf12891483"/>
 					<text><![CDATA[Fecha Inicio:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="583" y="42" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="583" y="42" width="100" height="20" uuid="2418042b-c985-415a-9bee-de82fa8c7e81"/>
 					<text><![CDATA[Fecha Fin:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="683" y="22" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="683" y="22" width="100" height="20" uuid="17762dc1-f8e4-4a7f-ac59-09ad03242df0"/>
 					<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="683" y="42" width="100" height="20"/>
-					<textElement/>
+					<reportElement x="683" y="42" width="100" height="20" uuid="62e463f1-6c17-40c2-892a-71e4b19c9fad"/>
 					<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -150,28 +146,28 @@ and f.id_cliente=$P{cliente}]]>
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="117" y="0" width="106" height="20"/>
+				<reportElement x="117" y="0" width="106" height="20" uuid="73ab39ee-0189-4959-b575-87c03c3d8766"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tipo_factura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000"/>
+				<reportElement x="0" y="0" width="117" height="20" forecolor="#000000" uuid="1a11c338-a07f-4e2c-90d6-c9f3cfc3e40e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gastos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000"/>
+				<reportElement x="514" y="0" width="61" height="20" forecolor="#000000" uuid="cd24c138-15e6-4352-a15e-40907701e6ad"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="575" y="0" width="106" height="20"/>
+				<reportElement x="575" y="0" width="106" height="20" uuid="495d89f8-5204-482c-826e-2cc95ee4c519"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -182,7 +178,7 @@ and f.id_cliente=$P{cliente}]]>
 	<columnHeader>
 		<band height="32">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="0" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="3dc15cae-ab43-41e4-87c9-7f34909fda38"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -196,7 +192,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[ID Factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="78" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="78" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9e4a53e9-d7a7-4628-94d3-2ea74774fa3f"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -210,7 +206,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Establecimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="156" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="156" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="741f3a80-95ae-48aa-88ed-700333e8a6bb"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -224,7 +220,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="234" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="234" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5711bb12-eccf-4b70-9862-a3c958ba65e6"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -238,7 +234,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Arriendo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="312" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="312" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="8c201529-3f39-49ae-add7-34af661eaf14"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -252,7 +248,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Capacitación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="390" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="390" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="a170b486-0236-4d6c-8b0b-3ffd218d4738"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -266,7 +262,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Herramientas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="468" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="468" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="df5fd01b-1c65-47e7-8364-ebf0576dffae"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -280,7 +276,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Mercadería]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="546" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="546" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="c15d8746-5f52-4eab-8910-f6684927c95f"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -294,7 +290,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Movilización]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="624" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="624" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="aaa35b50-d138-4e12-982b-3f8d1889a650"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -308,7 +304,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Serv.Básicos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="702" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="702" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="2b48f0a9-56b8-4ca3-bfe9-9b0d50e25428"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -322,7 +318,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Suelos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="780" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="780" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="922eb0c1-a414-4185-889f-e08d4ddc840a"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -336,7 +332,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Suministros]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="858" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="858" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9ace7f00-2368-4e7b-9e14-609c0eebb7db"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -350,7 +346,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Viáticos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="936" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="936" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="fa158179-9998-4815-929c-3d7b731a57f7"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -364,7 +360,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1014" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="1014" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="ba5d5e9e-354a-4869-8a68-181cc65ba86c"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -378,7 +374,7 @@ and f.id_cliente=$P{cliente}]]>
 				<text><![CDATA[Total sin IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1092" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<reportElement mode="Opaque" x="1092" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="55d93777-b386-4fa5-a7d9-049218f9bc78"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -396,7 +392,7 @@ and f.id_cliente=$P{cliente}]]>
 	<detail>
 		<band height="20">
 			<textField>
-				<reportElement x="0" y="0" width="78" height="20"/>
+				<reportElement x="0" y="0" width="78" height="20" uuid="8ac55c0f-45b4-4489-8adb-2d9284b50fb5"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -408,7 +404,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="78" y="0" width="78" height="20"/>
+				<reportElement x="78" y="0" width="78" height="20" uuid="3957c5ba-2445-45a0-b27d-26daa1e3355c"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -420,7 +416,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{establecimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="156" y="0" width="78" height="20"/>
+				<reportElement x="156" y="0" width="78" height="20" uuid="8724a2e4-b27b-48f9-96ed-64e530b993ff"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -432,7 +428,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{fecha_emision}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="234" y="0" width="78" height="20"/>
+				<reportElement x="234" y="0" width="78" height="20" uuid="bc498905-fdcc-40d0-ade1-fd2d6ebcdfb3"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -444,7 +440,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{arriendo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="312" y="0" width="78" height="20"/>
+				<reportElement x="312" y="0" width="78" height="20" uuid="a5faca72-ce19-4fa9-95e0-508ce3a69c1e"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -456,7 +452,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{capacitacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="0" width="78" height="20"/>
+				<reportElement x="390" y="0" width="78" height="20" uuid="40a364b8-c478-46fd-8953-275e20819108"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -468,7 +464,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{herramientas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="468" y="0" width="78" height="20"/>
+				<reportElement x="468" y="0" width="78" height="20" uuid="26e5aaa1-286f-4399-a931-85b90f8cd3f2"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -480,7 +476,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{mercaderia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="546" y="0" width="78" height="20"/>
+				<reportElement x="546" y="0" width="78" height="20" uuid="2d7503c3-1714-48d0-9c6b-9d8399a73129"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -492,7 +488,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{movilizacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="624" y="0" width="78" height="20"/>
+				<reportElement x="624" y="0" width="78" height="20" uuid="a7b58d60-086e-43a8-ad1b-9d33c501f244"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -504,7 +500,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{servbasicos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="702" y="0" width="78" height="20"/>
+				<reportElement x="702" y="0" width="78" height="20" uuid="6552fa56-1f5d-418d-a5ac-d8ce0c3c0ea7"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -516,7 +512,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{sueldos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="780" y="0" width="78" height="20"/>
+				<reportElement x="780" y="0" width="78" height="20" uuid="d87d7d10-06c1-4cdc-9979-6791cf38dc62"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -528,7 +524,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{suministros}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="858" y="0" width="78" height="20"/>
+				<reportElement x="858" y="0" width="78" height="20" uuid="04240863-2f4a-4149-9efe-58a803941f42"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -540,7 +536,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{viaticos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="936" y="0" width="78" height="20"/>
+				<reportElement x="936" y="0" width="78" height="20" uuid="a76a8ebf-2c4a-47ac-bca0-04ae691e3905"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -552,7 +548,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{iva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1014" y="0" width="78" height="20"/>
+				<reportElement x="1014" y="0" width="78" height="20" uuid="d7192404-cf73-4bba-8cbd-f284c619f033"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -564,7 +560,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$F{total_sin_iva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1092" y="0" width="78" height="20"/>
+				<reportElement x="1092" y="0" width="78" height="20" uuid="0dc02ece-64eb-4620-9efe-e804e986177b"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -581,7 +577,7 @@ and f.id_cliente=$P{cliente}]]>
 		<band height="23">
 			<elementGroup/>
 			<textField>
-				<reportElement x="234" y="3" width="78" height="20"/>
+				<reportElement x="234" y="3" width="78" height="20" uuid="d2798799-1859-49c4-b885-4c2941c6459c"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -593,7 +589,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumArriendo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="312" y="3" width="78" height="20"/>
+				<reportElement x="312" y="3" width="78" height="20" uuid="a8ee6154-9e85-4a3f-ba71-cfc645655e30"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -605,7 +601,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumCapacitacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="3" width="78" height="20"/>
+				<reportElement x="390" y="3" width="78" height="20" uuid="ade640a0-4c76-4615-92db-cbd68b155ad4"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -617,7 +613,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumHerramientas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="468" y="3" width="78" height="20"/>
+				<reportElement x="468" y="3" width="78" height="20" uuid="b9cdf551-a738-4ce6-9917-69276d711953"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -629,7 +625,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumMercaderia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="624" y="3" width="78" height="20"/>
+				<reportElement x="624" y="3" width="78" height="20" uuid="355cb747-5c77-43dd-bf77-4c37d6824d32"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -641,7 +637,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumServicios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="702" y="3" width="78" height="20"/>
+				<reportElement x="702" y="3" width="78" height="20" uuid="963a8902-6284-4321-a0cf-fd470c4f8801"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -653,7 +649,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumSueldos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="546" y="3" width="78" height="20"/>
+				<reportElement x="546" y="3" width="78" height="20" uuid="ad0855e6-83b4-4d15-99f4-123af55a0818"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -665,7 +661,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumMovilizacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="780" y="3" width="78" height="20"/>
+				<reportElement x="780" y="3" width="78" height="20" uuid="ada67f18-b8ec-471c-a98a-d2abde0e9e80"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -677,7 +673,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumSuministros}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="858" y="3" width="78" height="20"/>
+				<reportElement x="858" y="3" width="78" height="20" uuid="cb6aa5f4-59f4-4b68-9010-fd0a92d730a3"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -689,7 +685,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumViaticos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="936" y="3" width="78" height="20"/>
+				<reportElement x="936" y="3" width="78" height="20" uuid="45d61c1a-e9f1-42d9-bc08-3e62711f1cbf"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -701,7 +697,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumIVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1014" y="3" width="78" height="20"/>
+				<reportElement x="1014" y="3" width="78" height="20" uuid="0cc61c88-2b93-4eaa-ac45-54a0d5ff1836"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -713,7 +709,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumSinIVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1092" y="3" width="78" height="20"/>
+				<reportElement x="1092" y="3" width="78" height="20" uuid="007e2615-f077-4297-ac10-f1948533d3b8"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -725,7 +721,7 @@ and f.id_cliente=$P{cliente}]]>
 				<textFieldExpression><![CDATA[$V{sumConIVA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="156" y="3" width="78" height="20"/>
+				<reportElement x="156" y="3" width="78" height="20" uuid="cb064eb6-a0b5-49bd-b26e-ba9fd86c8bed"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

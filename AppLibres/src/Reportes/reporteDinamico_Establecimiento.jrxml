@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteDinamico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteDinamico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="97a18207-7301-46c1-b475-cbbf1c5d8abf">
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="77"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -21,25 +21,25 @@
 	</parameter>
 	<parameter name="textoEntrada" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select g.tipo,cast(sum(g.total)as numeric) as Total
-from factura f join tipo_gasto g on f.id_factura=g.id_factura 
-where fecha_emision>= TO_DATE($P{fechaInicio},'YYYY-MM-DD') and fecha_emision<TO_DATE($P{fechaFin},'YYYY-MM-DD')
+		<![CDATA[select g.tipo as tipo,cast(sum(g.total)as numeric) as total
+from factura f join tipo_gasto g on f.id_factura=g.id_factura
+where fecha_emision>= strftime('%d/%m/%Y',$P{fechaInicio}) and fecha_emision<strftime('%d/%m/%Y',$P{fechaFin})
 and f.tipo_factura=$P{tipoFactura}
 and f.id_cliente=$P{idCliente}
 group by g.tipo;]]>
 	</queryString>
-	<field name="tipo" class="java.lang.String"/>
-	<field name="total" class="java.math.BigDecimal"/>
+	<field name="tipo" class="java.lang.Object"/>
+	<field name="total" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="554" height="60" forecolor="#C0C0C0" backcolor="#3399FF"/>
+				<reportElement x="0" y="0" width="554" height="60" forecolor="#C0C0C0" backcolor="#3399FF" uuid="3328d04a-7c1c-4c6e-8a4c-a906e56a6b94"/>
 			</rectangle>
 			<textField>
-				<reportElement x="8" y="9" width="532" height="32" forecolor="#FFFFFF"/>
+				<reportElement x="8" y="9" width="532" height="32" forecolor="#FFFFFF" uuid="52dc2cbe-7d8f-4229-902c-93f84bb6816c"/>
 				<textElement>
 					<font size="22" isBold="true"/>
 				</textElement>
@@ -50,33 +50,27 @@ group by g.tipo;]]>
 	<pageHeader>
 		<band height="64">
 			<staticText>
-				<reportElement x="11" y="4" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="11" y="4" width="100" height="20" uuid="b97fd611-c32f-476c-8f45-0bf84534e860"/>
 				<text><![CDATA[Fecha Inicio:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="24" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="11" y="24" width="100" height="20" uuid="8ac290f8-1512-4109-a1b6-866f8896f7b0"/>
 				<text><![CDATA[Fecha Fin:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="111" y="24" width="440" height="20"/>
-				<textElement/>
+				<reportElement x="111" y="24" width="440" height="20" uuid="1e244ff2-3b21-406a-bdac-2c4bbf444e2c"/>
 				<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="111" y="4" width="440" height="20"/>
-				<textElement/>
+				<reportElement x="111" y="4" width="440" height="20" uuid="c63ccf1d-62f6-42d1-87ec-38de2e84c50a"/>
 				<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="44" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="11" y="44" width="100" height="20" uuid="b72a3546-6375-4433-acc8-7b89513d1852"/>
 				<text><![CDATA[Gatos:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="111" y="44" width="440" height="20"/>
-				<textElement/>
+				<reportElement x="111" y="44" width="440" height="20" uuid="06f2f67a-b183-4ec0-8352-9a62546bb071"/>
 				<textFieldExpression><![CDATA[$P{tipoFactura}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -84,20 +78,20 @@ group by g.tipo;]]>
 	<columnHeader>
 		<band height="36" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="7496f9aa-b37c-4697-a351-6a668846afc6"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="11" y="0" width="277" height="20"/>
+				<reportElement x="11" y="0" width="277" height="20" uuid="65c2b0e3-9a26-4d69-af02-44b1e96f69fb"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="288" y="0" width="267" height="20"/>
+				<reportElement x="288" y="0" width="267" height="20" uuid="27ed7b61-d588-48e4-9776-46332afba4a8"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -108,24 +102,21 @@ group by g.tipo;]]>
 	<detail>
 		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="11" y="9" width="277" height="20"/>
-				<textElement/>
+				<reportElement x="11" y="9" width="277" height="20" uuid="f3924c79-c25e-4005-853d-30e128590b8f"/>
 				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="301" y="9" width="254" height="20"/>
-				<textElement/>
+				<reportElement x="301" y="9" width="254" height="20" uuid="06a7d114-dd63-4212-b54f-7af45bb46896"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="-1" y="31" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="-1" y="31" width="555" height="1" uuid="5a075636-7c41-4a5d-9d95-142643458572"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="288" y="9" width="13" height="20"/>
-				<textElement/>
+				<reportElement x="288" y="9" width="13" height="20" uuid="69f23b48-85f4-48c4-98c7-a22666f79708"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 		</band>

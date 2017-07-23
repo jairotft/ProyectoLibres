@@ -21,6 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     FacturaManualNegocio fmn;
     HistorialGastos hg;
     Reportes rp;
+    ReportesGeneral rpg;
 
     String cedula_usuario;
     int anio;
@@ -36,6 +37,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fe = new FacturaElectronicaNew(cedula_usuario, anio);
         hg = new HistorialGastos(conn, cedula_usuario, anio);
         rp = new Reportes(conn, cedula_usuario, anio);
+        rpg = new ReportesGeneral(conn);
+        
         this.anio = anio;
         this.cedula_usuario = cedula_usuario;
         setResizable(false);
@@ -47,6 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fmn.setVisible(false);
         hg.setVisible(false);
         rp.setVisible(false);
+        rpg.setVisible(false);
         fe.setVisible(true);
         jDesktopPane.add(fe);
         
@@ -71,9 +75,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         m_Usuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ordenador de Facturas");
@@ -135,6 +141,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
+        jMenuItem8.setLabel("Reportes Generales");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+        jMenuItem8.getAccessibleContext().setAccessibleName("jmiReportesGeneral");
+
         jMenuBar1.add(jMenu1);
 
         m_Usuario.setText("Usuario");
@@ -147,13 +162,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         m_Usuario.add(jMenuItem3);
 
-        jMenuItem7.setText("Salir");
+        jMenuItem7.setText("Cambiar usuario");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
         m_Usuario.add(jMenuItem7);
+
+        jMenuItem9.setLabel("Salir");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        m_Usuario.add(jMenuItem9);
 
         jMenuBar1.add(m_Usuario);
 
@@ -168,8 +191,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -212,8 +235,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        historial_p = conn.ddl(String.format("select * from historial_pagos_personales where anio_historial_p=%s and id_cliente='%s'", anio, cedula_usuario));
-        historial_n = conn.ddl(String.format("select * from historial_pagos_negocios where anio_historial_n=%s and id_cliente='%s'", anio, cedula_usuario));
+        String consulta1 = String.format("select * from historial_pagos_personales where anio_historial_p=%s and id_cliente='%s'", anio, cedula_usuario);
+        String consulta2 = String.format("select * from historial_pagos_negocios where anio_historial_n=%s and id_cliente='%s'", anio, cedula_usuario);
+        System.out.println(consulta1);
+        System.out.println(consulta2);
+        historial_p = conn.ddl(consulta1);
+        historial_n = conn.ddl(consulta2);
 
         if (historial_p.isEmpty() && historial_n.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se tienen registros de este año");
@@ -249,19 +276,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        salir();
+        cambiarUsuario();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void salir(){
-        if (JOptionPane.showConfirmDialog(null, "Desea salir del sistema?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+    private void cambiarUsuario(){
+        if (JOptionPane.showConfirmDialog(null, "¿Desea cambiar de usuario?",
+                "Advertencia", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             this.dispose();
             new Login().setVisible(true);
+        }
+    }
+    
+    private void salir(){
+        if (JOptionPane.showConfirmDialog(null, "¿Desea salir desl sistema?",
+                "Advertencia", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            System.exit(0);
         }
     }
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         salir();
         
     }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jDesktopPane.removeAll();
+        fe.setVisible(false);
+        hg.setVisible(false);
+        fmp.setVisible(false);
+        fmn.setVisible(false);
+        rp.setVisible(false);
+        rpg.setVisible(true);
+        jDesktopPane.add(rpg);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        salir();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +369,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu m_FactElect;
     private javax.swing.JMenu m_FactFisic;
     private javax.swing.JMenu m_Usuario;

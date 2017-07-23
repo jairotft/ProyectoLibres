@@ -7,3 +7,7 @@ AppLibres/nbproject/private/private.properties
 /AppLibres/dist/
 AppLibres/nbproject/private/private.xml
 AppLibres/src/conexionBDD/Conexion.java
+AppLibres/nbproject/*
+/AppLibres/nbproject/*
+AppLibres/nbproject/
+/AppLibres/nbproject/

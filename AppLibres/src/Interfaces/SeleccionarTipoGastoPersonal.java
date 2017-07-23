@@ -436,6 +436,15 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 String SQL="insert into Producto values('"+codigo+"','"+descripcion+"','"+ruc+"','"+familia+"')";
                 
                 conTipo.insertar(SQL);
+            } else //si no existe actualizar
+            {
+            codigo = datosProducto[j][3].toString();
+            familia = datosProducto[j][2].toString();
+            ruc =datosProducto[j][4].toString();
+            String SQL="update Producto set familia='"+familia+"' where id_producto='"+codigo+"' and id_establecimiento='"+ruc+"'";
+                conTipo.insertar(SQL);
+                
+                System.out.println(""+SQL);
             }
         }
                               

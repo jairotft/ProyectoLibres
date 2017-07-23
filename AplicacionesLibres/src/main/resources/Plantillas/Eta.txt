@@ -1,0 +1,13 @@
+estado
+ambiente
+razonSocial
+dirMatriz
+ruc
+estab
+ptoEmi
+secuencial
+fechaEmision
+totalSinImpuestos
+valor
+descripcion
+precioTotalSinImpuesto

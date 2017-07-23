@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?><autorizacion>
+  <estado>AUTORIZADO</estado>
+  <numeroAutorizacion>1302201701200201000015201710917296838</numeroAutorizacion>
+  <fechaAutorizacion class="fechaAutorizacion">13/02/2017 10:59:03.000</fechaAutorizacion>
+  <ambiente>PRODUCCIÓN</ambiente>
+  <comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+<infoTributaria>
+<ambiente>2</ambiente>
+<tipoEmision>1</tipoEmision>
+<razonSocial>ALMACENES FERROELECTRICO S A</razonSocial>
+<nombreComercial>ALMACENES FERROELECTRICO S A</nombreComercial>
+<ruc>1091729683001</ruc>
+<claveAcceso>1302201701109172968300120020100001520171234567811</claveAcceso>
+<codDoc>01</codDoc>
+<estab>002</estab>
+<ptoEmi>010</ptoEmi>
+<secuencial>000152017</secuencial>
+<dirMatriz>SUCRE 13 14 Y ROSALIA ROSALES -  Telef - 062609321</dirMatriz>
+</infoTributaria>
+<infoFactura>
+<fechaEmision>13/02/2017</fechaEmision>
+<dirEstablecimiento>SUCRE 13 14 Y ROSALIA ROSALES -  Telef - 062609321</dirEstablecimiento>
+<contribuyenteEspecial>181</contribuyenteEspecial>
+<obligadoContabilidad>SI</obligadoContabilidad>
+<tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+<razonSocialComprador>PNUD</razonSocialComprador>
+<identificacionComprador>1791746791001</identificacionComprador>
+<totalSinImpuestos>38.86</totalSinImpuestos>
+<totalDescuento>0.00</totalDescuento>
+<totalConImpuestos>
+<totalImpuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>0</codigoPorcentaje>
+<descuentoAdicional>0.00</descuentoAdicional>
+<baseImponible>0.00</baseImponible>
+<valor>0.00</valor>
+</totalImpuesto>
+<totalImpuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<descuentoAdicional>0.00</descuentoAdicional>
+<baseImponible>38.86</baseImponible>
+<valor>5.44</valor>
+</totalImpuesto>
+</totalConImpuestos>
+<propina>0.00</propina>
+<importeTotal>44.30</importeTotal>
+<moneda>DOLAR</moneda>
+<pagos>
+<pago>
+<formaPago>01</formaPago>
+<total>44.30</total>
+</pago>
+</pagos>
+</infoFactura>
+<detalles>
+<detalle>
+<codigoPrincipal>4384</codigoPrincipal>
+<codigoAuxiliar>03014384</codigoAuxiliar>
+<descripcion>CEMENTO UNACEM SELVA ALEGRE SACOS</descripcion>
+<cantidad>1.00</cantidad>
+<precioUnitario>7.096400</precioUnitario>
+<descuento>0.00</descuento>
+<precioTotalSinImpuesto>7.09</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14.00</tarifa>
+<baseImponible>7.09</baseImponible>
+<valor>0.99</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>2740</codigoPrincipal>
+<codigoAuxiliar>26012740</codigoAuxiliar>
+<descripcion>CARBONATO CALCIO CECAL TIPO A SACOS</descripcion>
+<cantidad>1.00</cantidad>
+<precioUnitario>11.842100</precioUnitario>
+<descuento>0.00</descuento>
+<precioTotalSinImpuesto>11.84</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14.00</tarifa>
+<baseImponible>11.84</baseImponible>
+<valor>1.66</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>4406</codigoPrincipal>
+<codigoAuxiliar>09264406</codigoAuxiliar>
+<descripcion>RESAFLEX GALON</descripcion>
+<cantidad>1.00</cantidad>
+<precioUnitario>13.724500</precioUnitario>
+<descuento>0.00</descuento>
+<precioTotalSinImpuesto>13.72</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14.00</tarifa>
+<baseImponible>13.72</baseImponible>
+<valor>1.92</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>6500</codigoPrincipal>
+<codigoAuxiliar>19066500</codigoAuxiliar>
+<descripcion>ESPESANTE 200 gr</descripcion>
+<cantidad>1.00</cantidad>
+<precioUnitario>2.629800</precioUnitario>
+<descuento>0.00</descuento>
+<precioTotalSinImpuesto>2.62</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14.00</tarifa>
+<baseImponible>2.62</baseImponible>
+<valor>0.37</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>8312</codigoPrincipal>
+<codigoAuxiliar>21118312</codigoAuxiliar>
+<descripcion>RODILLO ATLAS PREMIUN C MANGO</descripcion>
+<cantidad>1.00</cantidad>
+<precioUnitario>3.570000</precioUnitario>
+<descuento>0.00</descuento>
+<precioTotalSinImpuesto>3.57</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14.00</tarifa>
+<baseImponible>3.57</baseImponible>
+<valor>0.50</valor>
+</impuesto>
+</impuestos>
+</detalle>
+</detalles>
+<infoAdicional>
+<campoAdicional nombre="DIRECCION">Av  Amazonas 2889 y La Granja</campoAdicional>
+<campoAdicional nombre="EMAIL">miguelo42@hotmail.com</campoAdicional>
+<campoAdicional nombre="VENDEDOR">020</campoAdicional>
+</infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature52182">
+<ds:SignedInfo Id="Signature-SignedInfo830418">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID258321" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature52182-SignedProperties313602">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>FBzJJkhN25bBubxEECOvT8rnnoo=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1219055">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>lCZAtT1BbkveKOh13GsmJP/+fLU=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-97271" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>UY3kiixwOHn827S5DZLo3g6LZS8=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue602589">
+HK0SgyC4E7i8mUjHMgdDe+WztlLu5q0vWx7TZx7oeAQJD0XP5PZjq+tEzj+Od3lbfHvfKo3xqSYs
+mep6xQHdXmRpKqne7fN/OwwnYe99T71rZVukZ5Eqt2NesObNWygdrbsX1jDpy2rkKTxaRNc28f12
+R0f9+6oXNZnCehMPkeco7QCGva62rW+mSBiXtpo/QbjYrdvjNPQ/RCNskpFdtfsippd+0BWRXoze
+WCr5nHfHOq7FKCzQTNgCv17XGPuZnJXUhBgrYIkBnnP9eV0JT/26Q9kH/hd0xx4iXcpP/HK8lom4
+/J56ol16U0I3yo8SlckLqeevn/OdwBiL0Z5vWQ==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1219055">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJkDCCB3igAwIBAgIETkWEtjANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNV
+BAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElG
+SUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxB
+QyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTE1MTEyMDE5NDYwN1oXDTE3MTEwNDE0NDI0
+MlowgbcxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcw
+NQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4w
+DAYDVQQHEwVRVUlUTzE7MBEGA1UEBRMKMDAwMDA5MDUzMzAmBgNVBAMTH01BUkNPIEVMSUVDRVIg
+Q0FSVEFHRU5BIEdVRVZBUkEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQClqu/Q99Jw
+VN5pnC/0aYhYdDvDsLLWQnFOsuyH1yOoL+DFu2XuN5iqyHoP1WbFIBeCb7Dibao1pq7QXqVxzQd5
+/kEVcdLHaaktZl/C4VROpqD1oQxMT8+kh5MEiM487e+Eu3j5xHBPNPV0bQcHeHgJlTpJW2kPXZUN
+fDEdOs8zBzMuIQgBVJCBOoVBBhHqjfnwW8TvrIgUnpubTI+rql7GPFQXf4b+MO4v94/yUmgOr3dx
++vJL7zLxDV7BSl3TZ96TgO5X9GWmkzKHKzamyFyaXNDmcSRAOjFEerVTVVUEb8lP520yFiE4SaDx
+yzqNDsq4KCCRSYIHPmlT7NJ205THAgMBAAGjggS2MIIEsjCBkQYIKwYBBQUHAQEEgYQwgYEwPgYI
+KwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmVjaS5iY2UuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9v
+Y3NwMD8GCCsGAQUFBzABhjNodHRwOi8vb2NzcDEuZWNpLmJjZS5lYy9lamJjYS9wdWJsaWN3ZWIv
+c3RhdHVzL29jc3AwOwYKKwYBBAGCqDsDCgQtEytBTE1BQ0VORVMgRkVSUk9FTEVDVFJJQ08gRElT
+VFJJQUxNQUZFUlJPIFNBMB0GCisGAQQBgqg7AwsEDxMNMTA5MTcyOTY4MzAwMTAaBgorBgEEAYKo
+OwMBBAwTCjEwMDA4NjYzMjUwHQYKKwYBBAGCqDsDAgQPEw1NQVJDTyBFTElFQ0VSMBkGCisGAQQB
+gqg7AwMECxMJQ0FSVEFHRU5BMBcGCisGAQQBgqg7AwQECRMHR1VFVkFSQTAfBgorBgEEAYKoOwMF
+BBETD0dFUkVOVEUgR0VORVJBTDAgBgorBgEEAYKoOwMHBBITEENBTExFIFNVQ1JFIDEzMzQwGQYK
+KwYBBAGCqDsDCAQLEwkwNjI5NTMzNzUwFgYKKwYBBAGCqDsDCQQIEwZJYmFycmEwFwYKKwYBBAGC
+qDsDDAQJEwdFQ1VBRE9SMB0GCisGAQQBgqg7AzIEDxMNMTA5MTcyOTY4MzAwMTAgBgorBgEEAYKo
+OwMzBBITEFNPRlRXQVJFLUFSQ0hJVk8wKwYDVR0RBCQwIoEgbWFyY29hbmRyZXNjYXJ0YWdlbmFA
+aG90bWFpbC5jb20wggHfBgNVHR8EggHWMIIB0jCCAc6gggHKoIIBxoaB1WxkYXA6Ly9iY2VxbGRh
+cHN1YnAxLmJjZS5lYy9jbj1DUkwyNzUsY249QUMlMjBCQU5DTyUyMENFTlRSQUwlMjBERUwlMjBF
+Q1VBRE9SLGw9UVVJVE8sb3U9RU5USURBRCUyMERFJTIwQ0VSVElGSUNBQ0lPTiUyMERFJTIwSU5G
+T1JNQUNJT04tRUNJQkNFLG89QkFOQ08lMjBDRU5UUkFMJTIwREVMJTIwRUNVQURPUixjPUVDP2Nl
+cnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZYY0aHR0cDovL3d3dy5lY2kuYmNlLmVjL0NSTC9l
+Y2lfYmNlX2VjX2NybGZpbGVjb21iLmNybKSBtTCBsjELMAkGA1UEBhMCRUMxIjAgBgNVBAoTGUJB
+TkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElGSUNBQ0lP
+TiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxBQyBCQU5D
+TyBDRU5UUkFMIERFTCBFQ1VBRE9SMQ8wDQYDVQQDEwZDUkwyNzUwCwYDVR0PBAQDAgUgMB8GA1Ud
+IwQYMBaAFBj58PvmMhyZZjkqyouyaX1JJ7/OMB0GA1UdDgQWBBTbRjasvUcD/5Pxm257oPXiI+/0
+lDAJBgNVHRMEAjAAMBkGCSqGSIb2fQdBAAQMMAobBFY4LjEDAgQQMA0GCSqGSIb3DQEBCwUAA4IC
+AQCGCsd/3DsyPaFNl4T9E5n1iYhzeFzDeEUR6dQhMyqEXVsCWcE518kxu6co2R6o+saxZMxQX0Om
+YluvRMLhnxD7W7nHXKwrgHofd6QilKXkIkPvLZOQ5Sv3MFJpk/G77GidAUQ0aliui9vxQ2WhQYOq
+90GPdOJXvIaPYsmBTOFpy5hg7mrDDqMtFvblzdvqs3pCMWNsSk8mhZCrhKZd1vCVgFOF80/FueBy
+RuHvHxelgRh07Yn/MmX0W2zPn5ZEPsvwwXTc1p+rymwTIyRa3DrrNNgxH5WlVGIhmTmBbo784TNu
+N+HaymeGzu068/13hJ/Ta/ngmRmCHvJNTPkPhLfmwO+YWwj/BgKnVEdwzyU6Kg7AP6rv2iDG9+gZ
+0xiMS5mwV2ZGlIi352L02UosTtISWVqF45YbqTf93lPkM/moPQdCDP0geY3iZ0x9QELYi+rM8XRj
+0+zM6DIxkqgMRmDEBD0Vd8FCKFrRQIoY3OobWF0HTNwO48DWfvdAM4nnh9B5M/Iqo+vEeyuQgT6Q
+EbKqydyOGH76JeWk4nfzrPnJEM6uPzFHYPV3H4HZz6U0ZByF2HUrWb+RdgEKtkPIEnnkDKlUayhL
+DpNgOm/PNHDnu/kcS672QNT2RqiV8i/2ux/sBcWcdLb/4Rh2g/ixLrxbZLNMorvCkY/iezIWRbQo
+tQ==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+parv0PfScFTeaZwv9GmIWHQ7w7Cy1kJxTrLsh9cjqC/gxbtl7jeYqsh6D9VmxSAXgm+w4m2qNaau
+0F6lcc0Hef5BFXHSx2mpLWZfwuFUTqag9aEMTE/PpIeTBIjOPO3vhLt4+cRwTzT1dG0HB3h4CZU6
+SVtpD12VDXwxHTrPMwczLiEIAVSQgTqFQQYR6o358FvE76yIFJ6bm0yPq6pexjxUF3+G/jDuL/eP
+8lJoDq93cfryS+8y8Q1ewUpd02fek4DuV/RlppMyhys2pshcmlzQ5nEkQDoxRHq1U1VVBG/JT+dt
+MhYhOEmg8cs6jQ7KuCggkUmCBz5pU+zSdtOUxw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature52182-Object260773"><etsi:QualifyingProperties Target="#Signature52182"><etsi:SignedProperties Id="Signature52182-SignedProperties313602"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-02-13T10:58:58-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>dEE5HjXbOcqRCc4xITOib1QLPX4=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313178806</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-97271"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+  <mensajes/>
+</autorizacion>

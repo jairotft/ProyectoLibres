@@ -71,10 +71,10 @@ public class CargaXml {
             infoDetalle.put("cantidad", "");//cantidad
             infoDetalle.put("precioUnitario", "");//precio unitario
             infoDetalle.put("precioTotalSinImpuesto", "");//Precio total sin iva del producto
-            
+
             //informacion de la lista de productos
             ArrayList<HashMap> infoDetalles = new ArrayList<>();
-
+            
             //Se obtiene la raiz 'tables'
             Element rootNode = document.getRootElement(); //Autorizacion
 
@@ -124,9 +124,36 @@ public class CargaXml {
                 //TotalConImpuestos tiene dos hijos, el segundo campo (.getChild(1) )tiene el valor $ IVA
                 List totalConImp = factura.getChild("totalConImpuestos").getChildren();
                 Element totalImp = (Element) totalConImp.get(1);
+                infoFactura.replace("valor", totalImp.getChildTextTrim("valor"));    
             
-            infoFactura.replace("valor", totalImp.getChildTextTrim("valor"));    
             infoFactura.replace("importeTotal", tributaria.getChildTextTrim("importeTotal"));
+            
+            //Info Detalles
+            Element detalles = (Element) lista_campos.get(2);   //Detalles...
+            List detalle = detalles.getChildren();  //extraido los hijos(detalle) en una lista auxiliar
+            
+            for (int j = 0; j < detalle.size(); j++) {
+                campo = (Element) detalle.get(j);
+                // Detalle    
+                //Descripcion= Nombre del producto
+                infoDetalle.replace("descripcion", campo.getChildTextTrim("descripcion"));
+                infoDetalle.replace("cantidad", campo.getChildTextTrim("cantidad"));
+                infoDetalle.replace("precioUnitario", campo.getChildTextTrim("precioUnitario"));
+                //PrecioTotalSinImpuesto = PRECIO_UNITARIO * UNIDADES
+                infoDetalle.replace("precioTotalSinImpuesto", campo.getChildTextTrim("precioTotalSinImpuesto"));
+                
+                
+                if (!infoDetalle.get("descripcion").equals("")) {
+                    
+                    
+                    
+                    datosProducto[j][0] = descripcion;        
+                    datosProducto[j][1] = total;        
+                    datosProducto[j][2] = "";        
+                    
+                }    
+            }
+            
             
             // Extraer Anio de fecha de Emision
             String fechaCompleta = infoFactura.get("fechaEmision");
@@ -144,43 +171,18 @@ public class CargaXml {
 //                            + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
 //                    cp.insertar(establecimiento);
 //                }
-
-
+            
+            
+            
+            
                 if(usuario.equals(cedulaCli)){
-                    if (!cp.verificar_usuario("SELECT * FROM FACTURA WHERE id_factura='" + numFact + "'")) {
+                    
+                    if (!cp.verificar_usuario("SELECT *FROM FACTURA WHERE id_factura='" + numFact + "'")) {
                         
 //                        String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
 //                                + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
 //                        cp.insertar(facturaQ);
 
-                        Element detalles = (Element) lista_campos.get(2);
-                        List detalle = detalles.getChildren();
-
-                        Object datosProducto[][] = new Object[detalle.size()][3];
-
-                        for (int j = 0; j < detalle.size(); j++) {
-
-                            campo = (Element) detalle.get(j);
-
-                            // Detalle
-                            cont = elementos.indexOf("descripcion");
-                            String descripcion = "";
-                            if (cont != -1) {
-                                descripcion = campo.getChildTextTrim(elementos.get(cont).toString());
-                            }
-
-                            cont = elementos.indexOf("precioTotalSinImpuesto");
-                            Double total = 0.0;
-                            if (cont != -1) {
-                                total = Double.parseDouble(campo.getChildTextTrim(elementos.get(cont).toString()));
-                            }
-
-                            if (!descripcion.equals("")) {
-                                datosProducto[j][0] = descripcion;
-                                datosProducto[j][1] = total;
-                                datosProducto[j][2] = "";
-                            }
-                        }
 
                         if (datosProducto.length != 0) {
                             if (tipo.equals("Personal")) {

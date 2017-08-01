@@ -52,7 +52,7 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jLabel5.setText("PROYECTO DE ASIGNATURA: CAPTURADOR DE FACTURAS XML");
 
-        jLabel6.setText("FECHA:25/07/2017");
+        jLabel6.setText("FECHA:02/08/2017");
 
         btnContinuar.setText("CONTINUAR");
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class Bienvenida extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnContinuar)

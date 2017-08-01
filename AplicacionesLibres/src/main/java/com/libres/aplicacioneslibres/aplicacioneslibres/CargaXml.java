@@ -7,187 +7,151 @@ package com.libres.aplicacioneslibres.aplicacioneslibres;
 import com.libres.aplicacioneslibres.interfaces.SeleccionarTipoGastoNegocios;
 import com.libres.aplicacioneslibres.interfaces.SeleccionarTipoGastoPersonal;
 import com.libres.aplicacioneslibres.conexionbdd.Conexion;
-import java.io.BufferedReader;
+import com.libres.aplicacioneslibres.interfaces.FacturaData;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
-
 /**
  *
  * @author root
  */
-public class CargaXml {
 
+public class CargaXml {
+    
     public void cargarXml(String name, String cedulaCli, int anio, String tipo) {
         //Se crea un SAXBuilder para poder parsear el archivo
         SAXBuilder builder = new SAXBuilder();
 
         File xmlFile = new File(name);
-        try {
+    try {
             //Se crea el documento a traves del archivo
             Document document = (Document) builder.build(xmlFile);
             Conexion cp = new Conexion();
 
             ArrayList elementos = new ArrayList();
+            
+        //Info Producto
+            
+            HashMap<String,String> infoEncabezado = new HashMap<>();
+            infoEncabezado.put("estado", "");
+            infoEncabezado.put("ambiente", "");
+            
+            HashMap<String,String> infoTributaria = new HashMap<>();
+            infoTributaria.put("razonSocial", "");
+            infoTributaria.put("ruc", "");
+            infoTributaria.put("estab", "");
+            infoTributaria.put("ptoEmi", "");
+            infoTributaria.put("secuencial", "");
+            infoTributaria.put("dirMatriz", "");
+            
+            HashMap<String,String> infoFactura = new HashMap<>();
+            infoFactura.put("fechaEmision", "");
+            infoFactura.put("razonSocialComprador", "");//nombre_Comprador
+            infoFactura.put("identificacionComprador", "");//cedula_comprador
+            infoFactura.put("fechaEmision", "");
+            infoFactura.put("totalSinImpuestos", "");
+            infoFactura.put("valor", "");//valor de impuestos
+            infoFactura.put("importeTotal", "");//Valor final de esa factura,con propina o descuento 
 
-            int cont;
-            elementos.add("estado");
-            elementos.add("ambiente");
-            elementos.add("razonSocial");
-            elementos.add("dirMatriz");
-            elementos.add("ruc");
-            elementos.add("estab");
-            elementos.add("ptoEmi");
-            elementos.add("secuencial");
-            elementos.add("fechaEmision");
-            elementos.add("identificacionComprador");
-            elementos.add("totalSinImpuestos");
-            elementos.add("valor");
-            elementos.add("descripcion");
-            elementos.add("precioTotalSinImpuesto");
+            //informacion de un producto
+            HashMap<String,String> infoDetalle = new HashMap<>();
+            infoDetalle.put("codigoPrincipal", "");//Codigo
+            infoDetalle.put("descripcion", "");//Nombre
+            infoDetalle.put("cantidad", "");//cantidad
+            infoDetalle.put("precioUnitario", "");//precio unitario
+            infoDetalle.put("precioTotalSinImpuesto", "");//Precio total sin iva del producto
+            
+            //informacion de la lista de productos
+            ArrayList<HashMap> infoDetalles = new ArrayList<>();
 
             //Se obtiene la raiz 'tables'
-            Element rootNode = document.getRootElement();
+            Element rootNode = document.getRootElement(); //Autorizacion
 
-            // Datos sin cabecera
-            cont = elementos.indexOf("estado");
-            String estado = "";
-            if (cont != -1) {
-                Element est = (Element) rootNode.getChild(elementos.get(cont).toString());
-                if (est != null) {
-                    estado = est.getTextTrim();
-                }
-            }
-
-            cont = elementos.indexOf("ambiente");
-            String ambiente = "";
-            if (cont != -1) {
-                Element amb = (Element) rootNode.getChild(elementos.get(cont).toString());
-                if (amb != null) {
-                    ambiente = amb.getTextTrim();
-                }
-            }
-
+            // Datos Cabecera =============================================
+            infoEncabezado.replace("estado", rootNode.getChild("estado").getTextTrim());
+            infoEncabezado.replace("ambiente", rootNode.getChild("ambiente").getTextTrim());
+            
+            // Datos Comprobante =======================================
             Element tabla = rootNode.getChild("comprobante");
-
+            
             if (tabla != null) {
                 String ex = tabla.getText();
-
                 InputStream stream = new ByteArrayInputStream(ex.getBytes("UTF-8"));
                 Document parse = builder.build(stream);
-
                 tabla = parse.getRootElement();
             } else {
                 tabla = rootNode;
             }
+            
+            //Comprobante tiene 3 hijos, Info Tributaria, Info Factura y Detalles
+            List lista_campos = tabla.getChildren();//guardo en una lista los 3 hijos
+            Element campo;
 
-            String fechaCompleta = tabla.getChildren().get(1).getChildTextTrim("fechaEmision");
+            Element tributaria = (Element) lista_campos.get(0);
+
+            // Info Tributaria
+            infoTributaria.replace("razonSocial", tributaria.getChildTextTrim("razonSocial"));
+            infoTributaria.replace("dirMatriz", tributaria.getChildTextTrim("dirMatriz"));
+            infoTributaria.replace("ruc", tributaria.getChildTextTrim("ruc"));
+            infoTributaria.replace("estab", tributaria.getChildTextTrim("estab"));
+            infoTributaria.replace("ptoEmi", tributaria.getChildTextTrim("ptoEmi"));
+            infoTributaria.replace("secuencial", tributaria.getChildTextTrim("secuencial"));
+            
+            //El numero de factura es : estab-ptoEmi-secuencial
+            String numFact = infoTributaria.get("estab") + "-" 
+                    + infoTributaria.get("estab") + "-" 
+                    + infoTributaria.get("secuencial");
+            
+            //Info Factura
+            Element factura = (Element) lista_campos.get(1);
+            
+            infoFactura.replace("fechaEmision", factura.getChildTextTrim("fechaEmision"));  
+            infoFactura.replace("razonSocialComprador", factura.getChildTextTrim("razonSocialComprador"));  
+            infoFactura.replace("identificacionComprador", factura.getChildTextTrim("identificacionComprador"));  
+            infoFactura.replace("totalSinImpuestos", tributaria.getChildTextTrim("totalSinImpuestos"));    
+                
+                //TotalConImpuestos tiene dos hijos, el segundo campo (.getChild(1) )tiene el valor $ IVA
+                List totalConImp = factura.getChild("totalConImpuestos").getChildren();
+                Element totalImp = (Element) totalConImp.get(1);
+            
+            infoFactura.replace("valor", totalImp.getChildTextTrim("valor"));    
+            infoFactura.replace("importeTotal", tributaria.getChildTextTrim("importeTotal"));
+            
+            // Extraer Anio de fecha de Emision
+            String fechaCompleta = infoFactura.get("fechaEmision");
             StringTokenizer tk = new StringTokenizer(fechaCompleta, "/");
-            String verificarFecha = "";
+            String verificaAnio = "";
 
             while (tk.hasMoreTokens()) {
-                verificarFecha = tk.nextToken();
+                verificaAnio = tk.nextToken(); //el ultimo token es el Anio
             }
+            
+            //if (verificarFecha.equals(String.valueOf(anio))) {
+            
+//                if (!cp.verificar_usuario("SELECT * FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
+//                    String establecimiento = "INSERT INTO ESTABLECIMIENTO (id_establecimiento,nombre_establecimiento,direccion_establecimiento)"
+//                            + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
+//                    cp.insertar(establecimiento);
+//                }
 
-            if (verificarFecha.equals(String.valueOf(anio))) {
-                List lista_campos = tabla.getChildren();
-                Element campo;
-
-                Element tributaria = (Element) lista_campos.get(0);
-
-                // Info Tributaria
-                cont = elementos.indexOf("razonSocial");
-                String nombreEst = "";
-                if (cont != -1) {
-                    nombreEst = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("dirMatriz");
-                String dirMatriz = "";
-                if (cont != -1) {
-                    dirMatriz = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("ruc");
-                String ruc = "";
-                if (cont != -1) {
-                    ruc = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("estab");
-                String estab = "";
-                if (cont != -1) {
-                    estab = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("ptoEmi");
-                String emision = "";
-                if (cont != -1) {
-                    emision = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("secuencial");
-                String secuencial = "";
-                if (cont != -1) {
-                    secuencial = tributaria.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                String numFact = estab + "-" + emision + "-" + secuencial;
-
-                if (!cp.verificar_usuario("SELECT * FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
-                    String establecimiento = "INSERT INTO ESTABLECIMIENTO (id_establecimiento,nombre_establecimiento,direccion_establecimiento)"
-                            + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
-                    cp.insertar(establecimiento);
-                }
-
-                //Se obtiene la raiz de la factura
-                Element factura = (Element) lista_campos.get(1);
-
-                // Info Factura
-                
-                cont = elementos.indexOf("identificacionComprador");
-                String usuario = "";
-                if (cont != -1) {
-                    usuario = factura.getChildTextTrim(elementos.get(cont).toString());
-                }
-                
-                
-                cont = elementos.indexOf("fechaEmision");
-                String fecha = "";
-                if (cont != -1) {
-                    fecha = factura.getChildTextTrim(elementos.get(cont).toString());
-                }
-
-                cont = elementos.indexOf("totalSinImpuestos");
-                Double totalSinImp = 0.0;
-                if (cont != -1) {
-                    totalSinImp = Double.parseDouble(factura.getChildTextTrim(elementos.get(cont).toString()));
-                }
-
-                List totalConImp = factura.getChild("totalConImpuestos").getChildren();
-                Element totalImp = (Element) totalConImp.get(0);
-
-                cont = elementos.indexOf("valor");
-                Double Imps = 0.0;
-                if (cont != -1) {
-                    Imps = Double.parseDouble(totalImp.getChildTextTrim(elementos.get(cont).toString()));
-                }
-
-                Double totalConImps = totalSinImp + Imps;
 
                 if(usuario.equals(cedulaCli)){
                     if (!cp.verificar_usuario("SELECT * FROM FACTURA WHERE id_factura='" + numFact + "'")) {
-                        String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
-                                + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
-                        cp.insertar(facturaQ);
+                        
+//                        String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
+//                                + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
+//                        cp.insertar(facturaQ);
 
                         Element detalles = (Element) lista_campos.get(2);
                         List detalle = detalles.getChildren();
@@ -233,7 +197,10 @@ public class CargaXml {
                 } else {
                     JOptionPane.showMessageDialog(null, "Factura pertenece a otro usuario");
                 }
-            } else {
+            } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(CargaXml.class.getName()).log(Level.SEVERE, null, ex);
+        }
+{
                 JOptionPane.showMessageDialog(null, "El año de la factura no corresponde con el año seleccionado");
             }
         } catch (IOException | JDOMException io) {
@@ -241,3 +208,4 @@ public class CargaXml {
         }
     }
 }
+

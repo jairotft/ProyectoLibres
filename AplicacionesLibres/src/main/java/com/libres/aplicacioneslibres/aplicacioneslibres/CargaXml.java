@@ -7,16 +7,13 @@ package com.libres.aplicacioneslibres.aplicacioneslibres;
 import com.libres.aplicacioneslibres.interfaces.SeleccionarTipoGastoNegocios;
 import com.libres.aplicacioneslibres.interfaces.SeleccionarTipoGastoPersonal;
 import com.libres.aplicacioneslibres.conexionbdd.Conexion;
-import com.libres.aplicacioneslibres.interfaces.FacturaData;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,12 +31,12 @@ public class CargaXml {
         SAXBuilder builder = new SAXBuilder();
 
         File xmlFile = new File(name);
-    try {
             //Se crea el documento a traves del archivo
-            Document document = (Document) builder.build(xmlFile);
+            Document document;
+        try {
+            
+            document = (Document) builder.build(xmlFile);
             Conexion cp = new Conexion();
-
-            ArrayList elementos = new ArrayList();
             
         //Info Producto
             
@@ -75,6 +72,7 @@ public class CargaXml {
             //informacion de la lista de productos
             ArrayList<HashMap> infoDetalles = new ArrayList<>();
             
+            
             //Se obtiene la raiz 'tables'
             Element rootNode = document.getRootElement(); //Autorizacion
 
@@ -108,24 +106,20 @@ public class CargaXml {
             infoTributaria.replace("ptoEmi", tributaria.getChildTextTrim("ptoEmi"));
             infoTributaria.replace("secuencial", tributaria.getChildTextTrim("secuencial"));
             
-            //El numero de factura es : estab-ptoEmi-secuencial
-            String numFact = infoTributaria.get("estab") + "-" 
-                    + infoTributaria.get("estab") + "-" 
-                    + infoTributaria.get("secuencial");
-            
             //Info Factura
             Element factura = (Element) lista_campos.get(1);
             
             infoFactura.replace("fechaEmision", factura.getChildTextTrim("fechaEmision"));  
             infoFactura.replace("razonSocialComprador", factura.getChildTextTrim("razonSocialComprador"));  
             infoFactura.replace("identificacionComprador", factura.getChildTextTrim("identificacionComprador"));  
-            infoFactura.replace("totalSinImpuestos", tributaria.getChildTextTrim("totalSinImpuestos"));    
+            infoFactura.replace("totalSinImpuestos", factura.getChildTextTrim("totalSinImpuestos"));    
                 
                 //TotalConImpuestos tiene dos hijos, el segundo campo (.getChild(1) )tiene el valor $ IVA
                 List totalConImp = factura.getChild("totalConImpuestos").getChildren();
                 Element totalImp = (Element) totalConImp.get(1);
                 infoFactura.replace("valor", totalImp.getChildTextTrim("valor"));    
             
+            //Total a pagar 
             infoFactura.replace("importeTotal", tributaria.getChildTextTrim("importeTotal"));
             
             //Info Detalles
@@ -136,78 +130,94 @@ public class CargaXml {
                 campo = (Element) detalle.get(j);
                 // Detalle    
                 //Descripcion= Nombre del producto
+                infoDetalle.replace("codigoPrincipal", campo.getChildTextTrim("codigoPrincipal"));
                 infoDetalle.replace("descripcion", campo.getChildTextTrim("descripcion"));
                 infoDetalle.replace("cantidad", campo.getChildTextTrim("cantidad"));
                 infoDetalle.replace("precioUnitario", campo.getChildTextTrim("precioUnitario"));
                 //PrecioTotalSinImpuesto = PRECIO_UNITARIO * UNIDADES
                 infoDetalle.replace("precioTotalSinImpuesto", campo.getChildTextTrim("precioTotalSinImpuesto"));
                 
-                
+                //agregamos el detalle a la lista de detalles SSI el Nombre_producto != Empty
                 if (!infoDetalle.get("descripcion").equals("")) {
-                    
-                    
-                    
-                    datosProducto[j][0] = descripcion;        
-                    datosProducto[j][1] = total;        
-                    datosProducto[j][2] = "";        
-                    
+                    infoDetalles.add(infoDetalle);
                 }    
             }
             
+            // Extraer Anio de fecha de Emision 02-05-2016 02/04/2016 2016/04/26 2017-05-05
+            String fechaEmision = infoFactura.get("fechaEmision");            
+            //convierte la fecha DD/MM/YY a DD-MM-YY y la guarda en un arreglo
+            String[] fecha = fechaEmision.replace('/', '-').split("-");
+            String DIA=fecha[0];
+            String MES=fecha[1];
+            String ANIO=fecha[2];
+            //Pero si la fechaEmision es de la forma 2017-08-05
+            if(fecha[0].length()==4) {
+                ANIO=fecha[0];
+                DIA=fecha[2];
+            }
+            //GUARDAR FECHA EMISION EN EL FORMATO YY-MM-DD
+            infoFactura.replace("fechaEmision", ANIO+"-"+MES+"-"+DIA);
             
-            // Extraer Anio de fecha de Emision
-            String fechaCompleta = infoFactura.get("fechaEmision");
-            StringTokenizer tk = new StringTokenizer(fechaCompleta, "/");
-            String verificaAnio = "";
-
-            while (tk.hasMoreTokens()) {
-                verificaAnio = tk.nextToken(); //el ultimo token es el Anio
+            //sentencia para validar si la factura pertenece a otro usuario
+            String sqlUser="select *from Cliente where id_cliente='"+infoFactura.get("identificacionComprador")+"'";
+            
+            //El numero de factura es : estab-ptoEmi-secuencial
+            //numFact para validar si la factura ya ha sido ingresada
+            String numFact = infoTributaria.get("estab") + "-" 
+                    + infoTributaria.get("ptoEmi") + "-" 
+                    + infoTributaria.get("secuencial");
+            
+            //VALIDACIONES
+            String opcion="";
+            
+            if( !ANIO.equals(anio) ) { //si el Anio es deferente!! 
+                opcion="problemaAnio";
+                
+            }else if( !cp.verificar_usuario(sqlUser) ){ //si el usuario es diferente!!
+                opcion="facturaDeOtroUsuario";
+                
+            }else if( cp.verificar_factura(numFact) ){ //si la factura ya fue ingresada!!
+                opcion="facturaYaIngresada";
+                
+            }else if( tipo.equals("Personal") ) { 
+                opcion="interfazPersonal";
+                
+            }else if( tipo.equals("Negocio") ) {
+                opcion="interfazNegocio";
+                
             }
             
-            //if (verificarFecha.equals(String.valueOf(anio))) {
+            //Para cada caso!!
             
-//                if (!cp.verificar_usuario("SELECT * FROM ESTABLECIMIENTO WHERE id_establecimiento='" + ruc + "'")) {
-//                    String establecimiento = "INSERT INTO ESTABLECIMIENTO (id_establecimiento,nombre_establecimiento,direccion_establecimiento)"
-//                            + "VALUES ('" + ruc + "','" + nombreEst + "','" + dirMatriz + "')";
-//                    cp.insertar(establecimiento);
-//                }
+            switch(opcion){
             
-            
-            
-            
-                if(usuario.equals(cedulaCli)){
+                case "problemaAnio":
+                    JOptionPane.showMessageDialog(null, "El año de la factura no corresponde con el año seleccionado");
+                    break;
                     
-                    if (!cp.verificar_usuario("SELECT *FROM FACTURA WHERE id_factura='" + numFact + "'")) {
-                        
-//                        String facturaQ = "INSERT INTO FACTURA (id_factura,id_cliente,id_establecimiento,tipo_factura,fecha_emision,estado_factura,ambiente_factura,total_sin_iva,iva,total_con_iva)"
-//                                + "VALUES ('" + numFact + "','" + cedulaCli + "','" + ruc + "','" + tipo + "','" + fecha + "','" + estado + "','" + ambiente + "'," + totalSinImp + "," + Imps + "," + totalConImps + ")";
-//                        cp.insertar(facturaQ);
-
-
-                        if (datosProducto.length != 0) {
-                            if (tipo.equals("Personal")) {
-                                SeleccionarTipoGastoPersonal seleccionarP = new SeleccionarTipoGastoPersonal(cp, datosProducto, numFact, anio, cedulaCli, tipo);
-                                seleccionarP.setVisible(true);
-                            } else {
-                                SeleccionarTipoGastoNegocios seleccionarH = new SeleccionarTipoGastoNegocios(cp, datosProducto, numFact, anio, cedulaCli, tipo);
-                                seleccionarH.setVisible(true);
-                            }
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Esta factura ya fue ingresada");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Factura pertenece a otro usuario");
-                }
-            } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(CargaXml.class.getName()).log(Level.SEVERE, null, ex);
-        }
-{
-                JOptionPane.showMessageDialog(null, "El año de la factura no corresponde con el año seleccionado");
+                case "facturaDeOtroUsuario":
+                    JOptionPane.showMessageDialog(null, "Esta factura pertenece a otro usuario");
+                    
+                    break;
+                    
+                case "facturaYaIngresada":
+                    JOptionPane.showMessageDialog(null, "Esta factura ya fue ingresada!");
+                    break;
+                   
+                case "interfazPersonal":
+                    SeleccionarTipoGastoPersonal sP = new SeleccionarTipoGastoPersonal( infoEncabezado, infoTributaria, infoDetalles);
+                    sP.setVisible(true);
+                
+                    break;
+                case "interfazNegocio":
+                    SeleccionarTipoGastoNegocios sN = new SeleccionarTipoGastoNegocios(infoEncabezado, infoTributaria, infoDetalles);
+                    sN.setVisible(true);
+                    break;
             }
-        } catch (IOException | JDOMException io) {
-            System.out.println(io.getMessage());
-        }
-    }
+                
+                
+            } catch (JDOMException | IOException ex) {
+                Logger.getLogger(CargaXml.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }   
 }
-

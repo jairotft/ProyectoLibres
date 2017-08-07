@@ -22,6 +22,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     HistorialGastos hg;
     Reportes rp;
     ReportesGeneral rpg;
+    ReportePorFacturas rpf;
+    ReportePorGasto rpgs;
 
     String cedula_usuario;
     int anio;
@@ -38,6 +40,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         hg = new HistorialGastos(conn, cedula_usuario, anio);
         rp = new Reportes(conn, cedula_usuario, anio);
         rpg = new ReportesGeneral(conn);
+        rpf = new ReportePorFacturas(conn);
+        rpgs = new ReportePorGasto(conn);
         
         this.anio = anio;
         this.cedula_usuario = cedula_usuario;
@@ -52,6 +56,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         rp.setVisible(false);
         rpg.setVisible(false);
         fe.setVisible(true);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(fe);
         
     }
@@ -76,6 +83,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         m_Usuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -150,6 +159,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem8);
         jMenuItem8.getAccessibleContext().setAccessibleName("jmiReportesGeneral");
 
+        jMenuItem10.setText("Reporte por factura");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem11.setText("Reporte por gasto");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
+
         jMenuBar1.add(jMenu1);
 
         m_Usuario.setText("Usuario");
@@ -205,6 +230,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fmn.setVisible(false);
         rp.setVisible(false);
         fmp.setVisible(true);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(fmp);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -215,6 +243,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         hg.setVisible(false);
         rp.setVisible(false);
         fe.setVisible(true);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(fe);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -251,6 +282,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             fe.setVisible(false);
             rp.setVisible(false);
             hg.setVisible(true);
+            rpg.setVisible(false);
+            rpf.setVisible(false);
+            rpgs.setVisible(false);
             jDesktopPane.add(hg);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -262,6 +296,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fmp.setVisible(false);
         rp.setVisible(false);
         fmn.setVisible(true);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(fmn);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -272,6 +309,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fmp.setVisible(false);
         fmn.setVisible(false);
         rp.setVisible(true);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(rp);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -308,12 +348,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         fmn.setVisible(false);
         rp.setVisible(false);
         rpg.setVisible(true);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
         jDesktopPane.add(rpg);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         salir();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        jDesktopPane.removeAll();
+        fe.setVisible(false);
+        hg.setVisible(false);
+        fmp.setVisible(false);
+        fmn.setVisible(false);
+        rp.setVisible(false);
+        rpg.setVisible(false);
+        rpf.setVisible(true);
+        rpgs.setVisible(false);
+        jDesktopPane.add(rpf);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        jDesktopPane.removeAll();
+        fe.setVisible(false);
+        hg.setVisible(false);
+        fmp.setVisible(false);
+        fmn.setVisible(false);
+        rp.setVisible(false);
+        rpg.setVisible(false);
+        rpf.setVisible(false);
+        rpgs.setVisible(true);
+        jDesktopPane.add(rpgs);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,6 +432,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

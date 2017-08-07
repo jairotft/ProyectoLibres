@@ -5,11 +5,13 @@
  */
 package com.libres.aplicacioneslibres.interfaces;
 
+import com.libres.aplicacioneslibres.aplicacioneslibres.Reporte;
 import com.libres.aplicacioneslibres.conexionbdd.Conexion;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,6 +27,7 @@ public class FacturasCliente extends javax.swing.JFrame {
     Conexion conn;
     String cliente, anio;
     JTable auxP;
+    Reporte reporte;
     public FacturasCliente(Conexion conn, String cliente, String anio) {
         initComponents();
         this.setSize(1400, 400);
@@ -35,7 +38,7 @@ public class FacturasCliente extends javax.swing.JFrame {
         
         this.jLabel1.setText(this.jLabel1.getText() + " " + this.cliente);
         this.jLabel2.setText(this.jLabel2.getText() + " " + this.anio);
-        
+        this.reporte = new Reporte(conn);
         
         String consulta = "SELECT  f.id_factura as id\n" +
 ",e.id_establecimiento as ruc\n" +
@@ -104,6 +107,8 @@ public class FacturasCliente extends javax.swing.JFrame {
         jbtPDF = new javax.swing.JButton();
         jbtExcel = new javax.swing.JButton();
         jbtSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -146,14 +151,14 @@ public class FacturasCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtbFacturas);
 
-        jbtPDF.setText("PDF");
+        jbtPDF.setText("TABLA COMO PDF");
         jbtPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtPDFActionPerformed(evt);
             }
         });
 
-        jbtExcel.setText("EXCEL");
+        jbtExcel.setText("TABLA COMO EXCEL");
         jbtExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtExcelActionPerformed(evt);
@@ -164,6 +169,20 @@ public class FacturasCliente extends javax.swing.JFrame {
         jbtSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtSalirActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("FACTURA EN PDF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("FACTURA EN EXCEL");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -179,6 +198,10 @@ public class FacturasCliente extends javax.swing.JFrame {
                         .addComponent(jbtPDF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtExcel)
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbtSalir))))
         );
@@ -190,7 +213,9 @@ public class FacturasCliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtPDF)
                     .addComponent(jbtExcel)
-                    .addComponent(jbtSalir))
+                    .addComponent(jbtSalir)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -253,6 +278,30 @@ public class FacturasCliente extends javax.swing.JFrame {
     private void jbtExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcelActionPerformed
         exportarExcel();
     }//GEN-LAST:event_jbtExcelActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        HashMap parametros = new HashMap();
+        int fila = this.jtbFacturas.getSelectedRow();
+        if(fila >= 0){
+            String factura = this.jtbFacturas.getValueAt(fila, 0).toString();
+            parametros.put("codeInvoice", factura);
+            this.reporte.generar_reporte("reporteDetallePorFactura", parametros);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese una factura");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        HashMap parametros = new HashMap();
+        int fila = this.jtbFacturas.getSelectedRow();
+        if(fila > 0){
+            String factura = this.jtbFacturas.getValueAt(fila, 0).toString();
+            parametros.put("codeInvoice", factura);
+            this.reporte.generar_excel("reporteDetallePorFactura", parametros);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese una factura");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void exportarExcel(){
         auxP = jtbFacturas;
@@ -349,6 +398,8 @@ public class FacturasCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

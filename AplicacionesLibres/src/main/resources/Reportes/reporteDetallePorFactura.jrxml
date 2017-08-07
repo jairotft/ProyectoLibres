@@ -47,7 +47,7 @@ order by p.FAMILIA,
 	<field name="productoFamily" class="java.lang.Object"/>
 	<field name="quantity" class="java.lang.Object"/>
 	<field name="unitPrice" class="java.lang.Object"/>
-	<field name="totalProducts" class="java.lang.Double"/>
+	<field name="totalProducts" class="java.lang.Object"/>
 	<variable name="totalProducts_1" class="java.lang.Integer" resetType="Group" resetGroup="familia" calculation="Count">
 		<variableExpression><![CDATA[$F{totalProducts}]]></variableExpression>
 	</variable>

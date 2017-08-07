@@ -95,6 +95,10 @@
                           <Component id="jbtPDF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jbtExcel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jbtSalir" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -111,6 +115,8 @@
                       <Component id="jbtPDF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtExcel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -216,7 +222,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="jbtPDF">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PDF"/>
+            <Property name="text" type="java.lang.String" value="TABLA COMO PDF"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtPDFActionPerformed"/>
@@ -224,7 +230,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtExcel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EXCEL"/>
+            <Property name="text" type="java.lang.String" value="TABLA COMO EXCEL"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtExcelActionPerformed"/>
@@ -236,6 +242,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtSalirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="FACTURA EN PDF"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="FACTURA EN EXCEL"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

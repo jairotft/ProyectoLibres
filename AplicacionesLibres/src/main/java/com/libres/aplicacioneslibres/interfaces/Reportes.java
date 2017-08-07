@@ -243,7 +243,7 @@ public class Reportes extends javax.swing.JInternalFrame {
     private void generar_reporte(String archivo, Map parametros) {
         try {
             //todos los establecimientos
-            String path = "src/Reportes/" + archivo;
+            String path = "src/main/resources/Reportes/" + archivo;
             JasperReport jr = null;
 
             jr = (JasperReport) JRLoader.loadObjectFromFile(path);

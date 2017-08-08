@@ -98,31 +98,52 @@ public class Conexion {
         return n;
     }
 
-    public  String consultarMAXidDetalle() {
-            String num = "0";
-        try {
-            
-            Statement comando = conexion.createStatement();
-            String sql = "SELECT ID_DETALLE,MAX(ID_DETALLE) FROM DETALLE;";
-            
-            ResultSet resultado = comando.executeQuery(sql);
-                num = resultado.getString("ID_DETALLE");
-            resultado.close();
-            comando.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        return num;
-    }
+//    public  String consultarMAXidDetalle() {
+//            String num = "0";
+//        try {
+//            
+//            Statement comando = conexion.createStatement();
+//            String sql = "SELECT ID_DETALLE,MAX(ID_DETALLE) FROM DETALLE;";
+//            
+//            ResultSet resultado = comando.executeQuery(sql);
+//                num = resultado.getString("ID_DETALLE");
+//            resultado.close();
+//            comando.close();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
+//        return num;
+//    }
     
-    public  String consultar(String tabla) {
-            String n = "";
+//    public  String consultar(String tabla) {
+//            String n = "";
+//        try {
+//            Statement comando = conexion.createStatement();
+//            String sql = "SELECT count(*) as count FROM " + tabla + ";";
+//            ResultSet resultado = comando.executeQuery(sql);
+//            while (resultado.next()) {
+//                n = resultado.getString("count");
+//            }
+//            JOptionPane.showMessageDialog(null,n);
+//            resultado.close();
+//            comando.close();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null,"Error en consultar()"+ e.getMessage());
+//        }
+//        return n;
+//    }
+
+    
+    
+    public String consultarEstablecimientoPor(String codigo){
+         String n = "";
         try {
             Statement comando = conexion.createStatement();
-            String sql = "SELECT count(*) FROM " + tabla + ";";
+            String sql = "SELECT ID_ESTABLECIMIENTO FROM ESTABLECIMIENTO WHERE "
+                    + "ID_ESTABLECIMIENTO='" + codigo+"';";
             ResultSet resultado = comando.executeQuery(sql);
             while (resultado.next()) {
-                n = resultado.getString("count");
+                n = resultado.getString("ID_ESTABLECIMIENTO");
             }
             JOptionPane.showMessageDialog(null,n);
             resultado.close();
@@ -132,7 +153,6 @@ public class Conexion {
         }
         return n;
     }
-
     
     //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
     public  String consultarProductoPor(String codigo) {

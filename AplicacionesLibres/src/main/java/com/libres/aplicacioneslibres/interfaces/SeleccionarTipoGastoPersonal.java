@@ -439,7 +439,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + this.anio + ",'" + this.cedula + "'," + totales[0] + "," + totales[1] + "," + totales[2] + "," + totales[3] + "," + totales[4] + "," + totales[5] + ")";
             }
             
-            JOptionPane.showMessageDialog(null, query);
+            //JOptionPane.showMessageDialog(null, query);
 
             conTipo.insertar(query);
             //Registrar el Historial de Tipo de Gastos en nuestro DBB
@@ -476,11 +476,11 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 + "TIPO_GASTO_ESTABLECIMIENTO='"+TIPO_GASTO_ESTABLECIMIENTO+"' WHERE ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
 
         /// Insertar datos en Tabla Establecimiento------------
-        if( conTipo.consultar("ESTABLECIMIENTO").equals("") ){
-            JOptionPane.showMessageDialog(null, sqlEstablecimiento);
+        if( conTipo.consultarEstablecimientoPor(ID_ESTABLECIMIENTO).equals("") ){
+            //JOptionPane.showMessageDialog(null, sqlEstablecimiento);
             conTipo.insertar(sqlEstablecimiento);
         }else{//si devuelve un numero ya existe, solo actualizamos su tipo_gasto_establecimiento
-            JOptionPane.showMessageDialog(null, sqlEstablecimientoUpdate);
+            //JOptionPane.showMessageDialog(null, sqlEstablecimientoUpdate);
             conTipo.insertar(sqlEstablecimientoUpdate);
         }
         
@@ -509,7 +509,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 "', "+TOTAL_SIN_IVA+", "+IVA+", "+TOTAL_CON_IVA+")";
         
         /// Insertar datos en Tabla Factura------------
-        JOptionPane.showMessageDialog(null, sqlFactura);
+        //JOptionPane.showMessageDialog(null, sqlFactura);
         conTipo.insertar(sqlFactura);
         
         //Tabla Producto y Detalle=========================================
@@ -539,17 +539,17 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
             
             //Si ya existe el producto solamene actualizar Familia---------
             if (conTipo.consultarProductoPor( ID_PRODUCTO).equals(FAMILIA)){
-                JOptionPane.showMessageDialog(null, sqlProductoUpdate);
+                //JOptionPane.showMessageDialog(null, sqlProductoUpdate);
                 conTipo.insertar(sqlProductoUpdate);
             }else{//Si no existe familia o producto
-                JOptionPane.showMessageDialog(null, sqlProducto);
+                //JOptionPane.showMessageDialog(null, sqlProducto);
                 conTipo.insertar(sqlProducto);
             }
             //Insertar en tabla Detalle 
             
             String sqlDetalle="INSERT INTO DETALLE VALUES('"+ID_FACTURA+"', '"+ID_PRODUCTO+"', "+CANTIDAD+", "+TOTAL+")";
             
-             JOptionPane.showMessageDialog(null, sqlDetalle);
+            JOptionPane.showMessageDialog(null, sqlDetalle);
             conTipo.insertar(sqlDetalle);
         }
                                

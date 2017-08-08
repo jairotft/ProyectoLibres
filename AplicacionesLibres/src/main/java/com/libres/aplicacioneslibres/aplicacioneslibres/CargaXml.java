@@ -88,7 +88,7 @@ public class CargaXml {
             // Info Tributaria=======================================================================
             rootInfoTributaria = (Element) encontrarNodo(rootComprobante, "infoTributaria");
             //Agregamos la Clave y su Valor de cada dato al hashmap infoTributaria
-            infoTributaria.put("razonSocial", nodoGetValor(rootInfoTributaria,"razonSocial"));
+            infoTributaria.put("razonSocial", nodoGetValor(rootInfoTributaria,"razonSocial"));//nombre Establecimiento
             infoTributaria.put("dirMatriz", nodoGetValor(rootInfoTributaria,"dirMatriz"));
             infoTributaria.put("ruc", nodoGetValor(rootInfoTributaria,"ruc"));
             infoTributaria.put("estab", nodoGetValor(rootInfoTributaria,"estab"));
@@ -104,6 +104,7 @@ public class CargaXml {
             infoFactura.put("razonSocialComprador", nodoGetValor(rootInfoFactura,"razonSocialComprador"));  
             infoFactura.put("identificacionComprador", nodoGetValor(rootInfoFactura,"identificacionComprador"));  
             infoFactura.put("totalSinImpuestos", nodoGetValor(rootInfoFactura,"totalSinImpuestos")); 
+            infoFactura.put("valor", nodoGetValor(rootInfoFactura.getChild("totalConImpuestos"),"valor"));//Impuesto
             //TOTAL A PAGAR CON IMPUESTOS
             infoFactura.put("importeTotal", nodoGetValor(rootInfoFactura,"importeTotal"));
             

@@ -98,6 +98,23 @@ public class Conexion {
         return n;
     }
 
+    public  String consultarMAXidDetalle() {
+            String num = "0";
+        try {
+            
+            Statement comando = conexion.createStatement();
+            String sql = "SELECT ID_DETALLE,MAX(ID_DETALLE) FROM DETALLE;";
+            
+            ResultSet resultado = comando.executeQuery(sql);
+                num = resultado.getString("ID_DETALLE");
+            resultado.close();
+            comando.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return num;
+    }
+    
     public  String consultar(String tabla) {
             String n = "";
         try {
@@ -107,30 +124,30 @@ public class Conexion {
             while (resultado.next()) {
                 n = resultado.getString("count");
             }
+            JOptionPane.showMessageDialog(null,n);
             resultado.close();
             comando.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error en consultar()"+ e.getMessage());
         }
         return n;
     }
 
     
     //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
-    public  String consultarProductoPor(String codigo,String id_establecimiento) {
+    public  String consultarProductoPor(String codigo) {
             String familia = "";
             
         try {
             
             Statement comando = conexion.createStatement();
             String sql = "select familia from producto where "
-                    + "id_producto='"+codigo+"' "
-                    + "and id_establecimiento='"+id_establecimiento+"'";
+                    + "id_producto='"+codigo+"'";
             
-            System.out.println(sql);
+            
             ResultSet resultado = comando.executeQuery(sql);
                 familia = resultado.getString("familia");
-                
+                JOptionPane.showMessageDialog(null, resultado.getString("familia"));
             resultado.close();
             comando.close();
         } catch (SQLException e) {
@@ -149,6 +166,22 @@ public class Conexion {
         }
     }
 
+    
+    public boolean verificar_factura(String id_factura) {
+        boolean val = false;
+        try {
+            String sql="select *from factura where id_factura='"+id_factura+"'";
+            Statement comando = conexion.createStatement();
+            ResultSet resultado = comando.executeQuery(sql);
+            val = resultado.next();
+            resultado.close();
+            comando.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return val;
+    }
+    
     
     public boolean verificar_usuario(String sql) {
         boolean val = false;

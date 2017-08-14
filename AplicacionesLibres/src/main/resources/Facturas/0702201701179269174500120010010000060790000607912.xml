@@ -3,8 +3,8 @@
 <estado>AUTORIZADO</estado>
 <numeroAutorizacion>0702201701200100100000607917926917452</numeroAutorizacion>
 <fechaAutorizacion class="fechaAutorizacion">20170207</fechaAutorizacion>
-<comprobante> <![CDATA[
-<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.0.0">
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.0.0">
 <infoTributaria>
 <ambiente>2</ambiente>
 <tipoEmision>1</tipoEmision>
@@ -190,7 +190,8 @@ M5GrnxW2v6JVBa9lGNEz4pvSdzskgSbx/BcZgQ==
 </ds:RSAKeyValue>
 </ds:KeyValue>
 </ds:KeyInfo>
-<ds:Object Id="Signature873747-Object591412"><etsi:QualifyingProperties Target="#Signature873747"><etsi:SignedProperties Id="Signature873747-SignedProperties384424"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-02-07T12:18:55-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>BJwq6IpQXEBXFQZzRfbMAF9+cSk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313274853</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-526186"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<ds:Object Id="Signature873747-Object591412"><etsi:QualifyingProperties Target="#Signature873747"><etsi:SignedProperties Id="Signature873747-SignedProperties384424"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-02-07T12:18:55-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>BJwq6IpQXEBXFQZzRfbMAF9+cSk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313274853</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-526186"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]>
+</comprobante>
 <mensajes>
 <mensaje>
 <mensaje>

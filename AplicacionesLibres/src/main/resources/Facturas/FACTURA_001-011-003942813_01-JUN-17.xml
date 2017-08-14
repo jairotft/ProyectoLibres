@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<autorizacion>
+	<estado>AUTORIZADO</estado>
+	<numeroAutorizacion>0106201701200101100394281317912875412</numeroAutorizacion>
+	<fechaAutorizacion>Thu Jun 01 07:53:41 ECT 2017</fechaAutorizacion>
+	<ambiente>PRODUCCION</ambiente>
+	<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.0.0">
+  <infoTributaria>
+    <ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>MEGADATOS SA</razonSocial>
+    <nombreComercial>MEGADATOS SA</nombreComercial>
+    <ruc>1791287541001</ruc>
+    <claveAcceso>0106201701179128754100120010110039428132306966510</claveAcceso><codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>011</ptoEmi>
+    <secuencial>003942813</secuencial>
+    <dirMatriz>Nunez de Vela E313 y Atahualpa Edificio torre del Puente 2do Piso</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>01/06/2017</fechaEmision>
+    <dirEstablecimiento>Avenida Rodrigo de Chavez  Parque Empresarial Colon  Edificio Coloncorp  Torre 6  Locales 4 y 5</dirEstablecimiento>
+    <contribuyenteEspecial>0176</contribuyenteEspecial>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+    <razonSocialComprador>LUIS MIGUEL ORQUERA ANDRADE</razonSocialComprador>
+    <identificacionComprador>1000982882</identificacionComprador>
+    <totalSinImpuestos>34.99</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>2</codigoPorcentaje>
+        <baseImponible>34.99</baseImponible>
+        <valor>4.20</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina> 0.00</propina>
+    <importeTotal>39.19</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>20</formaPago>
+        <total>39.19</total>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>HO1CCPM</codigoPrincipal>
+      <descripcion>FTTH Hogar UAV Starter 20Mbps CC.PM Consumo: JUNE     /2017, Fecha de Activacion: 21-DEC-16 06.47.17.000000 PM</descripcion>
+      <cantidad>1</cantidad>
+      <precioUnitario>34.99</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>34.99</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>2</codigoPorcentaje>
+          <tarifa>12</tarifa>
+          <baseImponible>34.99</baseImponible>
+          <valor>4.20</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="emailCliente">miguelo42@hotmail.com</campoAdicional>
+    <campoAdicional nombre="dirCliente">AV EL RETORNO Y TEODORO GOMEZ</campoAdicional>
+    <campoAdicional nombre="telfCliente">022438011;0982219337;0998351002;062610713;0982219337;0992444512</campoAdicional>
+    <campoAdicional nombre="ciudadCliente">IBARRA</campoAdicional>
+    <campoAdicional nombre="numeroCliente">003942813</campoAdicional>
+    <campoAdicional nombre="consumoCliente">JUNIO</campoAdicional>
+    <campoAdicional nombre="loginCliente">md-ibalmorqueraa1</campoAdicional>
+    <campoAdicional nombre="contratoCliente">001-001-0048164</campoAdicional>
+    <campoAdicional nombre="fpagoCliente">DEBITO BANCARIO</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature313312">
+<ds:SignedInfo Id="Signature-SignedInfo469946">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID595073" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature313312-SignedProperties923414">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>1gYAogVklpXN6I/qNP9/DBLWw+M=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1593254">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>tatlEojHwRjlr7nZzpuAvICGfwU=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-588615" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>466lu42jKg5sdtwdG3rmSkDsWnA=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue518767">
+n0u7M7ODuBhOF8GjOFakxS5K5UJsSZMS8V9zhAlWm0TOhhvtW2gkFNfOu0t/6mnAA3/gH32AebKw
+U8/+AdlcclApu6mr2BeVfCBe55Ub6MZwLwEERzNFNgTf6z6ari3Ug572VNyJBxBALxKGlwxhjegT
+thM87fbNfCI5Uto0aLKViuwfkA783fuNL88Xbf/AO48zw8SyMWubII0t1xvsrYOWzyysIC3oIBtJ
+OCy88GMB4r93/5SzzZf4nYGEoxdg/QXs6Ql0jzU06seXh4J4iaiIW5BjIGjy29jlXcsz7170lnsU
+DeXCkBzERyBu/aeOCZm9W+HzdrI/ASnypRtJCQ==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1593254">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJqTCCCJGgAwIBAgIEVM5GKjANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMCRUMxGzAZBgNV
+BAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4GA1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9O
+IERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIg
+U0VDVVJJVFkgREFUQTAeFw0xNjA2MjAyMTA5NThaFw0xODA2MjAyMTM5NThaMIGeMQswCQYDVQQG
+EwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFUQSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENF
+UlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04xQDATBgNVBAUTDDIwMDYxNjE2Mjk1MTApBgNVBAMT
+IldBU0hJTkdUT04gRlJBTkNJU0NPIEJBTEFSRVpPIFBPWk8wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQDGk837JSKjYtBACiSvbhlvcf69/WU2JSkh9oHy3E5v1vgcOQqIEjXHNcpNn6BZ
+PaYN4T9Ot0by+OjbV/3Q6tKlJ5T5aZIweAmUbbj4oZchrzJqwifAlUdObamPreM5OrmOjWNkqS+y
+wsCsMlGk0Ulho9Nd34/mj2opMIYjA14R1yTOtamXcWDJjeARrbfo/KwgWP8iEDuwA3RgE2iTBNSA
+QtX3srmOdV3mwtVKsfb31Q54UFxFGFfzgimWMChzf47ke2YBe9aHuRMaZz3K0Fn+YMhPjp6vRB/g
+1eXhH/+ltSnjUcJiIfiyGDrYKUw88dJx5Vb/syeBWI1VojXIQ64bAgMBAAGjggX2MIIF8jALBgNV
+HQ8EBAMCBeAwWQYIKwYBBQUHAQEETTBLMEkGCCsGAQUFBzABhj1odHRwOi8vb2NzcGd3LnNlY3Vy
+aXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMIHMBgNVHSAEgcQwgcEw
+QAYKKwYBBAGCpnICCTAyMDAGCCsGAQUFBwICMCQaIkNlcnRpZmljYWRvIGRlIFJlcHJlc2VudGFu
+dGUgTGVnYWwwfQYKKwYBBAGCpnICAzBvMG0GCCsGAQUFBwIBFmFodHRwczovL3d3dy5zZWN1cml0
+eWRhdGEubmV0LmVjL2xleWVzX25vcm1hdGl2YXMvUG9saXRpY2FzIGRlIENlcnRpZmljYWRvIFJl
+cHJlc2VudGFudGUgTGVnYWwucGRmMB4GCisGAQQBgqZyAwoEEBMOTUVHQURBVE9TIFMuQS4wHQYK
+KwYBBAGCpnIDCwQPEw0xNzkxMjg3NTQxMDAxMBoGCisGAQQBgqZyAwEEDBMKMTcwNDA4MzI5MjAk
+BgorBgEEAYKmcgMCBBYTFFdBU0hJTkdUT04gRlJBTkNJU0NPMBgGCisGAQQBgqZyAwMEChMIQkFM
+QVJFWk8wFAYKKwYBBAGCpnIDBAQGEwRQT1pPMB8GCisGAQQBgqZyAwUEERMPR0VSRU5URSBHRU5F
+UkFMMC8GCisGAQQBgqZyAwcEIRMfTlVORVogREUgVkVMQSBFMy0xMyBZIEFUQUhVQUxQQTAbBgor
+BgEEAYKmcgMIBA0TCzU5MzIyMjY1MDUwMBUGCisGAQQBgqZyAwkEBxMFUVVJVE8wFwYKKwYBBAGC
+pnIDDAQJEwdFQ1VBRE9SMB8GCisGAQQBgqZyAyAEERMPMDAyMDAxMDAwMDEwNTE4MBMGCisGAQQB
+gqZyAyEEBRMDUEZYMCMGA1UdEQQcMBqBGGdiYWxhcmV6b0BuZXRsaWZlLm5ldC5lYzCCAnkGA1Ud
+HwSCAnAwggJsMIICaKCCAmSgggJghj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMv
+ZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwhoHUbGRhcDovL2RpcmVjdC5zZWN1cml0eWRhdGEu
+bmV0LmVjL2NuPUNSTDg2LGNuPUFVVE9SSURBRCUyMERFJTIwQ0VSVElGSUNBQ0lPTiUyMFNVQiUy
+MFNFQ1VSSVRZJTIwREFUQSxvdT1FTlRJREFEJTIwREUlMjBDRVJUSUZJQ0FDSU9OJTIwREUlMjBJ
+TkZPUk1BQ0lPTixvPVNFQ1VSSVRZJTIwREFUQSUyMFMuQS4sYz1FQz9jZXJ0aWZpY2F0ZVJldm9j
+YXRpb25MaXN0P2Jhc2WGgZ5odHRwczovL2RpcmVjdC5zZWN1cml0eWRhdGEubmV0LmVjL35jcmwv
+YXV0b3JpZGFkX2RlX2NlcnRpZmljYWNpb25fc3ViX3NlY3VyaXR5X2RhdGFfZW50aWRhZF9kZV9j
+ZXJ0aWZpY2FjaW9uX2RlX2luZm9ybWFjaW9uX2N1cml0eV9kYXRhX3MuYS5fY19lY19jcmxmaWxl
+LmNybKSBpjCBozELMAkGA1UEBhMCRUMxGzAZBgNVBAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4G
+A1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxB
+VVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIgU0VDVVJJVFkgREFUQTEOMAwGA1UEAxMFQ1JM
+ODYwKwYDVR0QBCQwIoAPMjAxNjA2MjAyMTA5NThagQ8yMDE4MDYyMDIxMzk1OFowHwYDVR0jBBgw
+FoAU9y9M4HXnYqN4llsGti5xO8xsP5AwHQYDVR0OBBYEFCdhPNwONHXvBMuvGbj807e7DKitMAkG
+A1UdEwQCMAAwGQYJKoZIhvZ9B0EABAwwChsEVjguMQMCA6gwDQYJKoZIhvcNAQELBQADggEBAH4q
+qbuZVowC+mvHgyPzXAKI7xK/EiDfRChPnVCzR1F+rZKw2npYm558qnd33Eebe/A9F3AxKmeqXh7i
+2PczGfWBaO7APV6g51ziyZstgPVV0N+R7P8iIskN8FNXGiuy48Rq9HRL/WeTZjjvwRkRKJ0lutis
+LRMaQRaUl/lxyLhRu/lbJ2LUc5LLf+gUcsD1NpXo3Z2e8C8HSD9RAA/sWcKbKGTyza2b2WcA9dlm
+SP9CzNBjEO2DRNlq5RN6CLGenJRrvW7Sg3R9L7Shz/7AHEELCJGNqRD17L0iI2XEcwUcQclRnIgP
+ohCNQXUr1AWhdkVWyn+tNOlVUaKwoTY5mZs=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+xpPN+yUio2LQQAokr24Zb3H+vf1lNiUpIfaB8txOb9b4HDkKiBI1xzXKTZ+gWT2mDeE/TrdG8vjo
+21f90OrSpSeU+WmSMHgJlG24+KGXIa8yasInwJVHTm2pj63jOTq5jo1jZKkvssLArDJRpNFJYaPT
+Xd+P5o9qKTCGIwNeEdckzrWpl3FgyY3gEa236PysIFj/IhA7sAN0YBNokwTUgELV97K5jnVd5sLV
+SrH299UOeFBcRRhX84IpljAoc3+O5HtmAXvWh7kTGmc9ytBZ/mDIT46er0Qf4NXl4R//pbUp41HC
+YiH4shg62ClMPPHSceVW/7MngViNVaI1yEOuGw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature313312-Object934795"><etsi:QualifyingProperties Target="#Signature313312"><etsi:SignedProperties Id="Signature313312-SignedProperties923414"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-06-01T05:10:30-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>Etz6JJpRCqNNP/hHC1apTSd3jGE=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUB SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1422804522</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-588615"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+	<mensajes></mensajes>
+</autorizacion>

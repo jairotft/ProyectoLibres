@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>MEGA SANTAMARIA S.A.</razonSocial>
+        <nombreComercial>SUPERMERCADO SANTA MARIA</nombreComercial>
+        <ruc>1792060346001</ruc>
+        <claveAcceso>3004201701179206034600120230770000482565658032313</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>023</estab>
+        <ptoEmi>077</ptoEmi>
+        <secuencial>000048256</secuencial>
+        <dirMatriz>Iñaquito N38-17 y Villalengua</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>30/04/2017</fechaEmision>
+        <dirEstablecimiento>AV. MARIANO ACOSTA S/N Y AV. FRAY VACAS GALINDO LAGUNA MALL LOCAL 103</dirEstablecimiento>
+        <contribuyenteEspecial>1124</contribuyenteEspecial>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>ORQUERA ANDRADE LUIS MIGUEL</razonSocialComprador>
+        <identificacionComprador>1000982882</identificacionComprador>
+        <totalSinImpuestos>26.87</totalSinImpuestos>
+        <totalDescuento>0</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>0</codigoPorcentaje>
+                <baseImponible>22.08</baseImponible>
+                <tarifa>0</tarifa>
+                <valor>0</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>3</codigoPorcentaje>
+                <baseImponible>4.79</baseImponible>
+                <tarifa>14</tarifa>
+                <valor>0.67</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>27.54</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>19</formaPago>
+                <total>27.54</total>
+                <plazo>0</plazo>
+                <unidadTiempo>DIAS</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>7861015910042</codigoPrincipal>
+            <descripcion>SANA ALGODON</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>0.8421</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>0.84</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="0.8421" valor="0.8421"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14</tarifa>
+                    <baseImponible>0.84</baseImponible>
+                    <valor>0.12</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7861006747145</codigoPrincipal>
+            <descripcion>MAMA FANY TO</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>2.15</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>2.15</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="2.1500" valor="2.1500"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>2.15</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>4133300102</codigoPrincipal>
+            <descripcion>DURAC PILAS</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>3.9474</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>3.95</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="3.9474" valor="3.9474"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>3</codigoPorcentaje>
+                    <tarifa>14</tarifa>
+                    <baseImponible>3.95</baseImponible>
+                    <valor>0.55</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7861000178747</codigoPrincipal>
+            <descripcion>NUEST HUERTO</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>0.69</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>0.69</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="0.6900" valor="0.6900"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>0.69</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>22608</codigoPrincipal>
+            <descripcion>MOLID ESPECI</descripcion>
+            <cantidad>1.015</cantidad>
+            <precioUnitario>5.99</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>6.08</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="5.9901" valor="5.9901"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>6.08</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7862103930065</codigoPrincipal>
+            <descripcion>PROAG TOMATE</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>1.49</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>1.49</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="1.4900" valor="1.4900"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>1.49</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7861012500338</codigoPrincipal>
+            <descripcion>TONI QUESO C</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>2.29</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>2.29</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="2.2900" valor="2.2900"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>2.29</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7861092157804</codigoPrincipal>
+            <descripcion>KIOSK QUESO</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>4.01</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>4.01</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="4.0100" valor="4.0100"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>4.01</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7862100911906</codigoPrincipal>
+            <descripcion>FRESH NATURA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>2.18</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>2.18</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="2.1800" valor="2.1800"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>2.18</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>7861033000527</codigoPrincipal>
+            <descripcion>LA HOLANDESA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>3.19</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>3.19</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="3.1900" valor="3.1900"></detAdicional>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>3.19</baseImponible>
+                    <valor>0</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="Total Canastas:">0</campoAdicional>
+        <campoAdicional nombre="FACTURA Nro:">023077000048256</campoAdicional>
+        <campoAdicional nombre="DEDUCIBLES:">ALIMENTACION 22,08</campoAdicional>
+        <campoAdicional nombre="DEDUCIBLES:">MEDICINA     ,84</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature116808"><ds:SignedInfo Id="Signature-SignedInfo239399"><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod><ds:Reference Id="SignedPropertiesID64295" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature116808-SignedProperties387200"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>LB71gouT/rqW84rIgND8vzL7tSc=</ds:DigestValue></ds:Reference><ds:Reference URI="#Certificate1707601"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>hJVRdJOz/Q2mC3WwnTfAMFzwdP0=</ds:DigestValue></ds:Reference><ds:Reference Id="Reference-ID-661985" URI="#comprobante"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>K4R5YT9MprT2372tBYkdkksp3Ao=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="SignatureValue366379">pjJ6QNaPcHF6YJfUKlVBC2uIhmyQzepkWwFVlsCJojys5AAeweQemLJqotMfvoeAXJGtEfm+l57SMvHLbCByGMDzyCRY7owtApdlf+h9e1R4k6EtYFKoUp4w7xkRVdkPwcHn1indxQKR4SdgyzSBUo/zSe9LEtNmCazIrvFvjCL7b04R7ls3PcNfl5MO1KNt9baf/kPzTepv7fpAoyVvAsrWZtL5gfd4BEKG9aqtW5tU16XGP1wITvBR6HQhN1Ju7WLqEmkO6raxlAhp64bOKghUXC4x1V6nRoE/VHM7bGio4lySEoD2C0XhQPEVMM7PRz1W+HQzzeiFql6TgkorBQ==</ds:SignatureValue><ds:KeyInfo Id="Certificate1707601"><ds:X509Data><ds:X509Certificate>MIIJmTCCCIGgAwIBAgIEVM5s9TANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMCRUMxGzAZBgNVBAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4GA1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIgU0VDVVJJVFkgREFUQTAeFw0xNjA4MTgxNDMwMzNaFw0yMTA4MTgxNTAwMzNaMIGOMQswCQYDVQQGEwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFUQSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04xMDATBgNVBAUTDDE4MDgxNjA5NTYzNjAZBgNVBAMTEkFOQSBMVUNJQSBURU5FWkFDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMcNTwxUBDVpCmS+l+ShQBkH8V+1jpnkS1rL1LNnfcGhJwqmrdo+UePnG5AvskV4oUvk6cnSu91/Fz8pLQvIBwqk1upTrhnzDZ72RFQupg+i2ScTqWdVCP50h4Tu89+ctZknpaeIER7iMcRxe/iJgIh1oUq5l+cT8hT6bnYkLswBPfxFyh0+AfQ2B0g5OY9Ol/JRskgUlHuqLhk4SLpoK0JeNG2NMkZTtHOLEyvBRzHbp1EWCG0sQtHr7HGeG7W/MbKbbN4usbFKW6CVhncJ76ADNs4nOTeOzVK2p4iJL7iF5tSxpCL/mCBUI0emFJfn+r+YE8V5zjTVVEyAgyI8mgECAwEAAaOCBfYwggXyMAsGA1UdDwQEAwIF4DBZBggrBgEFBQcBAQRNMEswSQYIKwYBBQUHMAGGPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVzL29jc3AwgcoGA1UdIASBwjCBvzA/BgorBgEEAYKmcgIKMDEwLwYIKwYBBQUHAgIwIxohQ2VydGlmaWNhZG8gZGUgTWllbWJybyBkZSBFbXByZXNhMHwGCisGAQQBgqZyAgQwbjBsBggrBgEFBQcCARZgaHR0cHM6Ly93d3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9sZXllc19ub3JtYXRpdmFzL1BvbGl0aWNhcyBkZSBDZXJ0aWZpY2FkbyBNaWVtYnJvIGRlIEVtcHJlc2EucGRmMCQGCisGAQQBgqZyAwoEFhMUTUVHQSBTQU5UQU1BUklBIFMuQS4wHQYKKwYBBAGCpnIDCwQPEw0xNzkyMDYwMzQ2MDAxMBoGCisGAQQBgqZyAwEEDBMKMTEwMzE3MDY4MjAZBgorBgEEAYKmcgMCBAsTCUFOQSBMVUNJQTAYBgorBgEEAYKmcgMDBAoTCFRFTkVaQUNBMCEGCisGAQQBgqZyAwUEExMRQ09OVEFET1JBIEdFTkVSQUwwQgYKKwYBBAGCpnIDBwQ0EzJQSUNISU5DSEEgLyBRVUlUTyAvIEnDkUFRVUlUTyBOMzgtMTcgWSBWSUxMQUxFTkdVQTAbBgorBgEEAYKmcgMIBA0TCzU5MzIyOTQyOTIwMBUGCisGAQQBgqZyAwkEBxMFUVVJVE8wFwYKKwYBBAGCpnIDDAQJEwdFQ1VBRE9SMB8GCisGAQQBgqZyAyAEERMPMDAyMDAxMDAwMDEyMTcyMBMGCisGAQQBgqZyAyEEBRMDUEZYMCsGA1UdEQQkMCKBIGFuYS50ZW5lemFjYUBtZWdhLXNhbnRhbWFyaWEuY29tMIICeQYDVR0fBIICcDCCAmwwggJooIICZKCCAmCGPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVzL29jc3CGgdRsZGFwOi8vZGlyZWN0LnNlY3VyaXR5ZGF0YS5uZXQuZWMvY249Q1JMOTEsY249QVVUT1JJREFEJTIwREUlMjBDRVJUSUZJQ0FDSU9OJTIwU1VCJTIwU0VDVVJJVFklMjBEQVRBLG91PUVOVElEQUQlMjBERSUyMENFUlRJRklDQUNJT04lMjBERSUyMElORk9STUFDSU9OLG89U0VDVVJJVFklMjBEQVRBJTIwUy5BLixjPUVDP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZYaBnmh0dHBzOi8vZGlyZWN0LnNlY3VyaXR5ZGF0YS5uZXQuZWMvfmNybC9hdXRvcmlkYWRfZGVfY2VydGlmaWNhY2lvbl9zdWJfc2VjdXJpdHlfZGF0YV9lbnRpZGFkX2RlX2NlcnRpZmljYWNpb25fZGVfaW5mb3JtYWNpb25fY3VyaXR5X2RhdGFfcy5hLl9jX2VjX2NybGZpbGUuY3JspIGmMIGjMQswCQYDVQQGEwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFUQSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04xNTAzBgNVBAMTLEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNVQiBTRUNVUklUWSBEQVRBMQ4wDAYDVQQDEwVDUkw5MTArBgNVHRAEJDAigA8yMDE2MDgxODE0MzAzM1qBDzIwMjEwODE4MTUwMDMzWjAfBgNVHSMEGDAWgBT3L0zgdedio3iWWwa2LnE7zGw/kDAdBgNVHQ4EFgQUa2guCfqU/DnUUFJmekD26GEADk4wCQYDVR0TBAIwADAZBgkqhkiG9n0HQQAEDDAKGwRWOC4xAwIDqDANBgkqhkiG9w0BAQsFAAOCAQEAcRGlOhlh932daI82ZJiQwpmkUoiv3I15CzUL3dXhmYW9CAOH00DqSnehxibkMOLGF1mc/MD4G6lLPI85pz3VMug8BVYeMY/4TgN+nzrflZC+eu4kEiuO+GumG0dPUnomcS1U9Tu5ch0B/tUoDzaK4wuGDcvarWJaZbvfs1NmTxf/zOz3IjzR29B+JzT0rxUKfyM/a5Ze4C+Ny1ROMP4oLbaK90wkEAwq6n/BxDHtzclpkO/owQ0fHGc/UUGUprNkF263wVELokcl+XAicNBo0CULXNmtCSnL+xPF5HLaeZRe5GwNQbFst0ELmjPR4AfrNjMI6v+2UyFbySxyGkGh+Q==</ds:X509Certificate></ds:X509Data><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>
+xw1PDFQENWkKZL6X5KFAGQfxX7WOmeRLWsvUs2d9waEnCqat2j5R4+cbkC+yRXihS+TpydK73X8XPyktC8gHCqTW6lOuGfMNnvZEVC6mD6LZJxOpZ1UI/nSHhO7z35y1mSelp4gRHuIxxHF7+ImAiHWhSrmX5xPyFPpudiQuzAE9/EXKHT4B9DYHSDk5j06X8lGySBSUe6ouGThIumgrQl40bY0yRlO0c4sTK8FHMdunURYIbSxC0evscZ4btb8xspts3i6xsUpboJWGdwnvoAM2zic5N47NUraniIkvuIXm1LGkIv+YIFQjR6YUl+f6v5gTxXnONNVUTICDIjyaAQ==
+</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:Object Id="Signature116808-Object418409"><etsi:QualifyingProperties Target="#Signature116808"><etsi:SignedProperties Id="Signature116808-SignedProperties387200"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-05-02T17:59:22-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>71efiEdlbhLiN3ZE1K9ilV8oMMk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUB SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1422814453</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-661985"><etsi:Description>Contenido Comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<autorizacion>
+  <estado>AUTORIZADO</estado>
+  <numeroAutorizacion>1603201701200700600000286310900842470</numeroAutorizacion>
+  <fechaAutorizacion>2017-03-16T16:30:39-05:00</fechaAutorizacion>
+  <ambiente>PRODUCCIÓN</ambiente>
+  <comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="1.0.0">
+<infoTributaria>
+<ambiente>2</ambiente>
+<tipoEmision>1</tipoEmision>
+<razonSocial>COMERCIAL HIDROBO S.A. COMHIDROBO</razonSocial>
+<nombreComercial>COMERCIAL HIDROBO S.A. COMHIDROBO</nombreComercial>
+<ruc>1090084247001</ruc>
+<claveAcceso>1603201701109008424700120070060000028630008016411</claveAcceso>
+<codDoc>01</codDoc>
+<estab>007</estab>
+<ptoEmi>006</ptoEmi>
+<secuencial>000002863</secuencial>
+<dirMatriz>AV. MARIANO ACOSTA 20-120</dirMatriz>
+</infoTributaria>
+<infoFactura>
+<fechaEmision>16/03/2017</fechaEmision>
+<dirEstablecimiento>AV MARIANO ACOSTA Y MANUELITA SAENZ</dirEstablecimiento>
+<contribuyenteEspecial>5368</contribuyenteEspecial>
+<obligadoContabilidad>SI</obligadoContabilidad>
+<tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+<razonSocialComprador>ORQUERA ANDRADE LUIS</razonSocialComprador>
+<identificacionComprador>1000982882</identificacionComprador>
+<totalSinImpuestos>69.26</totalSinImpuestos>
+<totalDescuento>0</totalDescuento>
+<totalConImpuestos>
+<totalImpuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<baseImponible>69.26</baseImponible>
+<valor>9.7</valor>
+</totalImpuesto>
+</totalConImpuestos>
+<propina>0</propina>
+<importeTotal>78.96</importeTotal>
+<moneda>DOLARES</moneda>
+<pagos>
+<pago>
+<formaPago>19</formaPago>
+<total>78.96</total>
+<plazo>0</plazo>
+<unidadTiempo>DIAS</unidadTiempo>
+</pago>
+</pagos>
+</infoFactura>
+<detalles>
+<detalle>
+<codigoPrincipal>1501A</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>FILTRO ACEITE</descripcion>
+<cantidad>1</cantidad>
+<precioUnitario>11.4</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>11.4</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>11.4</baseImponible>
+<valor>1.6</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>C-206</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>LIMPIADOR DE PLUMAS</descripcion>
+<cantidad>1</cantidad>
+<precioUnitario>2.19</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>2.19</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>2.19</baseImponible>
+<valor>.31</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>LU635</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>ACEITE 10W  1/2</descripcion>
+<cantidad>8</cantidad>
+<precioUnitario>3.87</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>30.95</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>30.95</baseImponible>
+<valor>4.33</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>RCL</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>RODELA  TAPON ACEITE</descripcion>
+<cantidad>1</cantidad>
+<precioUnitario>.46</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>.46</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>.46</baseImponible>
+<valor>.06</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>B1395000KM</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>REVISION 95000 KM</descripcion>
+<cantidad>1</cantidad>
+<precioUnitario>23.25</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>23.25</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>23.25</baseImponible>
+<valor>3.26</valor>
+</impuesto>
+</impuestos>
+</detalle>
+<detalle>
+<codigoPrincipal>13</codigoPrincipal>
+<codigoAuxiliar>17353</codigoAuxiliar>
+<descripcion>VARIOS INSUMOS TALLER</descripcion>
+<cantidad>1</cantidad>
+<precioUnitario>1</precioUnitario>
+<descuento>0</descuento>
+<precioTotalSinImpuesto>1</precioTotalSinImpuesto>
+<impuestos>
+<impuesto>
+<codigo>2</codigo>
+<codigoPorcentaje>3</codigoPorcentaje>
+<tarifa>14</tarifa>
+<baseImponible>1</baseImponible>
+<valor>.14</valor>
+</impuesto>
+</impuestos>
+</detalle>
+</detalles>
+<infoAdicional>
+<campoAdicional nombre="Telefono cliente">062610713</campoAdicional>
+<campoAdicional nombre="Email cliente">miguelo42@hotmail.com</campoAdicional>
+<campoAdicional nombre="Direccion cliente">AV. EL RETORNO 1.71 Y TEODORO GOMEZIBARRA</campoAdicional>
+<campoAdicional nombre="Ciudad cliente">IBARRA</campoAdicional>
+<campoAdicional nombre="Forma pago">CONTADO</campoAdicional>
+<campoAdicional nombre="Asesor">FERNANDO CERVANTES</campoAdicional>
+<campoAdicional nombre="Datos unidad">Serie chasis:SJNFBAJ10DA680022 | Serie motor:MR20196953W | Placa:PCD-7270 | Modelo:QASHAQI4X22.0(D | Color:ROJO | Km:95059 | Marca:NISSA</campoAdicional>
+<campoAdicional nombre="Datos orden">Orden:17353 | Codigo cliente:14171 | Fecha inicial:16/03/2017 | Fecha final:16/03/2017</campoAdicional>
+<campoAdicional nombre="Datos propietario">ORQUERA ANDRADE LUIS | Codigo:14171</campoAdicional>
+<campoAdicional nombre="Referencia">CHQ 95.000 KM</campoAdicional>
+<campoAdicional nombre="Observacion">CHQ 95.000 KM</campoAdicional>
+<campoAdicional nombre="Control">16448 | TALLER | NR</campoAdicional>
+<campoAdicional nombre="Telefono establecimiento">062631440</campoAdicional>
+</infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature19122">
+<ds:SignedInfo Id="Signature-SignedInfo10264">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID144166" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature19122-SignedProperties409924">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>1duXlN3PTVvJ4iwRidaZBqeTkf0=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1680904">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>SA32URlCWaa4LKUMpk3Km984Uxc=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-375033" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>t5+PuB3Y4+8iwIMblLjUj8x3TOg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue824106">
+zfIcWSB/38bFGAsjKs3irxF70V/aVp9s5J5jSWqITmKc4zru6eDRdL1fcjq88QF814rKelOsurkj
+x7eBpjrp4IzglaB5+u2emfzUYr4OIuNv1ye+sshAzxgTgx6ULxAlIRoO0iUcNCLlaz0yWMjKqpjG
+F/XQe9OD61Oy8frtZsBJ3NkQC8C8mmrOULFEUq8wc3e9jTkQTXv41l01MUvLCdrlErDTl97a4D+f
+CAj+WXhm9qReJXtYQ23q5rB8n8ZBBeX1+bTxAoSTI17zVnMMN4w+oB3Pwou2LDwvevpF9/W5F5lU
+wpXTzvpoenyhE8EfIi2/Suym+N41L3uu/LLZbA==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1680904">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJ8zCCB9ugAwIBAgIETkZaajANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNV
+BAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElG
+SUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxB
+QyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTE2MDUwMjE2NDEyN1oXDTE4MDUwMjE3MTEy
+N1owgbYxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcw
+NQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4w
+DAYDVQQHEwVRVUlUTzE6MBEGA1UEBRMKMDAwMDE1NDU0MTAlBgNVBAMTHkFOR0VMIFBBVFJJQ0lP
+IEhJRFJPQk8gRVNUUkFEQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANJbE6XBiCI6
+ASWzpiNvfV6t4FOKdMJEUY0sqzU3XS2A8QQ6mPe7GvZIgqFcMnRFhVmWQBAbHx+ENJdRcgSC8xHU
+rHdqxQchwPTyrYQZxxapi4zav40bR65DWIGqNFq+olSCrD2e+kUJDHym4rM2/nd+cfkdKN/sflF6
+aek5z9JgsuTtc+hHpmD9/ZwhmMgC1BGuROHqIKQ4N9WeQDLzyN+GkrPq78rvVlsWsXQv9oKSEP2p
+r0WV0U1DENX9phYdhL9mvdfgpNoBnMJGMFsRN/BRsbqbJg1uf+ZfwYZ8ymGs6YN9jdL4kHJwAJlS
+V9VCKFTr9/3YqgM16sO8kNVs3k0CAwEAAaOCBRowggUWMAsGA1UdDwQEAwIHgDBnBgNVHSAEYDBe
+MFwGCysGAQQBgqg7AgIBME0wSwYIKwYBBQUHAgEWP2h0dHA6Ly93d3cuZWNpLmJjZS5lYy9wb2xp
+dGljYS1jZXJ0aWZpY2Fkby9wZXJzb25hLWp1cmlkaWNhLnBkZjCBkQYIKwYBBQUHAQEEgYQwgYEw
+PgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmVjaS5iY2UuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1
+cy9vY3NwMD8GCCsGAQUFBzABhjNodHRwOi8vb2NzcDEuZWNpLmJjZS5lYy9lamJjYS9wdWJsaWN3
+ZWIvc3RhdHVzL29jc3AwLwYKKwYBBAGCqDsDCgQhEx9DT01FUkNJQUwgSElEUk9CTyBTQSBDT01I
+SURST0JPMB0GCisGAQQBgqg7AwsEDxMNMTA5MDA4NDI0NzAwMTAaBgorBgEEAYKoOwMBBAwTCjEw
+MDEyMTQwMjAwHgYKKwYBBAGCqDsDAgQQEw5BTkdFTCBQQVRSSUNJTzAXBgorBgEEAYKoOwMDBAkT
+B0hJRFJPQk8wFwYKKwYBBAGCqDsDBAQJEwdFU1RSQURBMB8GCisGAQQBgqg7AwUEERMPR0VSRU5U
+RSBHRU5FUkFMMCcGCisGAQQBgqg7AwcEGRMXQVYgTUFSSUFOTyBBQ09TVEEgMjAxMjAwGQYKKwYB
+BAGCqDsDCAQLEwkwNjI2MzEzMzMwFgYKKwYBBAGCqDsDCQQIEwZJYmFycmEwFwYKKwYBBAGCqDsD
+DAQJEwdFQ1VBRE9SMCAGCisGAQQBgqg7AzMEEhMQU09GVFdBUkUtQVJDSElWTzAeBgNVHREEFzAV
+gRNhcGhlQGNvbWhpZHJvYm8uY29tMIIB3wYDVR0fBIIB1jCCAdIwggHOoIIByqCCAcaGgdVsZGFw
+Oi8vYmNlcWxkYXBzdWJwMS5iY2UuZWMvY249Q1JMMzE4LGNuPUFDJTIwQkFOQ08lMjBDRU5UUkFM
+JTIwREVMJTIwRUNVQURPUixsPVFVSVRPLG91PUVOVElEQUQlMjBERSUyMENFUlRJRklDQUNJT04l
+MjBERSUyMElORk9STUFDSU9OLUVDSUJDRSxvPUJBTkNPJTIwQ0VOVFJBTCUyMERFTCUyMEVDVUFE
+T1IsYz1FQz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2WGNGh0dHA6Ly93d3cuZWNpLmJj
+ZS5lYy9DUkwvZWNpX2JjZV9lY19jcmxmaWxlY29tYi5jcmykgbUwgbIxCzAJBgNVBAYTAkVDMSIw
+IAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcwNQYDVQQLEy5FTlRJREFEIERFIENF
+UlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4wDAYDVQQHEwVRVUlUTzElMCMGA1UE
+AxMcQUMgQkFOQ08gQ0VOVFJBTCBERUwgRUNVQURPUjEPMA0GA1UEAxMGQ1JMMzE4MCsGA1UdEAQk
+MCKADzIwMTYwNTAyMTY0MTI3WoEPMjAxODA1MDIxNzExMjdaMB8GA1UdIwQYMBaAFBj58PvmMhyZ
+ZjkqyouyaX1JJ7/OMB0GA1UdDgQWBBQfOOypGNP1RT9a2r7vqO5hNIxQ1DAJBgNVHRMEAjAAMBkG
+CSqGSIb2fQdBAAQMMAobBFY4LjEDAgSwMA0GCSqGSIb3DQEBCwUAA4ICAQA3Joz83Rba61FquB7w
+Tjx+pOtf9eUXbfD1hj5gxGyEaKeO9Eda25w8E4dy00fSRn5EIebFl2hHaIBstTZsA9H7r9vumPB4
+DlsEpPZqfSIRxUGVAiOEwybKFT6Rrjt6i7UEA5y3XUc+0daO47iuwC5iduRyBq0k2HeCTOB3IL/0
+a1gJXsO9FKwfh2BjwKiuBgFj2RFC4jLEsdUcl2gpVECpSJOq6kUSP52UHD3KwCEjqZmSm49BvEyE
+FktOnc/HdMCT4/znhX+mVkq6SCtKjCl5mpRZRXlaJCMzUH1cLSLcyhRPjnuxApo5HG8CXWU9ZSBX
++PfIzbAnFrrmPl/PUNshjNq3yU+Z+lcXF827HhOVCRjQu9Y89ePi1V2qhReX37Idxa4ZuzijF2dp
+URq+J7aQIdVR6EnVP/C1RMC/suInbGlSW4INQBfOM9y5BRj4teQ4Cw1IsZbFVnoMuaC/ZUbFR6xe
+jQ0VOZoShW19cbmSS1j4Io03R/LZiso23zLPYtyUh6XTZxG1hm800r6Epr1W/OZMf9BpCCFn1u5d
+x6CaOKWZ8Obc137q6s3mhKnMQA6DgOzU0rsyMolXbr8YeXMZAjP2qdmtIuIOqpTO8HkTIv9LU7bG
+peS5QKKlsVO4bcX0rQsmVKFDSYFAzmA9dZ9rY+MMPwjreTCCRHY1ShuC5w==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+0lsTpcGIIjoBJbOmI299Xq3gU4p0wkRRjSyrNTddLYDxBDqY97sa9kiCoVwydEWFWZZAEBsfH4Q0
+l1FyBILzEdSsd2rFByHA9PKthBnHFqmLjNq/jRtHrkNYgao0Wr6iVIKsPZ76RQkMfKbiszb+d35x
++R0o3+x+UXpp6TnP0mCy5O1z6EemYP39nCGYyALUEa5E4eogpDg31Z5AMvPI34aSs+rvyu9WWxax
+dC/2gpIQ/amvRZXRTUMQ1f2mFh2Ev2a91+Ck2gGcwkYwWxE38FGxupsmDW5/5l/BhnzKYazpg32N
+0viQcnAAmVJX1UIoVOv3/diqAzXqw7yQ1WzeTQ==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature19122-Object293966"><etsi:QualifyingProperties Target="#Signature19122"><etsi:SignedProperties Id="Signature19122-SignedProperties409924"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-03-16T16:30:38-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>2SQdqw2+gU0e30cCvW9vUDhHxb0=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313233514</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-375033"><etsi:Description>comprobantes</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+  <mensajes/>
+</autorizacion>

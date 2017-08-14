@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><autorizacion><estado>EN PROCESAMIENTO</estado><numeroAutorizacion>0106201701179184765200120010010042294653107475015</numeroAutorizacion><fechaAutorizacion class="fechaAutorizacion">2017-05-31T07:48:26-05:00</fechaAutorizacion> <ambiente>PRODUCCION</ambiente><comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>Servicios de Telecomunicaciones Setel S.A.</razonSocial>
+    <nombreComercial>Setel</nombreComercial>
+    <ruc>1791847652001</ruc>
+    <claveAcceso>0106201701179184765200120010010042294653107475015</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>004229465</secuencial>
+    <dirMatriz>Av. Eloy Alfaro N 44-406 y De Las Higueras Edif: Edif. Grupo Tvc</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>01/06/2017</fechaEmision>
+    <contribuyenteEspecial>1308</contribuyenteEspecial>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+    <razonSocialComprador>LUIS MIGUEL ORQUERA ANDRADE</razonSocialComprador>
+    <identificacionComprador>1000982882</identificacionComprador><direccionComprador>PICHINCHA, QUITO LOS LAURELES, URBANO, LOS LAURELES ISLA MARCHENA,V. 290, JOEL MANUEL POLANCO ,, , -78.4717,-.1649,2F,2F-4</direccionComprador>
+    <totalSinImpuestos>19.49</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>3</codigo>
+        <codigoPorcentaje>3092</codigoPorcentaje>
+        <baseImponible>18.49</baseImponible>
+        <tarifa>15.00</tarifa>
+        <valor>2.77</valor>
+      </totalImpuesto>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>2</codigoPorcentaje>
+        <baseImponible>22.26</baseImponible>
+        <tarifa>12.00</tarifa>
+        <valor>2.67</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>24.93</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>19</formaPago>
+        <total>24.93</total>
+        <plazo>5</plazo>
+        <unidadTiempo>dias</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>2143-03-500033</codigoPrincipal>
+      <descripcion>Gastos Administrativos - Digitaliz. Docs. / Soporte</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.00</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>1.00</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="Rubro" valor="01/06/2017|1.12"/>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>2</codigoPorcentaje>
+          <tarifa>12.00</tarifa>
+          <baseImponible>1.00</baseImponible>
+          <valor>0.12</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>43-03-500033</codigoPrincipal>
+      <descripcion>SERVICIO PRINCIPAL - Nuevo Basico</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>18.49</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>18.49</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="Rubro" valor="01/06/2017|23.81"/>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>3</codigo>
+          <codigoPorcentaje>3092</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>18.49</baseImponible>
+          <valor>2.77</valor>
+        </impuesto>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>2</codigoPorcentaje>
+          <tarifa>12.00</tarifa>
+          <baseImponible>21.26</baseImponible>
+          <valor>2.55</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="MarketInfo">062017DEFAULT_MK01|062017DEFAULT_PUB01</campoAdicional>
+    <campoAdicional nombre="LinkInfo">http://www.grupotvcable.com/triplepack-quito/|http://www.eltrecetv.com.ar/tags/bailando-2017</campoAdicional>
+    <campoAdicional nombre="Mensajes">vacio|vacio|vacio</campoAdicional>
+    <campoAdicional nombre="CorreoInfo">22 de ABRIL 2017 al 22 de MAYO 2017;01 de JUNIO 2017;05 de JUNIO 2017</campoAdicional>
+    <campoAdicional nombre="EstCuenta">0.00|0.00|24.93|22 ABR 2017|22 MAY 2017|01 JUN 2017|05 JUN 2017</campoAdicional>
+    <campoAdicional nombre="CodigoInterno">83701441</campoAdicional>
+    <campoAdicional nombre="Contrato">961251</campoAdicional>
+    <campoAdicional nombre="Cuenta">27415184</campoAdicional>
+    <campoAdicional nombre="FormatoPriori">OTR|MAS|SI</campoAdicional>
+    <campoAdicional nombre="DatosExternos">OTR|Descuentos solo aplican IVA</campoAdicional>
+    <campoAdicional nombre="ordenCompra">0</campoAdicional>
+    <campoAdicional nombre="Correo">miguelo42@hotmail.com</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature217291">
+<ds:SignedInfo Id="Signature-SignedInfo924931">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID864841" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature217291-SignedProperties380391">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>qvWjl6+CxhFzOKwH7C8A6vJTjzQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate11009214">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>0GXxwe3G2k0+B/NDF7QIOuuRBoQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-641630" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>HfYcl+Vam/0942vesCQ7Hko6Dnk=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue40362">
+N/pg9G3gD8nczRuIIaSQa4sp0nGUelDjlAcVUv3TL2FsS4NUlK1coXP1FF4G22gUB9CR6U3MCE/z
+sH4sb2xgbr90WPto7R1y8k0np16BVLybOBpM2+QKOf29ak9GIUI5MHPR5reE4W1VbL9mbaUUEYKx
+U8XQA/7+/onOUQKrdMEoDvZOmrAcp2qaK9YzZFJK1y7lkBKazXe6P+MqDzo2JWeVvMJm5QphZDVz
+zqGnf94/7nrYQPwNZVEfYsm7Cd5uaN2vyGXZTt0uO1iz4eo5hGqZzC4clVzQEldZQSscaJXIv+rZ
+0zcRRblgT/c/2w/Kpjfr8W/pinM1tL9gOZR9QQ==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate11009214">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJtDCCCJygAwIBAgIEVM4DdjANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMCRUMxGzAZBgNV
+BAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4GA1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9O
+IERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIg
+U0VDVVJJVFkgREFUQTAeFw0xNjAxMDQyMTUzMTlaFw0xODAxMDQyMjIzMTlaMH4xCzAJBgNVBAYT
+AkVDMRswGQYDVQQKExJTRUNVUklUWSBEQVRBIFMuQS4xMDAuBgNVBAsTJ0VOVElEQUQgREUgQ0VS
+VElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTjEgMB4GA1UEAxMXRGllZ28gQS4gQnVpdHJvbiBHdWRp
+bm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC9nHD2ABhRyRDwkL0V5cceN7fQ8aPm
+xBioWsDpkqsF3jpq3rE1hgIWV5V4eamHBAIgO2npHB70EYM5tFlO2Zr49LNaxpDivru6i+0GMNsQ
+nbO5ErRQegRVgTXFanTKau55W/QuSoN15boaGQk63nzuffXlByZfNwT6d2JCqn/XGfsvxjy9uKmg
+S0B3CrUu0oodFdZkwEzdMiFbTVdMSzCALAHbPRyi16j8yzegw8RKnguhkMbnJ6VEwJhBY62FHIcm
+K1ckWo7efOnetwQzfT1fJ0B6fj9+x+owkXv2iak9mPOUkviG4LsafwyY2Ja/04ZgxApuK797RVGy
+iOXF4V4LAgMBAAGjggYiMIIGHjALBgNVHQ8EBAMCBeAwWQYIKwYBBQUHAQEETTBLMEkGCCsGAQUF
+BzABhj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3N0
+YXR1cy9vY3NwMIHKBgNVHSAEgcIwgb8wPwYKKwYBBAGCpnICCjAxMC8GCCsGAQUFBwICMCMaIUNl
+cnRpZmljYWRvIGRlIE1pZW1icm8gZGUgRW1wcmVzYTB8BgorBgEEAYKmcgIEMG4wbAYIKwYBBQUH
+AgEWYGh0dHBzOi8vd3d3LnNlY3VyaXR5ZGF0YS5uZXQuZWMvbGV5ZXNfbm9ybWF0aXZhcy9Qb2xp
+dGljYXMgZGUgQ2VydGlmaWNhZG8gTWllbWJybyBkZSBFbXByZXNhLnBkZjA6BgorBgEEAYKmcgMK
+BCwTKlNFUlZJQ0lPUyBERSBURUxFQ09NVU5JQ0FDSU9ORVMgU0VURUwgUy5BLjAdBgorBgEEAYKm
+cgMLBA8TDTE3OTE4NDc2NTIwMDEwGgYKKwYBBAGCpnIDAQQMEwoxMDAyMjU2NTMzMBwGCisGAQQB
+gqZyAwIEDhMMRGllZ28gQW5kcmVzMBcGCisGAQQBgqZyAwMECRMHQnVpdHJvbjAWBgorBgEEAYKm
+cgMEBAgTBkd1ZGlubzAjBgorBgEEAYKmcgMFBBUTE0plZmUgZGUgRmFjdHVyYWNpb24wNgYKKwYB
+BAGCpnIDBwQoEyZBdi4gRWxveSBBbGZhcm8gTjQ0LTQwNiB5IExhcyBIaWd1ZXJhczAWBgorBgEE
+AYKmcgMiBAgTBjE3MDEyMjAdBgorBgEEAYKmcgMIBA8TDTU5My0yLTYwMDI0MDAwFQYKKwYBBAGC
+pnIDCQQHEwVRdWl0bzAXBgorBgEEAYKmcgMMBAkTB0VjdWFkb3IwFAYKKwYBBAGCpnIDIAQGEwQw
+MDItMBMGCisGAQQBgqZyAyEEBRMDUEZYMCIGA1UdEQQbMBmBF2RidWl0cm9uQHR2Y2FibGUuY29t
+LmVjMIICeQYDVR0fBIICcDCCAmwwggJooIICZKCCAmCGPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlk
+YXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVzL29jc3CGgdRsZGFwOi8vZGlyZWN0LnNl
+Y3VyaXR5ZGF0YS5uZXQuZWMvY249Q1JMODEsY249QVVUT1JJREFEJTIwREUlMjBDRVJUSUZJQ0FD
+SU9OJTIwU1VCJTIwU0VDVVJJVFklMjBEQVRBLG91PUVOVElEQUQlMjBERSUyMENFUlRJRklDQUNJ
+T04lMjBERSUyMElORk9STUFDSU9OLG89U0VDVVJJVFklMjBEQVRBJTIwUy5BLixjPUVDP2NlcnRp
+ZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZYaBnmh0dHBzOi8vZGlyZWN0LnNlY3VyaXR5ZGF0YS5u
+ZXQuZWMvfmNybC9hdXRvcmlkYWRfZGVfY2VydGlmaWNhY2lvbl9zdWJfc2VjdXJpdHlfZGF0YV9l
+bnRpZGFkX2RlX2NlcnRpZmljYWNpb25fZGVfaW5mb3JtYWNpb25fY3VyaXR5X2RhdGFfcy5hLl9j
+X2VjX2NybGZpbGUuY3JspIGmMIGjMQswCQYDVQQGEwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFU
+QSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04x
+NTAzBgNVBAMTLEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNVQiBTRUNVUklUWSBEQVRBMQ4w
+DAYDVQQDEwVDUkw4MTArBgNVHRAEJDAigA8yMDE2MDEwNDIxNTMxOVqBDzIwMTgwMTA0MjIyMzE5
+WjAfBgNVHSMEGDAWgBT3L0zgdedio3iWWwa2LnE7zGw/kDAdBgNVHQ4EFgQUUHP7EidZxf9xltwv
+v/wKzmU+GXEwCQYDVR0TBAIwADAZBgkqhkiG9n0HQQAEDDAKGwRWOC4xAwIDqDANBgkqhkiG9w0B
+AQsFAAOCAQEADI87pCWyK1wwlItNuTZAZoDSnb/qeijOy5/KEWloPVOXRUhq+ZxrX2kiUmvK1gbU
+Wz9KKcKMEwbDyT/ZCY6KzY/B56mJcHptAUrBJgua96qTK2IrdxwgC7LImWCI46Yb3Iw0p05pVvES
+XxPA93ZMzVIQRxmI+6pzZxLf00s0+Vpdbx4c52gzgNgdcTqzT2C4n6gY6NNdsd2cZOoty9dipDXV
+kYS+eR7lPFsmtq4SJs3CIn+TgRUViWy1GFz50SKbfJ3hRKzIMym2cUMklewrbidhke42JH1znzbS
+CVCqUgP/4RiN5x6x+kvFAJO1yBljNPknViFsI58EioOHY524Xg==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+vZxw9gAYUckQ8JC9FeXHHje30PGj5sQYqFrA6ZKrBd46at6xNYYCFleVeHmphwQCIDtp6Rwe9BGD
+ObRZTtma+PSzWsaQ4r67uovtBjDbEJ2zuRK0UHoEVYE1xWp0ymrueVv0LkqDdeW6GhkJOt587n31
+5QcmXzcE+ndiQqp/1xn7L8Y8vbipoEtAdwq1LtKKHRXWZMBM3TIhW01XTEswgCwB2z0coteo/Ms3
+oMPESp4LoZDG5yelRMCYQWOthRyHJitXJFqO3nzp3rcEM309XydAen4/fsfqMJF79ompPZjzlJL4
+huC7Gn8MmNiWv9OGYMQKbiu/e0VRsojlxeFeCw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature217291-Object379942"><etsi:QualifyingProperties Target="#Signature217291"><etsi:SignedProperties Id="Signature217291-SignedProperties380391"><etsi:SignedSignatureProperties><etsi:SigningTime>2017-05-31T07:47:40-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>EZBcw/6HKZkIUl1hwWbjS1Uh9/Y=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUB SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1422787446</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-641630"><etsi:Description>comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante></autorizacion>

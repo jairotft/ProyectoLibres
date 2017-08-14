@@ -179,7 +179,7 @@ public class CargaXml {
                     break;
                    
                 case "interfazPersonal":
-                    SeleccionarTipoGastoPersonal sP = new SeleccionarTipoGastoPersonal(infoEncabezado, infoTributaria,infoFactura, infoDetalles);
+                    SeleccionarTipoGastoPersonal sP = new SeleccionarTipoGastoPersonal(cp,infoEncabezado, infoTributaria,infoFactura, infoDetalles);
                     sP.setVisible(true);
                 
                     break;

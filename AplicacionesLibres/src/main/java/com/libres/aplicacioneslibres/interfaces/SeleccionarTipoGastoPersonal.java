@@ -5,6 +5,7 @@
  */
 package com.libres.aplicacioneslibres.interfaces;
 
+
 import com.libres.aplicacioneslibres.conexionbdd.Conexion;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -30,134 +31,166 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     final JComboBox comboBox;
     JTable tablaProductos;
     String tipoEstado[];
-    Object[][] datosProducto;// Descripcion, precioSinIva, Familia
+
     String evtTipo = "";
     int filaTipo = -1;
-
-    Conexion conTipo;//Declarar una nueva conexión
-    //ATRIBUTOS QUE VAN HA SER INGRESADOS EN LA BASE DA DATOS!!!
-    String numFac;
+    
+    Object[][] tipos;
+    
+    Conexion conTipo;
+    
+    //Tabla Establecimiento----
+    String ID_ESTABLECIMIENTO;
+    String NOMBRE_ESTABLECIMIENTO;
+    String TIPO_GASTO_ESTABLECIMIENTO;
+    String DIRECCION_ESTABLECIMIENTO;
+    String TELEFONO_ESTABLECIMIENTO;
+    
+    //tabla Factura------------- 
+    String ID_FACTURA;
+    String ID_CLIENTE;
+    //String ID_ESTABLECIMIENTO;
+    String TIPO_FACTURA;
+    String FECHA_EMISION;
+    String ESTADO_FACTURA;
+    String AMBIENTE_FACTURA;
+    Double TOTAL_SIN_IVA;
+    Double IVA;
+    Double TOTAL_CON_IVA;
+    
+    //Tabla DETALLE---------------
+    //String ID_FACTURA
+    //String ID_PRODUCTO
+    int CANTIDAD;
+    Double TOTAL;
+    
+    //Tabla  PRODUCTO
+    String ID_PRODUCTO;
+    String NAME_PRODUCTO;
+    String FAMILIA;
+    Double PRECIO_UNITARIO;
+    
+    
     int anio;
-    String cedula;
-    //Información de la factura XML
-    HashMap<String,String> infoEncabezado;
-    HashMap<String,String> infoTributaria;
-    HashMap<String,String> infoFactura;
-    //informacion de la lista de productos 
-    //guardar cada detalle( o info de Producto) en la lista infoDetalles
-    ArrayList<HashMap> infoDetalles;
+    
 
     /**
      * Creates new form SeleccionarTipoGasto
      *
-     * @param infoEncabezado     
-     * @param infoTributaria     
-     * @param infoFactura     
+     * @param conn
+     * @param infoEncabezado
+     * @param infoTributaria
+     * @param infoFactura
      * @param infoDetalles
      */
-    public SeleccionarTipoGastoPersonal(HashMap<String,String> infoEncabezado, HashMap<String,String> infoTributaria,HashMap<String,String> infoFactura,ArrayList<HashMap> infoDetalles) {
+    public SeleccionarTipoGastoPersonal(Conexion conn,HashMap<String,String> infoEncabezado,HashMap<String,String> infoTributaria,HashMap<String,String> infoFactura,ArrayList<HashMap> infoDetalles) {
         initComponents();
         
-        this.conTipo = new Conexion();//Iniciar conexion con base de datos!!
-        this.infoEncabezado=infoEncabezado;
-        this.infoTributaria=infoTributaria;
-        this.infoFactura=infoFactura;
-        this.infoDetalles=infoDetalles;
-        //Conexion conn, Object[][] tipos, String numFactura, int anio, String cedula, String tipo
-        //el arreglo tipos tiene 3 columnas Descripcion o NombreProducto, precioSiniva, Familia o tipo de Gasto
+        this.conTipo = conn;
         
-        int numeroProductos =this.infoDetalles.size();
-        this.datosProducto =new Object[numeroProductos][6];
+        ID_ESTABLECIMIENTO=infoTributaria.get("ruc");
+        NOMBRE_ESTABLECIMIENTO=infoTributaria.get("razonSocial");
+        TIPO_GASTO_ESTABLECIMIENTO="";
+        DIRECCION_ESTABLECIMIENTO=infoTributaria.get("dirMatriz");
+        TELEFONO_ESTABLECIMIENTO="";
+    
+        //Tabla Factura
+        ID_FACTURA = infoTributaria.get("estab")+"-"+infoTributaria.get("ptoEmi")+"-"+infoTributaria.get("secuencial");
+        ID_CLIENTE = infoFactura.get("identificacionComprador");
+        //String ID_ESTABLECIMIENTO;
+        TIPO_FACTURA = "Personal";
+        FECHA_EMISION = infoFactura.get("fechaEmision");
+        ESTADO_FACTURA = infoEncabezado.get("estado");
+        AMBIENTE_FACTURA = infoEncabezado.get("ambiente");
+        TOTAL_SIN_IVA =Double.parseDouble( infoFactura.get("totalSinImpuestos") );
+        IVA = Double.parseDouble(infoFactura.get("valor") );
+        TOTAL_CON_IVA = Double.parseDouble(infoFactura.get("importeTotal") );
+        
+        this.anio = Integer.parseInt(infoFactura.get("fechaEmision").substring(0, 4));
+
+        
+        int numeroProductos =infoDetalles.size();
+        tipos=new Object[numeroProductos][6];
         
         //Extraer detalle de los productos y los guarda en la matriz Object [][] detalleProducto
         for (int i =0; i<numeroProductos;i++){
-                this.datosProducto[i][0]=this.infoDetalles.get(i).get("descripcion");
-                this.datosProducto[i][1]=Double.parseDouble((String) this.infoDetalles.get(i).get("precioTotalSinImpuesto"));
-                this.datosProducto[i][2]=this.conTipo.consultarProductoPor(this.infoDetalles.get(i).get("codigoPrincipal").toString());//Familia o tipo de Gasto
-                this.datosProducto[i][3]=this.infoDetalles.get(i).get("codigoPrincipal");
-                this.datosProducto[i][4]=this.infoDetalles.get(i).get("cantidad");
-                this.datosProducto[i][5]=this.infoDetalles.get(i).get("precioUnitario");
+            tipos[i][0]=infoDetalles.get(i).get("descripcion").toString();
+            tipos[i][1]=Double.parseDouble( infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
+            tipos[i][2]=conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString() );//Familia o TIPO_FACTURA de Gasto
+            tipos[i][3]=infoDetalles.get(i).get("codigoPrincipal").toString();
+            tipos[i][4]=(int)Double.parseDouble( infoDetalles.get(i).get("cantidad").toString() );
+            tipos[i][5]=Double.parseDouble( infoDetalles.get(i).get("precioUnitario").toString() );
         }
-     
-        //this.conTipo = conn;
-        this.numFac = this.infoTributaria.get("estab")+"-"+this.infoTributaria.get("ptoEmi")+"-"+this.infoTributaria.get("secuencial");
-        this.anio = Integer.parseInt( infoFactura.get("fechaEmision").substring(0, 4) ); //los 4 caracteres son el numero
-        this.cedula = infoFactura.get("identificacionComprador");
-        
+                
         String nombreCabeceras[] = {"Descripcion", "Precio Total", "Tipo de Gasto"};
 
-        
-        tipoEstado = new String[this.datosProducto.length];
-        for (int i = 0; i < this.datosProducto.length; i++) {
+        tipoEstado = new String[tipos.length];
+        for (int i = 0; i < tipos.length; i++) {
             tipoEstado[i] = "";
         }
-        
-        //ingresa cada detalle en la tablaProductos
-        tablaProductos = new JTable(this.datosProducto, nombreCabeceras) {
+
+        tablaProductos = new JTable(tipos, nombreCabeceras) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return column == 2;
             }
         };
-        
         jScrollPane1.setViewportView(tablaProductos);
-        
+
         comboBox = new JComboBox();
+        comboBox.addItem("");
+
         comboBox.addItem("Vivienda");
         comboBox.addItem("Salud");
         comboBox.addItem("Educacion");
         comboBox.addItem("Alimentacion");
         comboBox.addItem("Vestimenta");
         comboBox.addItem("Otro");
-//
-//        //Cargar autocalificacion con los combobox
-//        //extraigo la tabla del objeto donde  ocurrio el evento
-//        for (int row=0;row<tablaProductos.getRowCount();row++){
-//            for (int column=0;column<tablaProductos.getColumnCount();column++){
-//                
-//                TableModel model = tablaProductos.getModel();
-//                Object data = model.getValueAt(row, column);
-//                if (!data.equals("") && column == 2) {
-//                    //int opc = comboBox.getSelectedIndex();
-//                    //System.out.println(row);
-//
-//                    if (data.equals("Vivienda")) {
-//                        sumarAgregado(txtVivienda, row, "Vivienda");
-//                    }
-//                    if (data.equals("Salud")) {
-//                        sumarAgregado(txtSalud, row, "Salud");
-//                    }
-//                    if (data.equals("Educacion")) {
-//                        sumarAgregado(txtEducacion, row, "Educacion");
-//                    }
-//                    if (data.equals("Alimentacion")) {
-//                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
-//                    }
-//                    if (data.equals("Vestimenta")) {
-//                        sumarAgregado(txtVestimenta, row, "Vestimenta");
-//                    }
-//                    if (data.equals("Otro")) {
-//                        sumarAgregado(txtOtro, row, "Otro");
-//                    }
-//                }
-//            
-//            }
-//        }
-//        
-        //Evento que suma o resta automáticamente seleccionar la Familia(Vivienda,alimentacion ...)
+
+        
+        //Cargar autocalificacion con los combobox
+        //extraigo la tabla del objeto donde  ocurrio el evento
+        for (int row=0;row<tablaProductos.getRowCount();row++){
+            for (int column=0;column<tablaProductos.getColumnCount();column++){
+                
+                TableModel model = tablaProductos.getModel();
+                Object data = model.getValueAt(row, column);
+                if (!data.equals("") && column == 2) {
+                    //int opc = comboBox.getSelectedIndex();
+                    //System.out.println(row);
+
+                    if (data.equals("Vivienda")) {
+                        sumarAgregado(txtVivienda, row, "Vivienda");
+                    }
+                    if (data.equals("Salud")) {
+                        sumarAgregado(txtSalud, row, "Salud");
+                    }
+                    if (data.equals("Educacion")) {
+                        sumarAgregado(txtEducacion, row, "Educacion");
+                    }
+                    if (data.equals("Alimentacion")) {
+                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
+                    }
+                    if (data.equals("Vestimenta")) {
+                        sumarAgregado(txtVestimenta, row, "Vestimenta");
+                    }
+                    if (data.equals("Otro")) {
+                        sumarAgregado(txtOtro, row, "Otro");
+                    }
+                }
+            
+            }
+        
+        
         tablaProductos.getModel().addTableModelListener(new TableModelListener() {
             @Override
-            //Cuando se cambia un campo de la tabla
             public void tableChanged(TableModelEvent tme) {
-                int row = tme.getFirstRow();//fila a la que pertenece el campo
-                int column = tme.getColumn();//columna del campo
+                int row = tme.getFirstRow();
+                int column = tme.getColumn();
 
-                //extraigo la tabla del objeto donde  ocurrio el evento
                 TableModel model = (TableModel) tme.getSource();
-                //creo un objeto para extraerla fila y columna del campo
                 Object data = model.getValueAt(row, column);
 
-                
                 if (!data.equals("") && column == 2) {
                     //int opc = comboBox.getSelectedIndex();
                     //System.out.println(row);
@@ -185,38 +218,33 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
                     if (data.equals("Vivienda")) {
                         sumarAgregado(txtVivienda, row, "Vivienda");
-                        datosProducto[row][column]="Vivienda";
                     }
                     if (data.equals("Salud")) {
                         sumarAgregado(txtSalud, row, "Salud");
-                        datosProducto[row][column]="Salud";
                     }
                     if (data.equals("Educacion")) {
                         sumarAgregado(txtEducacion, row, "Educacion");
-                        datosProducto[row][column]="Educacion";
                     }
                     if (data.equals("Alimentacion")) {
                         sumarAgregado(txtAlimentacion, row, "Alimentacion");
-                        datosProducto[row][column]="Alimentacion";
                     }
                     if (data.equals("Vestimenta")) {
                         sumarAgregado(txtVestimenta, row, "Vestimenta");
-                        datosProducto[row][column]="Vestimenta";
                     }
                     if (data.equals("Otro")) {
                         sumarAgregado(txtOtro, row, "Otro");
-                        datosProducto[row][column]="Otro";
                     }
                 }
 
             }
         });
 
-        //Alinear la tabla nada mas!!! :D
         DefaultTableCellRenderer alinearDerecha = new DefaultTableCellRenderer();
         alinearDerecha.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
         tablaProductos.getColumnModel().getColumn(1).setCellRenderer(alinearDerecha);
+
         tablaProductos.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(comboBox));
+
         tablaProductos.getColumnModel().getColumn(1).setMinWidth(100);
         tablaProductos.getColumnModel().getColumn(1).setMaxWidth(100);
         tablaProductos.getColumnModel().getColumn(2).setMinWidth(150);
@@ -225,6 +253,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         setLocationRelativeTo(getParent());
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
     }
 
     /**
@@ -381,21 +410,11 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        //Registrar el Historial de Tipo de Gastos en nuestro DBB
-        registrarHistorialTipoGastos();
-            //Ingresar los datosProducto
-           
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private boolean registrarHistorialTipoGastos(){
-        
-        int filasTotales = this.tablaProductos.getRowCount();
+        int filasTotales = tablaProductos.getRowCount();
         boolean validado = true;
-        //Verifica que todas las filas y productos tengan su respectiva familia o TipoDeGasto
+
         for (int i = 0; i < filasTotales; i++) {
-            if (this.tablaProductos.getValueAt(i, 2).equals("")) {
+            if (tablaProductos.getValueAt(i, 2).equals("")) {
                 validado = false;
                 break;
             }
@@ -406,166 +425,114 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
             double totales[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
-            if (!txtAlimentacion.getText().equals("0.0")) {
-                totales[0] = ingresarTipoGasto(txtAlimentacion, lblAlimentacion);
-            } 
-            if (!txtSalud.getText().equals("0.0")) {
-                totales[1] = ingresarTipoGasto(txtSalud, lblSalud);
-            }
-            
             if (!txtVivienda.getText().equals("0.0")) {
-                totales[2] = ingresarTipoGasto(txtVivienda, lblVivienda);
+                totales[0] = ingresarTipo(txtVivienda, lblVivienda);
             }
-           
+            if (!txtSalud.getText().equals("0.0")) {
+                totales[1] = ingresarTipo(txtSalud, lblSalud);
+            }
             if (!txtEducacion.getText().equals("0.0")) {
-                totales[3] = ingresarTipoGasto(txtEducacion, lblEducacion);
+                totales[2] = ingresarTipo(txtEducacion, lblEducacion);
             }
-           
+            if (!txtAlimentacion.getText().equals("0.0")) {
+                totales[3] = ingresarTipo(txtAlimentacion, lblAlimentacion);
+            }
             if (!txtVestimenta.getText().equals("0.0")) {
-                totales[4] = ingresarTipoGasto(txtVestimenta, lblVestimenta);
+                totales[4] = ingresarTipo(txtVestimenta, lblVestimenta);
             }
             if (!txtOtro.getText().equals("0.0")) {
-                totales[5] = ingresarTipoGasto(txtOtro, lblOtro);
+                totales[5] = ingresarTipo(txtOtro, lblOtro);
             }
 
-            if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + this.anio + " AND id_cliente='" + this.cedula + "'")) {
-                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[0] + ","
+            if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + anio + " AND id_cliente='" + ID_CLIENTE + "'")) {
+                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + ","
                         + "total_salud=total_salud+" + totales[1] + ","
-                        + "total_vivienda=total_vivienda+" + totales[2] + ","
-                        + "total_educacion=total_educacion+" + totales[3] + ","
+                        + "total_vivienda=total_vivienda+" + totales[0] + ","
+                        + "total_educacion=total_educacion+" + totales[2] + ","
                         + "total_vestimenta=total_vestimenta+" + totales[4] + ","
-                        + "total_otros=total_otros+" + totales[5] + " WHERE anio_historial_p=" + this.anio + " AND id_cliente='" + this.cedula + "'";
+                        + "total_otros=total_otros+" + totales[5] + " WHERE anio_historial_p=" + anio + " AND id_cliente='" + ID_CLIENTE + "'";
             } else {
-                query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + this.anio + ",'" + this.cedula + "'," + totales[0] + "," + totales[1] + "," + totales[2] + "," + totales[3] + "," + totales[4] + "," + totales[5] + ")";
+                query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + ID_CLIENTE + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
-            
-            //JOptionPane.showMessageDialog(null, query);
 
             conTipo.insertar(query);
-            //Registrar el Historial de Tipo de Gastos en nuestro DBB
-            //Ingresar los datosFactura
-                registrarFactura();
-             
+            registrarFactura();//ingresar Establecimiento,Factura,Producto y Detalle
             JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
             recargar(conTipo);
-            this.dispose();//Oculta el Frame o la ventana SeleccionarTipoGasto
-            
+            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado el tipo de gasto para cada producto");
-            validado=false;
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado el tipo para cada producto");
         }
-        return validado;
-    }
-    //Registrar Nuevo Producto
-    @SuppressWarnings("UnusedAssignment")
-    private void registrarFactura(){
-        //Tabla ESTABLECIMIENTO ===============================
-        String ID_ESTABLECIMIENTO="";
-        String NOMBRE_ESTABLECIMIENTO, TIPO_GASTO_ESTABLECIMIENTO, DIRECCION_ESTABLECIMIENTO, TELEFONO_ESTABLECIMIENTO;
-        ID_ESTABLECIMIENTO= infoTributaria.get("ruc");
-        NOMBRE_ESTABLECIMIENTO = infoTributaria.get("razonSocial");
-        TIPO_GASTO_ESTABLECIMIENTO="";
-        DIRECCION_ESTABLECIMIENTO=infoTributaria.get("dirMatriz");//Los ultimos 10 digitos son el telefono en algunas facturas
-        TELEFONO_ESTABLECIMIENTO=infoTributaria.get("dirMatriz").substring(infoTributaria.get("dirMatriz").length()-10);
-        
-        String sqlEstablecimiento="INSERT INTO ESTABLECIMIENTO VALUES('"+ID_ESTABLECIMIENTO+
-                "', '"+NOMBRE_ESTABLECIMIENTO+"', '"+TIPO_GASTO_ESTABLECIMIENTO+
-                "', '"+DIRECCION_ESTABLECIMIENTO+"', '"+TELEFONO_ESTABLECIMIENTO+"')";
-        
-        String sqlEstablecimientoUpdate="UPDATE ESTABLECIMIENTO SET "
-                + "TIPO_GASTO_ESTABLECIMIENTO='"+TIPO_GASTO_ESTABLECIMIENTO+"' WHERE ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        /// Insertar datos en Tabla Establecimiento------------
-        if( conTipo.consultarEstablecimientoPor(ID_ESTABLECIMIENTO).equals("") ){
-            //JOptionPane.showMessageDialog(null, sqlEstablecimiento);
-            conTipo.insertar(sqlEstablecimiento);
-        }else{//si devuelve un numero ya existe, solo actualizamos su tipo_gasto_establecimiento
-            //JOptionPane.showMessageDialog(null, sqlEstablecimientoUpdate);
-            conTipo.insertar(sqlEstablecimientoUpdate);
+    public void registrarFactura(){
+        
+        //Insertar Establecimiento
+        if (this.conTipo.consultarEstablecimientoPor(ID_ESTABLECIMIENTO).equals("")){
+            String sql = "INSERT INTO ESTABLECIMIENTO VALUES ('"+ID_ESTABLECIMIENTO+
+                    "', '"+NOMBRE_ESTABLECIMIENTO+"', '"+TIPO_GASTO_ESTABLECIMIENTO+
+                    "', '"+DIRECCION_ESTABLECIMIENTO+"', '"+TELEFONO_ESTABLECIMIENTO+"')";
+            this.conTipo.insertar(sql);
+        }
+        //Insertar Factura
+        if (this.conTipo.verificar_factura(ID_FACTURA)==false){
+            String sql = "INSERT INTO FACTURA VALUES('"+ID_FACTURA+"', '"+ID_CLIENTE+
+                    "', '"+ID_ESTABLECIMIENTO+"', '"+TIPO_FACTURA+"', '"+FECHA_EMISION+
+                    "', '"+ESTADO_FACTURA+"', '"+AMBIENTE_FACTURA+"', "+TOTAL_SIN_IVA+
+                    ", "+IVA+", "+TOTAL_CON_IVA+")";
+            this.conTipo.insertar(sql);
         }
         
+        //Insertar Productos y Detalles
+        int numeroProductos =tipos.length;
         
-        //Tabla Factura===============================
-        String ID_FACTURA="", ID_CLIENTE="";
-        //String ID_ESTABLECIMIENTO ya definido para tabla Establecimiento
-        String TIPO_FACTURA="";
-        String FECHA_EMISION="", ESTADO_FACTURA="", AMBIENTE_FACTURA="";
-        double TOTAL_SIN_IVA=0.0, IVA=0.0, TOTAL_CON_IVA=0.0;
-        
-        ID_FACTURA=this.numFac;
-        ID_CLIENTE=this.cedula;
-        ID_ESTABLECIMIENTO=this.infoTributaria.get("ruc");
-        TIPO_FACTURA="Personal";
-        FECHA_EMISION=this.infoFactura.get("fechaEmision");
-        ESTADO_FACTURA=this.infoEncabezado.get("estado");
-        AMBIENTE_FACTURA=this.infoEncabezado.get("ambiente");
-        TOTAL_SIN_IVA=Double.parseDouble( this.infoFactura.get("totalSinImpuestos") );
-        IVA=Double.parseDouble( this.infoFactura.get("valor") );//totalConImpuestos
-        TOTAL_CON_IVA=Double.parseDouble( this.infoFactura.get("importeTotal") );
-        
-        String sqlFactura="INSERT INTO FACTURA VALUES('"+ID_FACTURA+
-                "', '"+ID_CLIENTE+"', '"+ID_ESTABLECIMIENTO+"', '"+TIPO_FACTURA+
-                "', '"+FECHA_EMISION+"', '"+ESTADO_FACTURA+"', '"+AMBIENTE_FACTURA+
-                "', "+TOTAL_SIN_IVA+", "+IVA+", "+TOTAL_CON_IVA+")";
-        
-        /// Insertar datos en Tabla Factura------------
-        //JOptionPane.showMessageDialog(null, sqlFactura);
-        conTipo.insertar(sqlFactura);
-        
-        //Tabla Producto y Detalle=========================================
-        String ID_PRODUCTO="", NAME_PRODUCTO="", FAMILIA="";
-        double PRECIO_UNITARIO=0.0;
-       
-        //Tabla Detalle
-        int ID_DETALLE=0;
-        //ID_FACTURA
-        //ID_PRODUCTO
-        int CANTIDAD=0;
-        double TOTAL=0.0;
-        
-        
-        for (Object[] producto : this.datosProducto) {
+        //Extraer detalle de los productos y los guarda en la matriz Object [][] detalleProducto
+        for (int i =0; i<numeroProductos;i++){
+//            tipos[i][0]=infoDetalles.get(i).get("descripcion").toString();
+//            tipos[i][1]=Double.parseDouble( infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
+//            tipos[i][2]=conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString() );//Familia o TIPO_FACTURA de Gasto
+//            tipos[i][3]=infoDetalles.get(i).get("codigoPrincipal").toString();
+//            tipos[i][4]=(int)Double.parseDouble( infoDetalles.get(i).get("cantidad").toString() );
+//            tipos[i][5]=Double.parseDouble( infoDetalles.get(i).get("precioUnitario").toString() );
+            //Tabla DETALLE---------------
+            //ID_FACTURA
+            ID_PRODUCTO =  tipos[i][3].toString();
+            CANTIDAD = (int)tipos[i][4];
+            TOTAL =(double)tipos[i][1];
+            String sqlDetalle = "INSERT INTO DETALLE VALUES('"+ID_FACTURA+"', '"+ID_PRODUCTO+"', "+CANTIDAD+", "+TOTAL+")";
             
-            NAME_PRODUCTO = producto[0].toString(); //this.infoDetalles.get(i).get("descripcion");
-            TOTAL = Double.parseDouble(producto[1].toString()); //Double.parseDouble((String) this.infoDetalles.get(i).get("precioTotalSinImpuesto"));
-            FAMILIA = producto[2].toString(); //Familia o tipo de Gasto
-            ID_PRODUCTO = producto[3].toString(); //=this.infoDetalles.get(i).get("codigoPrincipal");
-            CANTIDAD = Integer.parseInt(producto[4].toString()); //this.infoDetalles.get(i).get("cantidad");
-            PRECIO_UNITARIO = Double.parseDouble(producto[5].toString()); //this.infoDetalles.get(i).get("precioUnitario");
+            //Tabla  PRODUCTO
+            //ID_PRODUCTO
+            NAME_PRODUCTO = tipos[i][0].toString();
+            FAMILIA = tipos[i][2].toString();
+            PRECIO_UNITARIO = (double) tipos[i][5];
             
-             String sqlProducto="INSERT INTO PRODUCTO VALUES('"+ID_PRODUCTO+"', '"+NAME_PRODUCTO+"', '"+FAMILIA+"', "+PRECIO_UNITARIO+")";
-            String sqlProductoUpdate="update Producto set familia='"+FAMILIA+"' where id_producto='"+ID_PRODUCTO+"'";
-        
+            String sqlProducto = "INSERT INTO PRODUCTO VALUES('"+ID_PRODUCTO+"', '"+NAME_PRODUCTO+"', '"+FAMILIA+"', "+PRECIO_UNITARIO+")";
+            String sqlProductoUpdate = "UPDATE PRODUCTO SET NAME_PRODUCTO='"+
+                    NAME_PRODUCTO+"', FAMILIA='"+FAMILIA+"', PRECIO_UNITARIO="+PRECIO_UNITARIO+" WHERE ID_PRODUCTO='"+ID_PRODUCTO+"'";
             
-            //Si ya existe el producto solamene actualizar Familia---------
-            if (conTipo.consultarProductoPor( ID_PRODUCTO).equals(FAMILIA)){
-                //JOptionPane.showMessageDialog(null, sqlProductoUpdate);
-                conTipo.insertar(sqlProductoUpdate);
-            }else{//Si no existe familia o producto
-                //JOptionPane.showMessageDialog(null, sqlProducto);
-                conTipo.insertar(sqlProducto);
+            if(this.conTipo.consultarProductoPor(ID_PRODUCTO).equals("")){
+                this.conTipo.insertar(sqlProducto);
+            }else{
+                this.conTipo.insertar(sqlProductoUpdate);//el insert ejecuta cualquier operacion INSERT UPDATE DELETE!!
             }
-            //Insertar en tabla Detalle 
-            
-            String sqlDetalle="INSERT INTO DETALLE VALUES('"+ID_FACTURA+"', '"+ID_PRODUCTO+"', "+CANTIDAD+", "+TOTAL+")";
-            
-            JOptionPane.showMessageDialog(null, sqlDetalle);
-            conTipo.insertar(sqlDetalle);
+            this.conTipo.insertar(sqlDetalle);
         }
-                               
         
     }
-    
+            
+            
+            
     private void recargar(Conexion conn) {
          ArrayList auxRec = new ArrayList();
-        FacturaManualPersonal.combo_Establecimientos.removeAllItems();
-        FacturaManualNegocio.combo_Establecimientos.removeAllItems();
-        FacturaManualPersonal.combo_Establecimientos.addItem("");
-        FacturaManualNegocio.combo_Establecimientos.addItem("");
+        com.libres.aplicacioneslibres.interfaces.FacturaManualPersonal.combo_Establecimientos.removeAllItems();
+        com.libres.aplicacioneslibres.interfaces.FacturaManualNegocio.combo_Establecimientos.removeAllItems();
+        com.libres.aplicacioneslibres.interfaces.FacturaManualPersonal.combo_Establecimientos.addItem("");
+        com.libres.aplicacioneslibres.interfaces.FacturaManualNegocio.combo_Establecimientos.addItem("");
         auxRec = conn.cargarEstablecimiento();
         for (Object est : auxRec) {            
-            FacturaManualPersonal.combo_Establecimientos.addItem(est.toString());
-            FacturaManualNegocio.combo_Establecimientos.addItem(est.toString());
+            com.libres.aplicacioneslibres.interfaces.FacturaManualPersonal.combo_Establecimientos.addItem(est.toString());
+            com.libres.aplicacioneslibres.interfaces.FacturaManualNegocio.combo_Establecimientos.addItem(est.toString());
         }
     }
     
@@ -577,7 +544,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         txtField.setText(String.valueOf(total));
     }
 
-    public void sumarAgregado(JTextField txtField, int row, String tipo) {
+    private void sumarAgregado(JTextField txtField, int row, String tipo) {
         double total;
         total = Double.parseDouble(txtField.getText());
         total += (Double) tablaProductos.getValueAt(row, 1);
@@ -586,7 +553,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         tipoEstado[row] = tipo;
     }
 
-    public double ingresarTipoGasto(JTextField txtField, JLabel lblLabel) {
+    public double ingresarTipo(JTextField txtField, JLabel lblLabel) {
         double total;
         String query;
 
@@ -594,7 +561,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         total = BigDecimal.valueOf(total).setScale(3, RoundingMode.HALF_UP).doubleValue();
 
         query = "INSERT INTO TIPO_GASTO (id_factura,tipo,total)"
-                + "VALUES('" + this.numFac + "','" + lblLabel.getText() + "'," + total + ")";
+                + "VALUES('" + ID_FACTURA + "','" + lblLabel.getText() + "'," + total + ")";
 
         conTipo.insertar(query);
 
@@ -626,8 +593,6 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SeleccionarTipoGastoPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

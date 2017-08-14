@@ -120,7 +120,6 @@ public class Conexion {
     //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
     public  String consultarProductoPor(String codigo) {
             String familia = "";
-            
         try {
             
             Statement comando = conexion.createStatement();
@@ -132,6 +131,21 @@ public class Conexion {
                 familia = resultado.getString("familia");
             resultado.close();
             comando.close();
+        } catch (SQLException e) {
+            System.out.println(""+e.getMessage());
+        }
+        return familia;
+    }
+    public  String getTipoGastoEstablecimiento(String ID_ESTABLECIMIENTO) {
+            String familia = "";
+        try {
+            
+            Statement comando = conexion.createStatement();
+            String sql = "select TIPO_GASTO_ESTABLECIMIENTO from Establecimiento where ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
+            
+            ResultSet resultado = comando.executeQuery(sql);
+            familia = resultado.getString("TIPO_GASTO_ESTABLECIMIENTO");
+                
         } catch (SQLException e) {
             System.out.println(""+e.getMessage());
         }

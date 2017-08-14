@@ -26,70 +26,88 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="lblVivienda" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="95" pref="95" max="-2" attributes="0"/>
-                      <Component id="txtVivienda" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
-                      <Component id="lblAlimentacion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="56" pref="56" max="-2" attributes="0"/>
-                      <Component id="txtAlimentacion" min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="lblSalud" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="111" pref="111" max="-2" attributes="0"/>
-                      <Component id="txtSalud" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
-                      <Component id="lblVestimenta" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="66" pref="66" max="-2" attributes="0"/>
-                      <Component id="txtVestimenta" min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="lblEducacion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="85" pref="85" max="-2" attributes="0"/>
-                      <Component id="txtEducacion" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
-                      <Component id="lblOtro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="104" pref="104" max="-2" attributes="0"/>
-                      <Component id="txtOtro" min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <EmptySpace min="512" pref="512" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="556" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jlabelESTABLECIMIENTO" min="-2" pref="207" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="cmbTIPO_GASTO_ESTABLECIMIENTO" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblSalud" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblVivienda" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtSalud" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="txtVivienda" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblEducacion" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="85" pref="85" max="-2" attributes="0"/>
+                                          <Component id="txtEducacion" min="-2" pref="110" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblOtro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="txtOtro" min="-2" pref="110" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblVestimenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblAlimentacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtAlimentacion" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="txtVestimenta" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Component id="jScrollPane1" min="-2" pref="556" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlabelESTABLECIMIENTO" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbTIPO_GASTO_ESTABLECIMIENTO" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtVivienda" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAlimentacion" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblVivienda" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAlimentacion" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Component id="lblVivienda" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtVivienda" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblAlimentacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtAlimentacion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtSalud" min="-2" max="-2" attributes="0"/>
                   <Component id="txtVestimenta" min="-2" max="-2" attributes="0"/>
@@ -103,14 +121,14 @@
               </Group>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtEducacion" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtEducacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOtro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="txtOtro" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblEducacion" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOtro" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblEducacion" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
@@ -205,6 +223,35 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Otro"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlabelESTABLECIMIENTO">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ESTABLECIMIENTO"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbTIPO_GASTO_ESTABLECIMIENTO">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="7">
+            <StringItem index="0" value="..."/>
+            <StringItem index="1" value="Vivienda"/>
+            <StringItem index="2" value="Salud"/>
+            <StringItem index="3" value="Educacion"/>
+            <StringItem index="4" value="Alimentacion"/>
+            <StringItem index="5" value="Vestimenta"/>
+            <StringItem index="6" value="Otro"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

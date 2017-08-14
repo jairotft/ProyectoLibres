@@ -70,10 +70,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     String FAMILIA;
     Double PRECIO_UNITARIO;
     
-    
     int anio;
-    
-
     /**
      * Creates new form SeleccionarTipoGasto
      *
@@ -90,7 +87,10 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         
         ID_ESTABLECIMIENTO=infoTributaria.get("ruc");
         NOMBRE_ESTABLECIMIENTO=infoTributaria.get("razonSocial");
-        TIPO_GASTO_ESTABLECIMIENTO="";
+        jlabelESTABLECIMIENTO.setText(NOMBRE_ESTABLECIMIENTO);
+        TIPO_GASTO_ESTABLECIMIENTO="";//conTipo.getTipoGastoEstablecimiento(ID_ESTABLECIMIENTO);
+        //cmbTIPO_GASTO_ESTABLECIMIENTO.setSelectedItem(TIPO_GASTO_ESTABLECIMIENTO);
+        
         DIRECCION_ESTABLECIMIENTO=infoTributaria.get("dirMatriz");
         TELEFONO_ESTABLECIMIENTO="";
     
@@ -116,7 +116,15 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         for (int i =0; i<numeroProductos;i++){
             tipos[i][0]=infoDetalles.get(i).get("descripcion").toString();
             tipos[i][1]=Double.parseDouble( infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
-            tipos[i][2]=conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString() );//Familia o TIPO_FACTURA de Gasto
+            
+            //Retorna el tipo de gasto o Familia que pertece un producto de acuerdo a su ID_PRODUCTO
+            String tipoFamiliaProducto = conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString());
+            if(!tipoFamiliaProducto.equals("")){
+                tipos[i][2]=tipoFamiliaProducto;//Familia o TIPO_FACTURA de Gasto
+            }else {
+                tipos[i][2]=this.conTipo.getTipoGastoEstablecimiento(ID_ESTABLECIMIENTO);//Familia o TIPO_FACTURA de Gasto
+            }
+            
             tipos[i][3]=infoDetalles.get(i).get("codigoPrincipal").toString();
             tipos[i][4]=(int)Double.parseDouble( infoDetalles.get(i).get("cantidad").toString() );
             tipos[i][5]=Double.parseDouble( infoDetalles.get(i).get("precioUnitario").toString() );
@@ -138,15 +146,12 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaProductos);
 
         comboBox = new JComboBox();
-        comboBox.addItem("");
-
         comboBox.addItem("Vivienda");
         comboBox.addItem("Salud");
         comboBox.addItem("Educacion");
         comboBox.addItem("Alimentacion");
         comboBox.addItem("Vestimenta");
         comboBox.addItem("Otro");
-
         
         //Cargar autocalificacion con los combobox
         //extraigo la tabla del objeto donde  ocurrio el evento
@@ -280,6 +285,8 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         txtOtro = new javax.swing.JTextField();
         lblVestimenta = new javax.swing.JLabel();
         lblOtro = new javax.swing.JLabel();
+        jlabelESTABLECIMIENTO = new javax.swing.JLabel();
+        cmbTIPO_GASTO_ESTABLECIMIENTO = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -322,6 +329,16 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
         lblOtro.setText("Otro");
 
+        jlabelESTABLECIMIENTO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlabelESTABLECIMIENTO.setText("ESTABLECIMIENTO");
+
+        cmbTIPO_GASTO_ESTABLECIMIENTO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Vivienda", "Salud", "Educacion", "Alimentacion", "Vestimenta", "Otro" }));
+        cmbTIPO_GASTO_ESTABLECIMIENTO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -329,57 +346,65 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblVivienda)
-                        .addGap(95, 95, 95)
-                        .addComponent(txtVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(lblAlimentacion)
-                        .addGap(56, 56, 56)
-                        .addComponent(txtAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblSalud)
-                        .addGap(111, 111, 111)
-                        .addComponent(txtSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(lblVestimenta)
-                        .addGap(66, 66, 66)
-                        .addComponent(txtVestimenta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblEducacion)
-                        .addGap(85, 85, 85)
-                        .addComponent(txtEducacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(lblOtro)
-                        .addGap(104, 104, 104)
-                        .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(512, 512, 512)
                         .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1)
+                            .addGap(33, 33, 33)
+                            .addComponent(jlabelESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbTIPO_GASTO_ESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblSalud)
+                                                .addComponent(lblVivienda))
+                                            .addGap(97, 97, 97)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblEducacion)
+                                            .addGap(85, 85, 85)
+                                            .addComponent(txtEducacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(65, 65, 65)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblOtro)
+                                            .addGap(100, 100, 100)
+                                            .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblVestimenta)
+                                                .addComponent(lblAlimentacion))
+                                            .addGap(59, 59, 59)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtVestimenta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(cmbTIPO_GASTO_ESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVivienda)
                     .addComponent(txtVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblVivienda)
-                            .addComponent(lblAlimentacion))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblAlimentacion)
+                        .addComponent(txtAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,13 +416,13 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                             .addComponent(lblVestimenta))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEducacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtEducacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblOtro))
                     .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEducacion)
-                            .addComponent(lblOtro))))
+                        .addComponent(lblEducacion)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -455,15 +480,24 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + ID_CLIENTE + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
 
-            conTipo.insertar(query);
-            registrarFactura();//ingresar Establecimiento,Factura,Producto y Detalle
-            JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
-            recargar(conTipo);
-            this.dispose();
+            TIPO_GASTO_ESTABLECIMIENTO=cmbTIPO_GASTO_ESTABLECIMIENTO.getSelectedItem().toString();
+            if (!TIPO_GASTO_ESTABLECIMIENTO.equals("...")){
+                conTipo.insertar(query);
+                registrarFactura();//ingresar Establecimiento,Factura,Producto y Detalle
+                JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
+                recargar(conTipo);
+                this.dispose();
+             }else{
+                JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de gasto que identifique al Establecimiento");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado el tipo para cada producto");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed
 
     public void registrarFactura(){
         
@@ -473,6 +507,10 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                     "', '"+NOMBRE_ESTABLECIMIENTO+"', '"+TIPO_GASTO_ESTABLECIMIENTO+
                     "', '"+DIRECCION_ESTABLECIMIENTO+"', '"+TELEFONO_ESTABLECIMIENTO+"')";
             this.conTipo.insertar(sql);
+        }else{
+            String sql = "UPDATE ESTABLECIMIENTO SET TIPO_GASTO_ESTABLECIMIENTO='"+TIPO_GASTO_ESTABLECIMIENTO+"' WHERE ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
+            this.conTipo.insertar(sql);
+            
         }
         //Insertar Factura
         if (this.conTipo.verificar_factura(ID_FACTURA)==false){
@@ -605,9 +643,11 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbTIPO_GASTO_ESTABLECIMIENTO;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlabelESTABLECIMIENTO;
     private javax.swing.JLabel lblAlimentacion;
     private javax.swing.JLabel lblEducacion;
     private javax.swing.JLabel lblOtro;

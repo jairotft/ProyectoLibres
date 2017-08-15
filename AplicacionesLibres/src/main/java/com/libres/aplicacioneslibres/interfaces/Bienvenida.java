@@ -5,6 +5,11 @@
  */
 package com.libres.aplicacioneslibres.interfaces;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author ElPatoDelJairo
@@ -132,38 +137,36 @@ public class Bienvenida extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            String alum= "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
+            String graph= "com.jtattoo.plaf.graphite.GraphiteLookAndFeel";
+            String luna= "com.jtattoo.plaf.luna.LunaLookAndFeel";
+            String acryl= "com.jtattoo.plaf.acryl.AcrylLookAndFeel";
+            String hifi= "com.jtattoo.plaf.hifi.HiFiLookAndFeel";
+            String fast= "com.jtattoo.plaf.fast.FastLookAndFeel";
+            String mcwin= "com.jtattoo.plaf.mcwin.McWinLookAndFeel";
+            String mint= "com.jtattoo.plaf.mint.MintLookAndFeel";
+            String smart= "com.jtattoo.plaf.smart.SmartLookAndFeel";
+            String texture= "com.jtattoo.plaf.texture.TextureLookAndFeel";
+            String bernstein= "com.jtattoo.plaf.bernstein.BernsteinLookAndFeel";
+            
+            
+            UIManager.setLookAndFeel(alum);
+            //</editor-fold>
+            //</editor-fold>
+            //</editor-fold>
+            //</editor-fold>
+            
+            
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Bienvenida().setVisible(true);
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Bienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Bienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Bienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Bienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            });
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Bienvenida.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Bienvenida().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

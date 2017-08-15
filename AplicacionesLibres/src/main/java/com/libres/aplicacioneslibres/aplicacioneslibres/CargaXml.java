@@ -39,6 +39,7 @@ public class CargaXml {
             document = (Document) builder.build(xmlFile);
             Conexion cp = new Conexion();
             //Hashmap para extraer datos de documento XML
+
             HashMap<String,String> infoEncabezado = new HashMap<>();
             HashMap<String,String> infoTributaria = new HashMap<>();
             HashMap<String,String> infoFactura = new HashMap<>();
@@ -46,7 +47,6 @@ public class CargaXml {
             //guardar cada detalle( o info de Producto) en la lista infoDetalles
             ArrayList<HashMap> infoDetalles = new ArrayList<>();
             
-                              
             Element rootNode; //Se obtiene la raiz 'tables'
             Element rootAutorizacion;//nodo raiz autorizacion
             Element rootComprobante;//nodo raiz Comprobante
@@ -84,7 +84,7 @@ public class CargaXml {
             }
             
             //Comprobante tiene 3 hijos, Info Tributaria, Info Factura y Detalles
-
+            
             // Info Tributaria=======================================================================
             rootInfoTributaria = (Element) encontrarNodo(rootComprobante, "infoTributaria");
             //Agregamos la Clave y su Valor de cada dato al hashmap infoTributaria
@@ -104,7 +104,15 @@ public class CargaXml {
             infoFactura.put("razonSocialComprador", nodoGetValor(rootInfoFactura,"razonSocialComprador"));  
             infoFactura.put("identificacionComprador", nodoGetValor(rootInfoFactura,"identificacionComprador"));  
             infoFactura.put("totalSinImpuestos", nodoGetValor(rootInfoFactura,"totalSinImpuestos")); 
-            infoFactura.put("valor", nodoGetValor(rootInfoFactura.getChild("totalConImpuestos"),"valor"));//Impuesto
+            //Calcular IVA 
+                Double IVA=0.0;
+                Element rootTotalConImpuestos = (Element) encontrarNodo(rootInfoFactura, "totalConImpuestos");   //Detalles...
+                List impuestos = rootTotalConImpuestos.getChildren();  //extrae los hijos de <totalImpuesto>
+                for (int j = 0; j < impuestos.size(); j++) {
+                IVA+=Double.parseDouble( ((Element)impuestos.get(j)).getChild("valor").getValue() );
+                }
+                
+            infoFactura.put("valor", IVA.toString());//Impuesto
             //TOTAL A PAGAR CON IMPUESTOS
             infoFactura.put("importeTotal", nodoGetValor(rootInfoFactura,"importeTotal"));
             
@@ -184,8 +192,8 @@ public class CargaXml {
                 
                     break;
                 case "interfazNegocio":
-//                    SeleccionarTipoGastoNegocios sN = new SeleccionarTipoGastoNegocios(infoEncabezado, infoTributaria,infoFactura, infoDetalles);
-//                    sN.setVisible(true);
+                    SeleccionarTipoGastoNegocios sN = new SeleccionarTipoGastoNegocios(cp,infoEncabezado, infoTributaria,infoFactura, infoDetalles);
+                    sN.setVisible(true);
                     break;
             }
                 
@@ -216,7 +224,7 @@ public class CargaXml {
                 }
             }
             return encontrarNodo(hijo, nombreNodo);
-        }       
+        }   
     }
     
     //Metodo que devuele el valor de un atributo XML

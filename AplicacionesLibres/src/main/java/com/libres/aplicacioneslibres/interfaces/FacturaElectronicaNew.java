@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
@@ -24,11 +26,16 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
     File[] ficheros;
     String cedula_usuario;
     int anio;
+    String tipoGastoFactura;//Personal o Negocio
 
     public FacturaElectronicaNew(String cedula, int anio) {
         initComponents();
         this.cedula_usuario = cedula;
         this.anio = anio;
+        
+        btnGrupoTipoGasto.add(jradioNegocio);
+        btnGrupoTipoGasto.add(jradioPersonal);
+        jradioPersonal.setSelected(true);//por defecto seleecionado
         //Bloquear el movimiento del Frame
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         Component north = ui.getNorthPane();
@@ -48,7 +55,7 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        btnGrupoTipoGasto = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
@@ -56,7 +63,8 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jradioPersonal = new javax.swing.JRadioButton();
+        jradioNegocio = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -89,7 +97,9 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personal", "Negocio" }));
+        jradioPersonal.setText("Personal");
+
+        jradioNegocio.setText("Negocio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,10 +110,11 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jradioPersonal)
+                            .addComponent(jradioNegocio))
                         .addGap(100, 100, 100))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +140,10 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addComponent(jradioPersonal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jradioNegocio)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
@@ -146,8 +159,10 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
             if (!ficherosSeleccionados.isEmpty()) {
                 for (Object ficheroSeleccionado : ficherosSeleccionados) {
                     CargaXml carga = new CargaXml();
+                    if(jradioPersonal.isSelected()) tipoGastoFactura="Personal";
+                    else tipoGastoFactura="Negocio";
                     carga.cargarXml(jTextField1.getText() + "/" + ficheroSeleccionado,
-                            cedula_usuario, anio, jComboBox2.getSelectedItem().toString());
+                            cedula_usuario, anio, tipoGastoFactura);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se selecciono un tipo de factura");
@@ -222,59 +237,53 @@ public class FacturaElectronicaNew extends javax.swing.JInternalFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+       try {
+            /* Set the Nimbus look and feel */
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+            * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+            */
+            String alum= "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
+            String graph= "com.jtattoo.plaf.graphite.GraphiteLookAndFeel";
+            String luna= "com.jtattoo.plaf.luna.LunaLookAndFeel";
+            String acryl= "com.jtattoo.plaf.acryl.AcrylLookAndFeel";
+            String hifi= "com.jtattoo.plaf.hifi.HiFiLookAndFeel";
+            String fast= "com.jtattoo.plaf.fast.FastLookAndFeel";
+            String mcwin= "com.jtattoo.plaf.mcwin.McWinLookAndFeel";
+            String mint= "com.jtattoo.plaf.mint.MintLookAndFeel";
+            String smart= "com.jtattoo.plaf.smart.SmartLookAndFeel";
+            String texture= "com.jtattoo.plaf.texture.TextureLookAndFeel";
+            String bernstein= "com.jtattoo.plaf.bernstein.BernsteinLookAndFeel";
             
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FacturaElectronicaNew.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
+            UIManager.setLookAndFeel(alum);
+            //</editor-fold>
+            //</editor-fold>
+            //</editor-fold>
+            //</editor-fold>
+            
+            
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Bienvenida().setVisible(true);
+                }
+            });
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Bienvenida.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                //new FacturaElectronicaNew().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup btnGrupoTipoGasto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton jradioNegocio;
+    private javax.swing.JRadioButton jradioPersonal;
     // End of variables declaration//GEN-END:variables
 }

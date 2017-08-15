@@ -45,9 +45,11 @@ public class Conexion {
 
     public ArrayList cargarEstablecimiento() {
         ArrayList n = new ArrayList();
+        Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery("SELECT nombre_establecimiento FROM establecimiento");
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery("SELECT nombre_establecimiento FROM establecimiento");
             while (resultado.next()) {
                 n.add(resultado.getString("nombre_establecimiento"));
             }
@@ -61,9 +63,11 @@ public class Conexion {
 
     public ArrayList cargarAnios() {
         ArrayList n = new ArrayList();
+        Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery("SELECT * FROM gastosanualespersonales");
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery("SELECT * FROM gastosanualespersonales");
             while (resultado.next()) {
                 n.add(resultado.getString("anio_gastos"));
             }
@@ -77,9 +81,11 @@ public class Conexion {
 
     public ArrayList cambiarDatosEstablecimiento(String est) {
         ArrayList n = new ArrayList();
+        Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery("SELECT id_establecimiento, direccion_establecimiento,telefono_establecimiento "
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery("SELECT id_establecimiento, direccion_establecimiento,telefono_establecimiento "
                     + "FROM establecimiento WHERE nombre_establecimiento='" + est + "'");
             while (resultado.next()) {
                 n.add(resultado.getString("id_establecimiento"));
@@ -100,11 +106,13 @@ public class Conexion {
       
     public String consultarEstablecimientoPor(String codigo){
          String n = "";
+          Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
+            comando = conexion.createStatement();
             String sql = "SELECT ID_ESTABLECIMIENTO FROM ESTABLECIMIENTO WHERE "
                     + "ID_ESTABLECIMIENTO='" + codigo+"';";
-            ResultSet resultado = comando.executeQuery(sql);
+            resultado = comando.executeQuery(sql);
             while (resultado.next()) {
                 n = resultado.getString("ID_ESTABLECIMIENTO");
             }
@@ -119,15 +127,17 @@ public class Conexion {
     
     //si encuentra el producto devuelve el tipo de Gasto o Familia del Producto!!
     public  String consultarProductoPor(String codigo) {
-            String familia = "";
+        String familia = "";
+        Statement comando;
+        ResultSet resultado;
         try {
             
-            Statement comando = conexion.createStatement();
+            comando = conexion.createStatement();
             String sql = "select familia from producto where "
                     + "id_producto='"+codigo+"'";
             
             
-            ResultSet resultado = comando.executeQuery(sql);
+            resultado = comando.executeQuery(sql);
                 familia = resultado.getString("familia");
             resultado.close();
             comando.close();
@@ -137,15 +147,18 @@ public class Conexion {
         return familia;
     }
     public  String getTipoGastoEstablecimiento(String ID_ESTABLECIMIENTO) {
-            String familia = "";
+        String familia = "";
+        Statement comando;
+        ResultSet resultado;
         try {
             
-            Statement comando = conexion.createStatement();
+            comando = conexion.createStatement();
             String sql = "select TIPO_GASTO_ESTABLECIMIENTO from Establecimiento where ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
             
-            ResultSet resultado = comando.executeQuery(sql);
+            resultado = comando.executeQuery(sql);
             familia = resultado.getString("TIPO_GASTO_ESTABLECIMIENTO");
-                
+            resultado.close();
+            comando.close();
         } catch (SQLException e) {
             System.out.println(""+e.getMessage());
         }
@@ -153,21 +166,27 @@ public class Conexion {
     }
     
     public void insertar(String sql) {
+        Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            comando.executeUpdate(sql);
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery(sql);
             
+            resultado.close();
+            comando.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage()+"\n "+sql);
+            System.out.println(ex.getMessage()+"\n "+sql);
         }
     }
         
     public boolean verificar_factura(String id_factura) {
         boolean val = false;
+         Statement comando;
+        ResultSet resultado;
         try {
             String sql="select *from factura where id_factura='"+id_factura+"'";
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery(sql);
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery(sql);
             val = resultado.next();
             resultado.close();
             comando.close();
@@ -180,9 +199,11 @@ public class Conexion {
     
     public boolean verificar_usuario(String sql) {
         boolean val = false;
+         Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery(sql);
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery(sql);
             val = resultado.next();
             resultado.close();
             comando.close();
@@ -194,10 +215,11 @@ public class Conexion {
 
     public ArrayList ddl(String sql) {
         ArrayList salida = new ArrayList();
-        
+         Statement comando;
+        ResultSet resultado;
         try {
-            Statement comando = conexion.createStatement();
-            ResultSet resultado = comando.executeQuery(sql);
+            comando = conexion.createStatement();
+            resultado = comando.executeQuery(sql);
             ResultSetMetaData mt = resultado.getMetaData();
  
             

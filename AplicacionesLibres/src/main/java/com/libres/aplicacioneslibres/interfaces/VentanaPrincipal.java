@@ -94,7 +94,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordenador de Facturas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -229,6 +229,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         jDesktopPane.removeAll();
+        fmp = new FacturaManualPersonal(conn, cedula_usuario, anio);
         fe.setVisible(false);
         hg.setVisible(false);
         fmn.setVisible(false);
@@ -242,6 +243,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         jDesktopPane.removeAll();
+        fe = new FacturaElectronicaNew(cedula_usuario, anio);
         fmp.setVisible(false);
         fmn.setVisible(false);
         hg.setVisible(false);
@@ -281,6 +283,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se tienen registros de este año");
         } else {
             jDesktopPane.removeAll();
+            hg = new HistorialGastos(conn, cedula_usuario, anio);
             fmp.setVisible(false);
             fmn.setVisible(false);
             fe.setVisible(false);
@@ -295,6 +298,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         jDesktopPane.removeAll();
+        fmn = new FacturaManualNegocio(conn, cedula_usuario, anio);
         fe.setVisible(false);
         hg.setVisible(false);
         fmp.setVisible(false);
@@ -308,6 +312,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         jDesktopPane.removeAll();
+        rp = new Reportes(conn, cedula_usuario, anio);
         fe.setVisible(false);
         hg.setVisible(false);
         fmp.setVisible(false);
@@ -346,6 +351,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         jDesktopPane.removeAll();
+        rpg = new ReportesGeneral(conn);
         fe.setVisible(false);
         hg.setVisible(false);
         fmp.setVisible(false);
@@ -363,6 +369,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         jDesktopPane.removeAll();
+        rpf = new ReportePorFacturas(conn);
         fe.setVisible(false);
         hg.setVisible(false);
         fmp.setVisible(false);
@@ -376,6 +383,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         jDesktopPane.removeAll();
+        rpgs = new ReportePorGasto(conn);
         fe.setVisible(false);
         hg.setVisible(false);
         fmp.setVisible(false);

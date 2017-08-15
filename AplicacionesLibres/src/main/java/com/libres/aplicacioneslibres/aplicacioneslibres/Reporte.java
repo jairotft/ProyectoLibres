@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -42,8 +44,25 @@ public class Reporte {
         try {
             //todos los establecimientos
             String path = "src/main/resources/Reportes/" + archivo + ".jasper" ;
-            String pathDestinity = "src/main/resources/Reportes/"
-                    + archivo + ".pdf";
+            String pathDestinity = "";
+            
+            String file = JOptionPane.showInputDialog(null, "Ingrese el Nombre del archivo");
+            if(file == null || file.equals("")){
+                JOptionPane.showMessageDialog(null, "Nombre no ingresado");
+                return;
+            }
+            
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.showOpenDialog(null);
+            File f = chooser.getSelectedFile();
+            pathDestinity = f.getAbsolutePath();
+            if(pathDestinity == null || pathDestinity.equals("")){
+                JOptionPane.showMessageDialog(null, "Direccion no ingresada");
+                return;
+            }
+            pathDestinity += "/" + file + "-reporte.pdf";
+             
             JasperReport jr = null;
 
             jr = (JasperReport) JRLoader.loadObjectFromFile(path);
@@ -80,8 +99,25 @@ public class Reporte {
         try {
             //todos los establecimientos
             String path = "src/main/resources/Reportes/" + archivo + ".jasper" ;
-            String pathDestinity = "src/main/resources/Reportes/"
-                    + archivo + ".xlsx";
+            String pathDestinity = "";
+            
+            String file = JOptionPane.showInputDialog(null, "Ingrese el Nombre del archivo");
+            if(file == null || file.equals("")){
+                JOptionPane.showMessageDialog(null, "Nombre no ingresado");
+                return;
+            }
+            
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.showOpenDialog(null);
+            File f = chooser.getSelectedFile();
+            pathDestinity = f.getAbsolutePath();
+            if(pathDestinity == null || pathDestinity.equals("")){
+                JOptionPane.showMessageDialog(null, "Direccion no ingresada");
+                return;
+            }
+            pathDestinity += "/" + file + "-reporte.xlsx";
+             
             JasperReport jr = null;
 
             jr = (JasperReport) JRLoader.loadObjectFromFile(path);

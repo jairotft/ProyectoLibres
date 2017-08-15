@@ -7,7 +7,14 @@ package com.libres.aplicacioneslibres.interfaces;
 
 import com.libres.aplicacioneslibres.aplicacioneslibres.Reporte;
 import com.libres.aplicacioneslibres.conexionbdd.Conexion;
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfTemplate;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Graphics2D;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -280,6 +287,7 @@ public class FacturasCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtExcelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Factura como pdf
         HashMap parametros = new HashMap();
         int fila = this.jtbFacturas.getSelectedRow();
         if(fila >= 0){
@@ -292,9 +300,10 @@ public class FacturasCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // factura como excel
         HashMap parametros = new HashMap();
         int fila = this.jtbFacturas.getSelectedRow();
-        if(fila > 0){
+        if(fila >= 0){
             String factura = this.jtbFacturas.getValueAt(fila, 0).toString();
             parametros.put("codeInvoice", factura);
             this.reporte.generar_excel("reporteDetallePorFactura", parametros);
@@ -345,6 +354,32 @@ public class FacturasCliente extends javax.swing.JFrame {
         }
     }
     private void exportarPDF(){
+        Document document = new Document(PageSize.A4.rotate());
+        //document.setPageSize(new Rectangle(1024, 100));
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("/home/mathcrap/Documentos/jTable.pdf"));
+
+            document.open();
+            PdfContentByte cb = writer.getDirectContent();
+
+            cb.saveState();
+            PdfTemplate pdfTemplate = cb.createTemplate(1024
+                    , jtbFacturas.getHeight());
+            Graphics2D g2 = pdfTemplate.createGraphics(jtbFacturas.getWidth(), jtbFacturas.getHeight());
+
+            //Shape oldClip = g2.getClip();
+            //g2.clipRect(10, 0, 500, 500);
+
+            jtbFacturas.print(g2);
+            cb.addTemplate(pdfTemplate, 0, 500);
+            //g2.setClip(oldClip);
+
+          g2.dispose();
+          cb.restoreState();
+        } catch (Exception e) {
+          System.err.println(e.getMessage());
+        }
+        document.close();
         
     }
     

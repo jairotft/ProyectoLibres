@@ -152,7 +152,6 @@ public class Bienvenida extends javax.swing.JFrame {
             String texture= "com.jtattoo.plaf.texture.TextureLookAndFeel";
             String bernstein= "com.jtattoo.plaf.bernstein.BernsteinLookAndFeel";
             
-            
             UIManager.setLookAndFeel(alum);
             //</editor-fold>
             //</editor-fold>

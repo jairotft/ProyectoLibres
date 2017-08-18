@@ -38,9 +38,7 @@ public class App {
             String texture= "com.jtattoo.plaf.texture.TextureLookAndFeel";
             String bernstein= "com.jtattoo.plaf.bernstein.BernsteinLookAndFeel";
             
-            
             UIManager.setLookAndFeel(alum);
-            
             
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {

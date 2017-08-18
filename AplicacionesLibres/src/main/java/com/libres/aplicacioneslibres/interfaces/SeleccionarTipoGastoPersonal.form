@@ -32,7 +32,7 @@
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="jlabelESTABLECIMIENTO" min="-2" pref="340" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="cmbTIPO_GASTO_ESTABLECIMIENTO" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="cmbTipoGasto" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
@@ -87,7 +87,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlabelESTABLECIMIENTO" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="cmbTIPO_GASTO_ESTABLECIMIENTO" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbTipoGasto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="17" max="-2" attributes="0"/>
@@ -229,22 +229,16 @@
         <Property name="text" type="java.lang.String" value="ESTABLECIMIENTO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbTIPO_GASTO_ESTABLECIMIENTO">
+    <Component class="javax.swing.JComboBox" name="cmbTipoGasto">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="."/>
-            <StringItem index="1" value="Vivienda"/>
-            <StringItem index="2" value="Salud"/>
-            <StringItem index="3" value="Educacion"/>
-            <StringItem index="4" value="Alimentacion"/>
-            <StringItem index="5" value="Vestimenta"/>
-            <StringItem index="6" value="Otro"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbTipoGastoItemStateChanged"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cmbTipoGastoMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTipoGastoActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

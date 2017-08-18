@@ -18,23 +18,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
 /**
  *
- * @author andreu
+ * @author Buhobit
  */
 public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
-    final JComboBox comboBox;
+    final JComboBox cmbCeldaTipoGasto;
     JTable tablaProductos;
     String tipoEstado[];
 
     String evtTipo = "";
     int filaTipo = -1;
-    
+    //Almacena detalle y productos de la factura
     Object[][] tipos;
     
     Conexion conTipo;
@@ -70,7 +69,24 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     String FAMILIA;
     Double PRECIO_UNITARIO;
     
+    
     int anio;
+    ArrayList<HashMap> infoDetalles;
+    
+    //Items para Gastos Personal
+    String Vivienda = "Vivienda";
+    String Salud = "Salud";
+    String Educacion = "Educacion";
+    String Alimentacion = "Alimentacion";
+    String Vestimenta = "Vestimenta";
+    String Otro = "Otro";
+
+    //Aregllo con todos los itemsGasto Personal
+    String [] itemsGasto = {"",Vivienda, Salud, Educacion,
+            Alimentacion, Vestimenta, Otro};
+    //Verificar si el establecimiento es nuevo o no
+    Boolean nuevoEstablecimiento;
+    Boolean activarCmbTipoGasto;//permite saber cuando activar el comboBox de TipoGasto
     /**
      * Creates new form SeleccionarTipoGasto
      *
@@ -84,20 +100,24 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         initComponents();
         
         this.conTipo = conn;
+        this.nuevoEstablecimiento = true;//Suponer que el establecimiento es nuevo!!!
+        this.activarCmbTipoGasto = false;
         
         ID_ESTABLECIMIENTO=infoTributaria.get("ruc");
         NOMBRE_ESTABLECIMIENTO=infoTributaria.get("razonSocial");
         jlabelESTABLECIMIENTO.setText(NOMBRE_ESTABLECIMIENTO);
         TIPO_GASTO_ESTABLECIMIENTO=conTipo.getTipoGastoEstablecimiento(ID_ESTABLECIMIENTO);
-        String item;
-        for (int i = 0; i < cmbTIPO_GASTO_ESTABLECIMIENTO.getItemCount(); i++)
-        {
-            item = cmbTIPO_GASTO_ESTABLECIMIENTO.getItemAt(i);
-            if (item.equalsIgnoreCase(TIPO_GASTO_ESTABLECIMIENTO))
-            {
-                cmbTIPO_GASTO_ESTABLECIMIENTO.setSelectedIndex(i);
-                break;
-            }
+        //Consultar si el establecimiento es nuevo o no!!!
+        if (!TIPO_GASTO_ESTABLECIMIENTO.equals("")) {
+            //cmbTipoGasto.enable(false);//si ya existe desabilita cmbTipoGasto
+            for (String item1 : itemsGasto) this.cmbTipoGasto.addItem(item1);
+            nuevoEstablecimiento=false;
+        }else{
+            //Habilitar cmbTipoGasto para elegir un tipo de Gasto que identifique al establecimiento!!!
+            cmbTipoGasto.setVisible(true);
+            activarCmbTipoGasto = false;//Al acrrancar ventana, desactivar los eventos que surgen en cmbTipoGasto
+            //Iniciar los itemsGasto al cmbTipoGasto
+            for (String item1 : itemsGasto) this.cmbTipoGasto.addItem(item1);
         }
         
         DIRECCION_ESTABLECIMIENTO=infoTributaria.get("dirMatriz");
@@ -116,148 +136,36 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         TOTAL_CON_IVA = Double.parseDouble(infoFactura.get("importeTotal") );
         
         this.anio = Integer.parseInt(infoFactura.get("fechaEmision").substring(0, 4));
-
+        this.infoDetalles = infoDetalles;//Iniciar la lista de detalle productos
+        tipos = new Object[infoDetalles.size()][6];//inicializar tamanio tipos para guardar lista detalles en tabla
         
-        int numeroProductos =infoDetalles.size();
-        tipos=new Object[numeroProductos][6];
+        cmbCeldaTipoGasto = new JComboBox();//jcomboBox para la celdas de seleccionar TipoGasto
+        //Agregar todos los itemsGasto Personal al comboboxCelda de la tabla
+        for (String item1 : itemsGasto) this.cmbCeldaTipoGasto.addItem(item1);
         
-        //Extraer detalle de los productos y los guarda en la matriz Object [][] detalleProducto
-        for (int i =0; i<numeroProductos;i++){
-            tipos[i][0]=infoDetalles.get(i).get("descripcion").toString();
-            tipos[i][1]=Double.parseDouble( infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
-            
-            //Retorna el tipo de gasto o Familia que pertece un producto de acuerdo a su ID_PRODUCTO
-            String tipoFamiliaProducto = conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString());
-            if(!tipoFamiliaProducto.equals("")){
-                tipos[i][2]=tipoFamiliaProducto;//Familia o TIPO_FACTURA de Gasto
-            }else {
-                tipos[i][2]=this.conTipo.getTipoGastoEstablecimiento(ID_ESTABLECIMIENTO);//Familia o TIPO_FACTURA de Gasto
-            }
-            
-            tipos[i][3]=infoDetalles.get(i).get("codigoPrincipal").toString();
-            tipos[i][4]=(int)Double.parseDouble( infoDetalles.get(i).get("cantidad").toString() );
-            tipos[i][5]=Double.parseDouble( infoDetalles.get(i).get("precioUnitario").toString() );
-        }
-                
-        String nombreCabeceras[] = {"Descripcion", "Precio Total", "Tipo de Gasto"};
-
-        tipoEstado = new String[tipos.length];
-        for (int i = 0; i < tipos.length; i++) {
-            tipoEstado[i] = "";
-        }
-
-        tablaProductos = new JTable(tipos, nombreCabeceras) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column == 2;
-            }
-        };
-        jScrollPane1.setViewportView(tablaProductos);
-
-        comboBox = new JComboBox();
-        comboBox.addItem("Vivienda");
-        comboBox.addItem("Salud");
-        comboBox.addItem("Educacion");
-        comboBox.addItem("Alimentacion");
-        comboBox.addItem("Vestimenta");
-        comboBox.addItem("Otro");
+        iniciarAutocompletarTabla();
         
-        //Cargar autocalificacion con los combobox
-        //extraigo la tabla del objeto donde  ocurrio el evento
-        for (int row=0;row<tablaProductos.getRowCount();row++){
-            for (int column=0;column<tablaProductos.getColumnCount();column++){
-                
-                TableModel model = tablaProductos.getModel();
-                Object data = model.getValueAt(row, column);
-                if (!data.equals("") && column == 2) {
-                    //int opc = comboBox.getSelectedIndex();
-                    //System.out.println(row);
-
-                    if (data.equals("Vivienda")) {
-                        sumarAgregado(txtVivienda, row, "Vivienda");
-                    }
-                    if (data.equals("Salud")) {
-                        sumarAgregado(txtSalud, row, "Salud");
-                    }
-                    if (data.equals("Educacion")) {
-                        sumarAgregado(txtEducacion, row, "Educacion");
-                    }
-                    if (data.equals("Alimentacion")) {
-                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
-                    }
-                    if (data.equals("Vestimenta")) {
-                        sumarAgregado(txtVestimenta, row, "Vestimenta");
-                    }
-                    if (data.equals("Otro")) {
-                        sumarAgregado(txtOtro, row, "Otro");
-                    }
+        
+        //Evento que al actuar dentro de la tabla, suma o restar el total de cada familia
+        tablaProductos.getModel().addTableModelListener((TableModelEvent tme) -> {
+            //Si el usuario no ha seleccionado un item en cmbTipoGasto 
+            //Entonces, impedir modificar la tabla!!!
+            if(nuevoEstablecimiento==true){
+                if(cmbTipoGasto.getSelectedItem().equals("")){
+                JOptionPane.showMessageDialog(null, "El Establecimiento es nuevo, primero seleccione un tipo de gasto que lo identifique!");
+                }else{
+                autoRestarSumarTabla();
                 }
-            
-            }
-        
-        
-        tablaProductos.getModel().addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent tme) {
-                int row = tme.getFirstRow();
-                int column = tme.getColumn();
-
-                TableModel model = (TableModel) tme.getSource();
-                Object data = model.getValueAt(row, column);
-
-                if (!data.equals("") && column == 2) {
-                    //int opc = comboBox.getSelectedIndex();
-                    //System.out.println(row);
-
-                    if (!tipoEstado[row].equals("")) {
-                        if (tipoEstado[row].equals("Vivienda")) {
-                            restarAgregado(txtVivienda, row);
-                        }
-                        if (tipoEstado[row].equals("Salud")) {
-                            restarAgregado(txtSalud, row);
-                        }
-                        if (tipoEstado[row].equals("Educacion")) {
-                            restarAgregado(txtEducacion, row);
-                        }
-                        if (tipoEstado[row].equals("Alimentacion")) {
-                            restarAgregado(txtAlimentacion, row);
-                        }
-                        if (tipoEstado[row].equals("Vestimenta")) {
-                            restarAgregado(txtVestimenta, row);
-                        }
-                        if (tipoEstado[row].equals("Otro")) {
-                            restarAgregado(txtOtro, row);
-                        }
-                    }
-
-                    if (data.equals("Vivienda")) {
-                        sumarAgregado(txtVivienda, row, "Vivienda");
-                    }
-                    if (data.equals("Salud")) {
-                        sumarAgregado(txtSalud, row, "Salud");
-                    }
-                    if (data.equals("Educacion")) {
-                        sumarAgregado(txtEducacion, row, "Educacion");
-                    }
-                    if (data.equals("Alimentacion")) {
-                        sumarAgregado(txtAlimentacion, row, "Alimentacion");
-                    }
-                    if (data.equals("Vestimenta")) {
-                        sumarAgregado(txtVestimenta, row, "Vestimenta");
-                    }
-                    if (data.equals("Otro")) {
-                        sumarAgregado(txtOtro, row, "Otro");
-                    }
-                }
-
+            }else{
+                autoRestarSumarTabla();
             }
         });
-
+        
         DefaultTableCellRenderer alinearDerecha = new DefaultTableCellRenderer();
         alinearDerecha.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
         tablaProductos.getColumnModel().getColumn(1).setCellRenderer(alinearDerecha);
 
-        tablaProductos.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(comboBox));
+        tablaProductos.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(cmbCeldaTipoGasto));
 
         tablaProductos.getColumnModel().getColumn(1).setMinWidth(100);
         tablaProductos.getColumnModel().getColumn(1).setMaxWidth(100);
@@ -268,13 +176,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -294,7 +196,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         lblVestimenta = new javax.swing.JLabel();
         lblOtro = new javax.swing.JLabel();
         jlabelESTABLECIMIENTO = new javax.swing.JLabel();
-        cmbTIPO_GASTO_ESTABLECIMIENTO = new javax.swing.JComboBox<>();
+        cmbTipoGasto = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -340,10 +242,19 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         jlabelESTABLECIMIENTO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlabelESTABLECIMIENTO.setText("ESTABLECIMIENTO");
 
-        cmbTIPO_GASTO_ESTABLECIMIENTO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ".", "Vivienda", "Salud", "Educacion", "Alimentacion", "Vestimenta", "Otro" }));
-        cmbTIPO_GASTO_ESTABLECIMIENTO.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipoGasto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoGastoItemStateChanged(evt);
+            }
+        });
+        cmbTipoGasto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbTipoGastoMouseClicked(evt);
+            }
+        });
+        cmbTipoGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed(evt);
+                cmbTipoGastoActionPerformed(evt);
             }
         });
 
@@ -364,7 +275,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                             .addGap(37, 37, 37)
                             .addComponent(jlabelESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbTIPO_GASTO_ESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +315,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlabelESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTIPO_GASTO_ESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -447,22 +358,95 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        
+            
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int filasTotales = tablaProductos.getRowCount();
-        boolean validado = true;
+           if(validarRegistroFactura()==true){   
+            registrarFactura();//Ingresar Establecimiento,Factura,Producto y Detalle
+            JOptionPane.showMessageDialog(null, "Factura Ingresada Exitosamente!!!");
+            recargar(conTipo);
+            this.dispose();//salir de ventana
+           }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cmbTipoGastoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoGastoItemStateChanged
+        // TODO add your handling code here:
+        if(this.activarCmbTipoGasto==true){
+            if(evt.getStateChange()==1){
+                this.TIPO_GASTO_ESTABLECIMIENTO=evt.getItem().toString();    
+            }
+        }
+        
+    }//GEN-LAST:event_cmbTipoGastoItemStateChanged
+
+    private void cmbTipoGastoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoGastoMouseClicked
+        //Activar el cambio de item solamente cuando se haya iniciado la ventana
+        //y se de click sobre el combobox Tipo de Gasto 
+        this.activarCmbTipoGasto=true;
+    }//GEN-LAST:event_cmbTipoGastoMouseClicked
+
+    private void cmbTipoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoGastoActionPerformed
+        // TODO add your handling code here:
+        //si al arrancar ventana y activarCmbTipoGasto =true
+        //se produce un error con this.tipos ==null
+        //por eso activarCmbTipoGasto inicia en false;
+        if (this.activarCmbTipoGasto ==true){
+            for (Object[] tipo : this.tipos) {
+            tipo[2] = TIPO_GASTO_ESTABLECIMIENTO; //Familia o TIPO_Familia
+            }
+         this.autoRestarSumarTabla();
+         jScrollPane1.setViewportView(tablaProductos);
+        }
+            
+    }//GEN-LAST:event_cmbTipoGastoActionPerformed
+
+    /*Me permite validar la factura antes de ingresarlo a la base de datos!!!*/
+    private boolean validarRegistroFactura(){
+        boolean validar = true;
+        //Si el establecimiento es nuevo se debe seleccionar un TipoDeGasto que lo identique
+        if( nuevoEstablecimiento==true){
+            if(cmbTipoGasto.getSelectedItem().toString().equals("")){
+                JOptionPane.showMessageDialog(null, "Establecimiento nuevo, por favor seleccione un TipoDeGasto que lo identifique!");
+                validar =false;
+            }
+        }
+        //Si la tabla de productos no ha sido llenada, pedir que se complete primero antes de registrar la factura!!
+        int filasTotales = tablaProductos.getRowCount();
         for (int i = 0; i < filasTotales; i++) {
+            //if (validar==false) break;//No tiene caso comparar, si el establecimiento no ha sido seleccionado!!! 
             if (tablaProductos.getValueAt(i, 2).equals("")) {
-                validado = false;
+                validar = false;
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado el Tipo de Gasto para cada producto");
                 break;
             }
         }
-
-        if (validado == true) {
-            String query;
-
+        
+        //Verificar que el campo tipo Gasto sea uno de los items de tipoFactura(Personal)
+        for(int i=0;i<filasTotales;i++){
+            if (validar==false) break;//No tiene caso comparar, si el establecimiento no ha sido seleccionado, o no se ha completado todos los campos!!! 
+            //Comparar que el campo Tipo Gasto pertenezca a un solo tipo Personal o Negocio y no a ambos!!!
+            boolean existe=false;
+            for (String itemGasto : this.itemsGasto) {
+                if (itemGasto.equals(this.tablaProductos.getValueAt(i,2)) ==true) {
+                    existe = true;
+                    break;
+                }
+            }
+            if (existe == false){
+                JOptionPane.showMessageDialog(null, "Existe campos que no corresponden a tipo de Gasto "+TIPO_FACTURA);
+                validar = false;
+                break;
+            }
+        }
+        return validar;
+    }
+    
+    public void registrarFactura(){
+        
+        //Insertar Historial Gastos Personales
+        String sqlHistorial;
             double totales[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
             if (!txtVivienda.getText().equals("0.0")) {
@@ -485,68 +469,42 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
             }
 
             if (conTipo.verificar_usuario("SELECT * FROM HISTORIAL_PAGOS_PERSONALES WHERE anio_historial_p=" + anio + " AND id_cliente='" + ID_CLIENTE + "'")) {
-                query = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + ","
+                sqlHistorial = "UPDATE HISTORIAL_PAGOS_PERSONALES SET total_alimentacion=total_alimentacion+" + totales[3] + ","
                         + "total_salud=total_salud+" + totales[1] + ","
                         + "total_vivienda=total_vivienda+" + totales[0] + ","
                         + "total_educacion=total_educacion+" + totales[2] + ","
                         + "total_vestimenta=total_vestimenta+" + totales[4] + ","
                         + "total_otros=total_otros+" + totales[5] + " WHERE anio_historial_p=" + anio + " AND id_cliente='" + ID_CLIENTE + "'";
             } else {
-                query = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + ID_CLIENTE + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
+                sqlHistorial = "INSERT INTO HISTORIAL_PAGOS_PERSONALES VALUES (" + anio + ",'" + ID_CLIENTE + "'," + totales[3] + "," + totales[1] + "," + totales[0] + "," + totales[2] + "," + totales[4] + "," + totales[5] + ")";
             }
+            //Insertar HistorialTipoGastoPersonal!!!
+        this.conTipo.insertar(sqlHistorial);
 
-            TIPO_GASTO_ESTABLECIMIENTO=cmbTIPO_GASTO_ESTABLECIMIENTO.getSelectedItem().toString();
-            if (!TIPO_GASTO_ESTABLECIMIENTO.equals(".")){
-                conTipo.insertar(query);
-                registrarFactura();//ingresar Establecimiento,Factura,Producto y Detalle
-                JOptionPane.showMessageDialog(this, "Factura ingresada exitosamente");
-                recargar(conTipo);
-                this.dispose();
-             }else{
-                JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de gasto que identifique al Establecimiento");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado el tipo para cada producto");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTIPO_GASTO_ESTABLECIMIENTOActionPerformed
-
-    public void registrarFactura(){
-        
         //Insertar Establecimiento
         if (this.conTipo.consultarEstablecimientoPor(ID_ESTABLECIMIENTO).equals("")){
-            String sql = "INSERT INTO ESTABLECIMIENTO VALUES ('"+ID_ESTABLECIMIENTO+
+            String sqlInsert = "INSERT INTO ESTABLECIMIENTO VALUES ('"+ID_ESTABLECIMIENTO+
                     "', '"+NOMBRE_ESTABLECIMIENTO+"', '"+TIPO_GASTO_ESTABLECIMIENTO+
                     "', '"+DIRECCION_ESTABLECIMIENTO+"', '"+TELEFONO_ESTABLECIMIENTO+"')";
-            this.conTipo.insertar(sql);
+            this.conTipo.insertar(sqlInsert);
         }else{
-            String sql = "UPDATE ESTABLECIMIENTO SET TIPO_GASTO_ESTABLECIMIENTO='"+TIPO_GASTO_ESTABLECIMIENTO+"' WHERE ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
-            this.conTipo.insertar(sql);
+            String sqlUpdate = "UPDATE ESTABLECIMIENTO SET TIPO_GASTO_ESTABLECIMIENTO='"+TIPO_GASTO_ESTABLECIMIENTO+"' WHERE ID_ESTABLECIMIENTO='"+ID_ESTABLECIMIENTO+"'";
+            this.conTipo.insertar(sqlUpdate);
             
         }
         //Insertar Factura
         if (this.conTipo.verificar_factura(ID_FACTURA)==false){
-            String sql = "INSERT INTO FACTURA VALUES('"+ID_FACTURA+"', '"+ID_CLIENTE+
+            String sqlFactura = "INSERT INTO FACTURA VALUES('"+ID_FACTURA+"', '"+ID_CLIENTE+
                     "', '"+ID_ESTABLECIMIENTO+"', '"+TIPO_FACTURA+"', '"+FECHA_EMISION+
                     "', '"+ESTADO_FACTURA+"', '"+AMBIENTE_FACTURA+"', "+TOTAL_SIN_IVA+
                     ", "+IVA+", "+TOTAL_CON_IVA+")";
-            this.conTipo.insertar(sql);
+            this.conTipo.insertar(sqlFactura);
         }
         
         //Insertar Productos y Detalles
-        int numeroProductos =tipos.length;
-        
+        int numProductos =tipos.length;
         //Extraer detalle de los productos y los guarda en la matriz Object [][] detalleProducto
-        for (int i =0; i<numeroProductos;i++){
-//            tipos[i][0]=infoDetalles.get(i).get("descripcion").toString();
-//            tipos[i][1]=Double.parseDouble( infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
-//            tipos[i][2]=conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString() );//Familia o TIPO_FACTURA de Gasto
-//            tipos[i][3]=infoDetalles.get(i).get("codigoPrincipal").toString();
-//            tipos[i][4]=(int)Double.parseDouble( infoDetalles.get(i).get("cantidad").toString() );
-//            tipos[i][5]=Double.parseDouble( infoDetalles.get(i).get("precioUnitario").toString() );
+        for (int i =0; i<numProductos;i++){
             //Tabla DETALLE---------------
             //ID_FACTURA
             ID_PRODUCTO =  tipos[i][3].toString();
@@ -573,9 +531,115 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         }
         
     }
+    private void autoRestarSumarTabla(){
+    //Cargar autocalificacion con los combobox
+        //extraigo la tabla del objeto donde  ocurrio el evento
+        for (int row=0;row<tablaProductos.getRowCount();row++){
             
+            for (int column=0;column<tablaProductos.getColumnCount();column++){
+                
+                TableModel model = tablaProductos.getModel();
+                Object data = model.getValueAt(row, column);
+                
+                if (!data.equals("") && column == 2) {
+                    //int opc = comboBox.getSelectedIndex();
+                    //System.out.println(row);
+                    
+                    if (!tipoEstado[row].equals("")) {
+                        if (tipoEstado[row].equals(Vivienda)) {
+                            restarAgregado(txtVivienda, row);
+                        }
+                        if (tipoEstado[row].equals(Salud)) {
+                            restarAgregado(txtSalud, row);
+                        }
+                        if (tipoEstado[row].equals(Educacion)) {
+                            restarAgregado(txtEducacion, row);
+                        }
+                        if (tipoEstado[row].equals(Alimentacion)) {
+                            restarAgregado(txtAlimentacion, row);
+                        }
+                        if (tipoEstado[row].equals(Vestimenta)) {
+                            restarAgregado(txtVestimenta, row);
+                        }
+                        if (tipoEstado[row].equals(Otro)) {
+                            restarAgregado(txtOtro, row);
+                        }
+                    }
+                    if (data.equals(Vivienda)) {
+                        sumarAgregado(txtVivienda, row, Vivienda);
+                    }
+                    if (data.equals(Salud)) {
+                        sumarAgregado(txtSalud, row, Salud);
+                    }
+                    if (data.equals(Educacion)) {
+                        sumarAgregado(txtEducacion, row, Educacion);
+                    }
+                    if (data.equals(Alimentacion)) {
+                        sumarAgregado(txtAlimentacion, row, Alimentacion);
+                    }
+                    if (data.equals(Vestimenta)) {
+                        sumarAgregado(txtVestimenta, row, Vestimenta);
+                    }
+                    if (data.equals(Otro)) {
+                        sumarAgregado(txtOtro, row, Otro);
+                    }
+                }
+            }
+        }
+    }
+    
+    //Algoritmo para autocompletar
+    private void iniciarAutocompletarTabla(){
+        //Extraer detalle de los productos y los guarda en la matriz Object [][] 
+            for (int i =0; i<this.infoDetalles.size();i++){
+                this.tipos[i][0]=this.infoDetalles.get(i).get("descripcion").toString();
+                this.tipos[i][1]=Double.parseDouble( this.infoDetalles.get(i).get("precioTotalSinImpuesto").toString() );
+                
+                //Retorna el tipo de gasto o Familia que pertece un producto de acuerdo a su ID_PRODUCTO
+                String tipoFamiliaProducto = this.conTipo.consultarProductoPor( infoDetalles.get(i).get("codigoPrincipal").toString());
+                if(!tipoFamiliaProducto.equals("")){
+                    tipos[i][2]=tipoFamiliaProducto;//Familia o TIPO_FACTURA de Gasto
+                }else {
+                    //Familia o Tipo Gasto Factura, devuelve "" si no lo encuenra!!
+                    tipos[i][2]=this.TIPO_GASTO_ESTABLECIMIENTO;
+                }
+                //verificar que la familia del producto o tipo Gasto pertenesca a Peronal o Negocio pero no a ambos
+                boolean existe = false;
+                for (String itemGasto : this.itemsGasto) {
+                    if (itemGasto.equals(tipos[i][2].toString()) ==true) {
+                        existe = true;
+                        break;
+                    }
+                }
+                if (existe ==false) tipos[i][2]="";
+                
+                this.tipos[i][3]=this.infoDetalles.get(i).get("codigoPrincipal").toString();
+                this.tipos[i][4]=(int)Double.parseDouble( this.infoDetalles.get(i).get("cantidad").toString() );
+                this.tipos[i][5]=Double.parseDouble( this.infoDetalles.get(i).get("precioUnitario").toString() );
+            }
             
-            
+            //suma o resta si logra encontrar el tipo de gasto para cada descripcion del producto
+            //cabezeras para mostrar en la tabla 
+        String nombreCabeceras[] = {"Descripcion", "Precio Total", "Tipo De Gasto"};
+        
+        this.tipoEstado = new String[this.tipos.length];
+        for (int i = 0; i < tipos.length; i++) {
+            this.tipoEstado[i] = "";
+        }
+        
+        this.tablaProductos = new JTable(this.tipos, nombreCabeceras) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 2;
+            }
+        };
+        //Actualizar la tabla productos!!!
+        this.jScrollPane1.setViewportView(tablaProductos);
+        //Finalemente calcular Total de cada tipo gasto!!
+        autoRestarSumarTabla();
+        
+    }
+    
     private void recargar(Conexion conn) {
          ArrayList auxRec = new ArrayList();
         com.libres.aplicacioneslibres.interfaces.FacturaManualPersonal.combo_Establecimientos.removeAllItems();
@@ -593,7 +657,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         double total;
         total = Double.parseDouble(txtField.getText());
         total -= (Double) tablaProductos.getValueAt(row, 1);
-        total = BigDecimal.valueOf(total).setScale(3, RoundingMode.HALF_UP).doubleValue();
+        total = BigDecimal.valueOf(total).setScale(4, RoundingMode.HALF_UP).doubleValue();
         txtField.setText(String.valueOf(total));
     }
 
@@ -601,7 +665,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         double total;
         total = Double.parseDouble(txtField.getText());
         total += (Double) tablaProductos.getValueAt(row, 1);
-        total = BigDecimal.valueOf(total).setScale(3, RoundingMode.HALF_UP).doubleValue();
+        total = BigDecimal.valueOf(total).setScale(4, RoundingMode.HALF_UP).doubleValue();
         txtField.setText(String.valueOf(total));
         tipoEstado[row] = tipo;
     }
@@ -611,7 +675,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         String query;
 
         total = Double.parseDouble(txtField.getText());
-        total = BigDecimal.valueOf(total).setScale(3, RoundingMode.HALF_UP).doubleValue();
+        total = BigDecimal.valueOf(total).setScale(4, RoundingMode.HALF_UP).doubleValue();
 
         query = "INSERT INTO TIPO_GASTO (id_factura,tipo,total)"
                 + "VALUES('" + ID_FACTURA + "','" + lblLabel.getText() + "'," + total + ")";
@@ -625,11 +689,8 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -637,15 +698,12 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarTipoGastoPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarTipoGastoPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarTipoGastoPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SeleccionarTipoGastoPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
 
@@ -658,7 +716,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbTIPO_GASTO_ESTABLECIMIENTO;
+    private javax.swing.JComboBox<String> cmbTipoGasto;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

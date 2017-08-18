@@ -266,9 +266,11 @@ public class ReportesGeneral extends javax.swing.JInternalFrame {
             String anio = String.valueOf(jcbAnio.getSelectedItem());
         
             if(!anio.equals("Año")){
-                FacturasCliente facturas= new FacturasCliente(conn,
-                    cedula, anio);
-                facturas.setVisible(true);
+//                FacturasCliente facturas= new FacturasCliente(conn,
+//                    cedula, anio);
+//                facturas.setVisible(true);
+                EleccionListado opcionListado = new EleccionListado(cedula, anio, conn);
+                opcionListado.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un año");
             }

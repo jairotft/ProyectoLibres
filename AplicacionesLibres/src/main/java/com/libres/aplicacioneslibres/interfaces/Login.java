@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     Conexion conn;
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
         conn = new Conexion();        
         cargar_anios();
     }

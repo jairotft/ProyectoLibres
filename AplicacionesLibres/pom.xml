@@ -11,6 +11,43 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <addClasspath>true</addClasspath>
+                      <mainClass>com.libres.aplicacioneslibres.aplicacion.App</mainClass>
+                      <classpathPrefix>dependency-jars/</classpathPrefix>
+                      </manifest>
+                  </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/dependency-jars/
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
     <dependencies>
         <!-- https://osdn.net/projects/sfnet_printman/downloads/dist/lib/AbsoluteLayout.jar/ -->
         <!-- mvn install:install-file -Dfile=AbsoluteLayout.jar -DgroupId=org.netbeans.external -DartifactId=AbsoluteLayout -Dversion=3.0 -Dpackaging=jar -->

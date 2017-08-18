@@ -10,6 +10,7 @@
  */
 package com.libres.aplicacioneslibres.conexionbdd;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,7 +30,11 @@ public class Conexion {
     Connection conexion;
 
     public Conexion() {
+        
+        //String url="Database/facturas.db";
         String url="src/main/resources/Database/facturas.db";
+        //String url = Conexion.class.getResource("/Database/facturas.db").getPath();
+        System.out.println("Esta es la url: " + url);
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:"+url);

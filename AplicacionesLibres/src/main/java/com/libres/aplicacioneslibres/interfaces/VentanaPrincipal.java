@@ -85,7 +85,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -146,15 +145,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItem6.setText("Reportes");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem6);
-
-        jMenuItem8.setLabel("Reportes Generales");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -163,7 +153,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem8);
         jMenuItem8.getAccessibleContext().setAccessibleName("jmiReportesGeneral");
 
-        jMenuItem10.setText("Reporte por factura");
+        jMenuItem10.setText("Reporte por Factura");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
@@ -171,7 +161,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem10);
 
-        jMenuItem11.setText("Reporte por gasto");
+        jMenuItem11.setText("Reporte por Gasto");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -310,20 +300,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane.add(fmn);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        jDesktopPane.removeAll();
-        rp = new Reportes(conn, cedula_usuario, anio);
-        fe.setVisible(false);
-        hg.setVisible(false);
-        fmp.setVisible(false);
-        fmn.setVisible(false);
-        rp.setVisible(true);
-        rpg.setVisible(false);
-        rpf.setVisible(false);
-        rpgs.setVisible(false);
-        jDesktopPane.add(rp);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         cambiarUsuario();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -450,7 +426,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

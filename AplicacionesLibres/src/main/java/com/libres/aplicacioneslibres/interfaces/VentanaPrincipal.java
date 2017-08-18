@@ -85,7 +85,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         m_Usuario = new javax.swing.JMenu();
@@ -145,13 +145,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem6.setText("Reportes Generales");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem8);
-        jMenuItem8.getAccessibleContext().setAccessibleName("jmiReportesGeneral");
+        jMenu1.add(jMenuItem6);
 
         jMenuItem10.setText("Reporte por Factura");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -325,20 +325,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowClosing
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        jDesktopPane.removeAll();
-        rpg = new ReportesGeneral(conn);
-        fe.setVisible(false);
-        hg.setVisible(false);
-        fmp.setVisible(false);
-        fmn.setVisible(false);
-        rp.setVisible(false);
-        rpg.setVisible(true);
-        rpf.setVisible(false);
-        rpgs.setVisible(false);
-        jDesktopPane.add(rpg);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         salir();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
@@ -370,6 +356,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         rpgs.setVisible(true);
         jDesktopPane.add(rpgs);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        jDesktopPane.removeAll();
+        rpgs = new ReportePorGasto(conn);
+        fe.setVisible(false);
+        hg.setVisible(false);
+        fmp.setVisible(false);
+        fmn.setVisible(false);
+        rp.setVisible(false);
+        rpg.setVisible(true);
+        rpf.setVisible(false);
+        rpgs.setVisible(false);
+        jDesktopPane.add(rpg);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,8 +426,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu m_FactElect;
     private javax.swing.JMenu m_FactFisic;

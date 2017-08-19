@@ -108,18 +108,11 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         jlabelESTABLECIMIENTO.setText(NOMBRE_ESTABLECIMIENTO);
         TIPO_GASTO_ESTABLECIMIENTO=conTipo.getTipoGastoEstablecimiento(ID_ESTABLECIMIENTO);
         //Consultar si el establecimiento es nuevo o no!!!
-        if (!TIPO_GASTO_ESTABLECIMIENTO.equals("")) {
-            //cmbTipoGasto.enable(false);//si ya existe desabilita cmbTipoGasto
-            for (String item1 : itemsGasto) this.cmbTipoGasto.addItem(item1);
-            nuevoEstablecimiento=false;
-        }else{
-            //Habilitar cmbTipoGasto para elegir un tipo de Gasto que identifique al establecimiento!!!
-            cmbTipoGasto.setVisible(true);
-            activarCmbTipoGasto = false;//Al acrrancar ventana, desactivar los eventos que surgen en cmbTipoGasto
-            //Iniciar los itemsGasto al cmbTipoGasto
-            for (String item1 : itemsGasto) this.cmbTipoGasto.addItem(item1);
-        }
+        nuevoEstablecimiento =TIPO_GASTO_ESTABLECIMIENTO.equals("");
         
+        //Iniciar los itemsGasto al cmbTipoGasto
+        for (String item1 : itemsGasto) this.cmbTipoGasto.addItem(item1);
+            
         DIRECCION_ESTABLECIMIENTO=infoTributaria.get("dirMatriz");
         TELEFONO_ESTABLECIMIENTO="";
     
@@ -144,7 +137,7 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         for (String item1 : itemsGasto) this.cmbCeldaTipoGasto.addItem(item1);
         
         iniciarAutocompletarTabla();
-        
+        activarCmbTipoGasto = true;
         
         //Evento que al actuar dentro de la tabla, suma o restar el total de cada familia
         tablaProductos.getModel().addTableModelListener((TableModelEvent tme) -> {
@@ -245,11 +238,6 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         cmbTipoGasto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbTipoGastoItemStateChanged(evt);
-            }
-        });
-        cmbTipoGasto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbTipoGastoMouseClicked(evt);
             }
         });
         cmbTipoGasto.addActionListener(new java.awt.event.ActionListener() {
@@ -380,12 +368,6 @@ public class SeleccionarTipoGastoPersonal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cmbTipoGastoItemStateChanged
-
-    private void cmbTipoGastoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbTipoGastoMouseClicked
-        //Activar el cambio de item solamente cuando se haya iniciado la ventana
-        //y se de click sobre el combobox Tipo de Gasto 
-        this.activarCmbTipoGasto=true;
-    }//GEN-LAST:event_cmbTipoGastoMouseClicked
 
     private void cmbTipoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoGastoActionPerformed
         // TODO add your handling code here:

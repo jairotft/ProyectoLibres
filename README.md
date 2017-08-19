@@ -16,7 +16,7 @@ Este proyecto tiene como finalidad desarrollar un sistema que gestione facturas 
 
 ## Instalación
 ### Windows
-Para realizar la instalación de la aplicación en windows, seguir el [manual](https://github.com/Jairo95/ProyectoLibres/raw/instalacion/Manual_Setup_EasyFacturas.pdf)
+Para realizar la instalación de la aplicación en windows, seguir el [manual](https://github.com/Jairo95/ProyectoLibres/raw/instalacion/Manual_EasyFacturasProSetup.pdf)
 
 ### Debian
 Para realizar la instalación de la aplicación en debian, seguir el [manual](https://github.com/Jairo95/ProyectoLibres/raw/instalacion/Manual_Linux_EasyFacturas.pdf)

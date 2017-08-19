@@ -72,7 +72,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Buhobit\\Documents\\GitHub\\ProyectoLibres\\AplicacionesLibres\\src\\main\\resources\\Imagen\\epn.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/epn.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,13 +93,13 @@ public class Bienvenida extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnContinuar)
-                                .addGap(61, 61, 61)
-                                .addComponent(btnSalir)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addGap(111, 111, 111))))))
+                                .addGap(111, 111, 111))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnContinuar)
+                                .addGap(85, 85, 85)
+                                .addComponent(btnSalir)
+                                .addContainerGap())))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jLabel1)
